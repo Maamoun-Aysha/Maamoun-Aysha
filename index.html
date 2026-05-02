@@ -913,7 +913,55 @@ body::before{
   .final-section .polaroid{
     display:none;
   }
+
+  /* ANIMATED TAP TO OPEN */
+.tap{
+  animation:tapFloat 1.8s ease-in-out infinite;
+  text-shadow:
+    0 0 8px rgba(155,107,51,.45),
+    0 0 18px rgba(255,215,150,.55);
 }
+
+.tap::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-10px;
+  width:42px;
+  height:1px;
+  background:linear-gradient(90deg, transparent, #9b6b33, transparent);
+  transform:translateX(-50%) scaleX(.4);
+  transform-origin:center;
+  animation:tapLine 1.8s ease-in-out infinite;
+}
+
+@keyframes tapFloat{
+  0%,100%{
+    transform:translateX(-50%) translateY(0);
+    opacity:.75;
+    letter-spacing:4px;
+  }
+
+  50%{
+    transform:translateX(-50%) translateY(-6px);
+    opacity:1;
+    letter-spacing:5px;
+  }
+}
+
+@keyframes tapLine{
+  0%,100%{
+    transform:translateX(-50%) scaleX(.4);
+    opacity:.35;
+  }
+
+  50%{
+    transform:translateX(-50%) scaleX(1.4);
+    opacity:1;
+  }
+}
+}
+
 </style>
 </head>
 
