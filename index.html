@@ -412,23 +412,87 @@ font-family:'Great Vibes';
 font-size:23px;
 }
 
-/* SPARKLES */
-.sparkle{
-position:fixed;
-width:4px;
-height:4px;
-background:#ffd98a;
-border-radius:50%;
-box-shadow:0 0 12px #ffd98a;
-pointer-events:none;
-animation:float 4s linear forwards;
-z-index:999;
+/* BUTTERFLIES - PURE CSS */
+.butterfly{
+  position:fixed;
+  width:24px;
+  height:24px;
+  pointer-events:none;
+  z-index:999;
+  opacity:0;
+  animation:flutterUp linear forwards;
 }
 
-@keyframes float{
-to{transform:translateY(-120px);opacity:0}
+.butterfly::before,
+.butterfly::after{
+  content:"";
+  position:absolute;
+  top:4px;
+  width:13px;
+  height:18px;
+  background:linear-gradient(135deg,#fff2b8,#d6a83b);
+  border-radius:70% 70% 45% 45%;
+  box-shadow:0 0 10px rgba(255,217,138,.65);
+  animation:wingFlap .45s ease-in-out infinite alternate;
 }
 
+.butterfly::before{
+  left:1px;
+  transform-origin:right center;
+  transform:rotate(-28deg);
+}
+
+.butterfly::after{
+  right:1px;
+  transform-origin:left center;
+  transform:rotate(28deg);
+}
+
+.butterfly .body{
+  position:absolute;
+  left:50%;
+  top:6px;
+  width:3px;
+  height:16px;
+  background:#9b6b22;
+  border-radius:10px;
+  transform:translateX(-50%);
+  box-shadow:0 0 6px rgba(255,217,138,.5);
+}
+
+@keyframes wingFlap{
+  from{scale:1 1}
+  to{scale:.65 1}
+}
+
+@keyframes flutterUp{
+  0%{
+    opacity:0;
+    transform:translateY(0) translateX(0) scale(.7) rotate(0deg);
+  }
+
+  10%{
+    opacity:.9;
+  }
+
+  25%{
+    transform:translateY(-40px) translateX(14px) scale(.95) rotate(8deg);
+  }
+
+  50%{
+    transform:translateY(-95px) translateX(-12px) scale(1) rotate(-8deg);
+  }
+
+  75%{
+    opacity:.85;
+    transform:translateY(-155px) translateX(16px) scale(.9) rotate(10deg);
+  }
+
+  100%{
+    opacity:0;
+    transform:translateY(-230px) translateX(-8px) scale(.75) rotate(-5deg);
+  }
+}
 /* MOBILE */
 @media(max-width:768px){
 
@@ -743,19 +807,32 @@ const obs=new IntersectionObserver(entries=>{
 
 polaroids.forEach(p=>obs.observe(p));
 
-function sparkle(){
+function butterfly(){
   if(website.style.display!=="block")return;
 
-  const s=document.createElement("div");
-  s.className="sparkle";
-  s.style.left=Math.random()*window.innerWidth+"px";
-  s.style.top=Math.random()*window.innerHeight+"px";
-  document.body.appendChild(s);
+  const b=document.createElement("div");
+  b.className="butterfly";
 
-  setTimeout(()=>s.remove(),4000);
+  const body=document.createElement("div");
+  body.className="body";
+  b.appendChild(body);
+
+  const size=16 + Math.random()*18;
+  b.style.width=size+"px";
+  b.style.height=size+"px";
+
+  b.style.left=Math.random()*window.innerWidth+"px";
+  b.style.top=(window.innerHeight - 40 + Math.random()*90)+"px";
+
+  b.style.animationDuration=(5 + Math.random()*4)+"s";
+
+  document.body.appendChild(b);
+
+  setTimeout(()=>b.remove(),9000);
 }
 
-setInterval(sparkle,220);
+setInterval(butterfly,700);
+
 </script>
 
 </body>
