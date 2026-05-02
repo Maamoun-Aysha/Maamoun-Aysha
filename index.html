@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light only">
-<meta name="supported-color-schemes" content="light">
+<meta name="color-scheme" content="light">
 <title>Maamoun & Aycha</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Parisienne&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
@@ -19,13 +18,7 @@
   box-sizing:border-box;
 }
 
-html{
-  color-scheme: light only;
-}
-
 body{
-    forced-color-adjust: none;
-  -webkit-text-size-adjust: 100%;
   font-family:Montserrat, sans-serif;
   overflow-x:hidden;
   color:white;
@@ -48,17 +41,6 @@ body::before{
 @keyframes moveGlow{
   from{transform:translateY(0)}
   to{transform:translateY(80px)}
-}
-
-.intro,
-.envelope,
-.envelope::before,
-.envelope::after,
-.flap,
-.invite-box,
-.lux-box,
-.polaroid{
-  forced-color-adjust: none;
 }
 
 /* ==============================
@@ -977,6 +959,78 @@ body::before{
   50%{
     transform:translateX(-50%) scaleX(1.4);
     opacity:1;
+  }
+}
+/* FORCE LIGHT COLORS EVEN WHEN PHONE DARK MODE IS ON */
+:root{
+  color-scheme: light !important;
+}
+
+html,
+body{
+  background-color:#220707 !important;
+  color:white !important;
+  color-scheme:light !important;
+  forced-color-adjust:none !important;
+}
+
+/* Prevent browser auto-darkening */
+@media (prefers-color-scheme: dark){
+  html,
+  body{
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,215,150,.22), transparent 35%),
+      radial-gradient(circle at 80% 70%, rgba(180,0,0,.28), transparent 40%),
+      linear-gradient(145deg,#220707,#050000) !important;
+    color:white !important;
+  }
+
+  .intro{
+    background:
+      radial-gradient(circle at 50% 35%, rgba(255,255,255,.95), rgba(245,232,210,.92) 45%, rgba(215,190,155,.95)) !important;
+  }
+
+  .envelope{
+    background:linear-gradient(145deg,#fffaf2,#ead8bd) !important;
+  }
+
+  .envelope::after{
+    background:linear-gradient(145deg,#f0dfc3,#d8bc92) !important;
+  }
+
+  .flap{
+    background:linear-gradient(160deg,#fff7e8,#dcc19a) !important;
+  }
+
+  .seal{
+    background:radial-gradient(circle at 35% 30%, #ff6a4d, #e01912 42%, #8f0000 76%) !important;
+    color:white !important;
+  }
+
+  .invite-box{
+    color:white !important;
+  }
+
+  .lux-box{
+    color:white !important;
+  }
+
+  .polaroid{
+    background:white !important;
+    color:black !important;
+  }
+
+  .polaroid span{
+    color:black !important;
+  }
+
+  .time-box{
+    background:rgba(255,255,255,.09) !important;
+  }
+
+  .btn.no{
+    background:rgba(255,255,255,.1) !important;
+    color:white !important;
   }
 }
 }
