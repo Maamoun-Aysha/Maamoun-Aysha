@@ -556,44 +556,48 @@ display:none;
     min-height:100svh;
   }
 }
-/* FIX MOBILE POLAROIDS COVERING TEXT */
+/* MOBILE POLAROIDS - FRONT BUT NOT COVERING TEXT */
 @media(max-width:768px){
 
-  /* keep the text/card above the polaroids */
+  .lux-section,
+  .invite{
+    padding-top:70px;
+    padding-bottom:70px;
+  }
+
   .invite-box,
   .lux-box{
     position:relative;
-    z-index:10;
+    z-index:5;
   }
 
-  /* polaroids become background decorations on mobile */
   .polaroid{
-    z-index:2;
+    z-index:8;
     pointer-events:none;
-    width:118px;
+    width:112px;
     padding:7px;
-    opacity:0;
   }
 
   .polaroid img{
-    height:118px;
+    height:112px;
   }
 
   .polaroid span{
     font-size:21px;
+    margin-top:6px;
   }
 
-  /* left polaroids: move to corner, behind card */
+  /* left polaroids sit above the card */
   .polaroid.left{
-    left:-6px;
-    top:-22px;
+    left:16px;
+    top:12px;
     transform:translateY(35px) scale(.9) rotate(-10deg);
   }
 
-  /* right polaroids: move to corner, behind card */
+  /* right polaroids sit below the card */
   .polaroid.right{
-    right:-6px;
-    bottom:-22px;
+    right:16px;
+    bottom:12px;
     transform:translateY(35px) scale(.9) rotate(10deg);
   }
 
@@ -602,16 +606,22 @@ display:none;
     transform:translateY(0) scale(1) rotate(var(--r));
   }
 
-  /* first invite polaroid needs to be lower so it doesn't cover quote/name */
+  /* first invite polaroid: keep it away from Maamoun/Aycha text */
   .invite .polaroid.left{
-    top:18px;
-    left:-12px;
+    top:8px;
+    left:14px;
   }
 
-  /* RSVP section: move forever polaroid away from title/buttons */
+  /* RSVP polaroid: move higher so it doesn't block title/buttons */
   .lux-section:nth-of-type(5) .polaroid.left{
-    top:-45px;
-    left:-8px;
+    top:6px;
+    left:14px;
+  }
+
+  /* make sure the card itself has enough space inside */
+  .lux-box{
+    padding-top:42px;
+    padding-bottom:42px;
   }
 }
 }
