@@ -914,6 +914,186 @@ url("images/1.jpeg") !important;
     bottom:calc(28px + env(safe-area-inset-bottom));
   }
 }
+/* DECORATIVE GROOM + BRIDE ON ENVELOPE */
+.side-character{
+  position:absolute;
+  top:50%;
+  width:120px;
+  height:210px;
+  transform:translateY(-50%);
+  z-index:4;
+  pointer-events:none;
+  opacity:.22;
+  filter:drop-shadow(0 0 12px rgba(180,120,60,.14));
+}
+
+.groom-deco{
+  left:8%;
+}
+
+.bride-deco{
+  right:8%;
+}
+
+/* shared head */
+.side-character .head{
+  position:absolute;
+  top:0;
+  left:50%;
+  width:34px;
+  height:34px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:linear-gradient(145deg,#d8b98b,#b78c56);
+  box-shadow:0 0 8px rgba(180,120,60,.18);
+}
+
+/* ===================== */
+/* GROOM */
+/* ===================== */
+.groom-deco .body{
+  position:absolute;
+  top:30px;
+  left:50%;
+  transform:translateX(-50%);
+  width:88px;
+  height:150px;
+  background:linear-gradient(180deg, rgba(184,141,86,.9), rgba(138,96,48,.95));
+  clip-path:polygon(50% 0, 78% 16%, 92% 42%, 78% 100%, 22% 100%, 8% 42%, 22% 16%);
+  border-radius:8px;
+}
+
+.groom-deco .body::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:16px;
+  transform:translateX(-50%);
+  width:30px;
+  height:42px;
+  background:rgba(247,239,226,.8);
+  clip-path:polygon(50% 0, 100% 35%, 74% 100%, 26% 100%, 0 35%);
+  border-radius:2px;
+}
+
+.groom-deco .body::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:22px;
+  transform:translateX(-50%);
+  width:8px;
+  height:48px;
+  background:#9a6631;
+  clip-path:polygon(50% 0, 100% 22%, 70% 100%, 30% 100%, 0 22%);
+  border-radius:2px;
+}
+
+/* ===================== */
+/* BRIDE */
+/* ===================== */
+.bride-deco .body{
+  position:absolute;
+  top:28px;
+  left:50%;
+  transform:translateX(-50%);
+  width:108px;
+  height:165px;
+  background:linear-gradient(180deg, rgba(203,169,118,.9), rgba(152,114,65,.95));
+  clip-path:polygon(50% 0, 72% 10%, 84% 28%, 100% 100%, 0 100%, 16% 28%, 28% 10%);
+  border-radius:10px;
+}
+
+.bride-deco .body::before{
+  content:"";
+  position:absolute;
+  top:-18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:74px;
+  height:70px;
+  background:rgba(239,228,205,.65);
+  clip-path:polygon(50% 0, 100% 35%, 78% 100%, 22% 100%, 0 35%);
+  border-radius:50% 50% 40% 40%;
+  filter:blur(.2px);
+}
+
+.bride-deco .body::after{
+  content:"";
+  position:absolute;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  width:20px;
+  height:20px;
+  background:#f0e6d5;
+  clip-path:polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  opacity:.75;
+}
+
+/* keep them behind the seal */
+.seal{
+  z-index:10;
+}
+
+/* mobile tuning */
+@media(max-width:768px){
+  .side-character{
+    width:86px;
+    height:160px;
+    opacity:.20;
+    top:50%;
+  }
+
+  .groom-deco{
+    left:5%;
+  }
+
+  .bride-deco{
+    right:5%;
+  }
+
+  .side-character .head{
+    width:26px;
+    height:26px;
+  }
+
+  .groom-deco .body{
+    top:24px;
+    width:62px;
+    height:112px;
+  }
+
+  .groom-deco .body::before{
+    width:22px;
+    height:30px;
+    top:12px;
+  }
+
+  .groom-deco .body::after{
+    width:6px;
+    height:34px;
+    top:18px;
+  }
+
+  .bride-deco .body{
+    top:22px;
+    width:76px;
+    height:124px;
+  }
+
+  .bride-deco .body::before{
+    width:54px;
+    height:50px;
+    top:-14px;
+  }
+
+  .bride-deco .body::after{
+    width:15px;
+    height:15px;
+    top:16px;
+  }
+}
 }
 
 </style>
@@ -924,6 +1104,15 @@ url("images/1.jpeg") !important;
 <div class="intro" id="intro">
   <div class="envelope" id="envelope">
     <div class="flap"></div>
+    <div class="side-character groom-deco">
+  <span class="head"></span>
+  <span class="body"></span>
+</div>
+
+<div class="side-character bride-deco">
+  <span class="head"></span>
+  <span class="body"></span>
+</div>
     <div class="seal" id="seal">Love</div>
     <div class="tap">TAP TO OPEN</div>
   </div>
