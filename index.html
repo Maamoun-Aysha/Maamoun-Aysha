@@ -1,662 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Maamoun & Aycha Wedding</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maamoun & Aycha</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Montserrat;
+overflow-x:hidden;
+color:white;
+
+/* 🔥 LUXURY BACKGROUND */
+background:
+radial-gradient(circle at 20% 30%, rgba(255,180,120,.15), transparent 40%),
+radial-gradient(circle at 80% 70%, rgba(255,0,0,.18), transparent 40%),
+linear-gradient(145deg,#140404,#000000);
 }
 
-html {
-  scroll-behavior: smooth;
+/* ✨ subtle moving glow */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at 50% 0%, rgba(255,215,150,.25), transparent 50%);
+animation:moveGlow 12s infinite alternate;
+pointer-events:none;
 }
 
-body {
-  background: #070303;
-  color: white;
-  overflow-x: hidden;
+@keyframes moveGlow{
+0%{transform:translateY(0)}
+100%{transform:translateY(60px)}
 }
 
-/* INTRO ENVELOPE */
-.intro {
-  height: 100vh;
-  display: grid;
-  place-items: center;
-  background:
-    radial-gradient(circle at top, rgba(255,0,0,.25), transparent 36%),
-    linear-gradient(145deg, #140606, #030101);
+/* INTRO */
+.intro{
+height:100vh;
+display:grid;
+place-items:center;
 }
 
-.envelope {
-  width: 88vw;
-  max-width: 390px;
-  height: 250px;
-  background: linear-gradient(145deg, #fff7eb, #dfcdb4);
-  border-radius: 18px;
-  position: relative;
-  box-shadow: 0 35px 90px rgba(0,0,0,.85);
-  overflow: hidden;
+.envelope{
+width:90vw;
+max-width:380px;
+height:240px;
+background:linear-gradient(145deg,#fff8ee,#e6d4b5);
+border-radius:16px;
+position:relative;
+overflow:hidden;
+box-shadow:0 40px 120px rgba(0,0,0,.9);
 }
 
-.envelope::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(35deg, transparent 49%, rgba(130,75,25,.28) 50%, transparent 51%),
-    linear-gradient(-35deg, transparent 49%, rgba(130,75,25,.22) 50%, transparent 51%);
+.flap{
+position:absolute;
+width:100%;
+height:55%;
+background:#e6d4b5;
+clip-path:polygon(0 0,100% 0,50% 100%);
+transform-origin:top;
+transition:1.2s;
 }
 
-.flap {
-  position: absolute;
-  width: 100%;
-  height: 56%;
-  top: 0;
-  background: linear-gradient(145deg, #fff3df, #d2b995);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  transform-origin: top;
-  transition: 1.2s ease;
-  z-index: 3;
+.seal{
+position:absolute;
+width:90px;
+height:90px;
+background:radial-gradient(circle,#ff3b2f,#900000);
+border-radius:50%;
+display:grid;
+place-items:center;
+color:white;
+font-family:'Great Vibes';
+font-size:30px;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+cursor:pointer;
+box-shadow:0 0 50px rgba(255,0,0,.9);
+animation:pulse 1.8s infinite;
 }
 
-.seal {
-  position: absolute;
-  width: 95px;
-  height: 95px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #ff3b2f, #970000 72%);
-  color: white;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: grid;
-  place-items: center;
-  font-family: "Great Vibes", cursive;
-  font-size: 31px;
-  z-index: 5;
-  cursor: pointer;
-  box-shadow: 0 0 45px rgba(255,0,0,.8);
-  animation: pulse 1.7s infinite;
+@keyframes pulse{
+50%{transform:translate(-50%,-50%) scale(1.1)}
 }
 
-.tap {
-  position: absolute;
-  bottom: -58px;
-  width: 100%;
-  text-align: center;
-  font-family: Montserrat;
-  color: #e5c777;
-  letter-spacing: 3px;
-  font-size: 12px;
+.open .flap{transform:rotateX(180deg)}
+.open .seal{opacity:0;transform:translate(-50%,-50%) scale(.3)}
+
+.tap{
+position:absolute;
+bottom:-50px;
+width:100%;
+text-align:center;
+font-size:12px;
+color:#e5c777;
+letter-spacing:2px;
 }
 
-@keyframes pulse {
-  50% { transform: translate(-50%, -50%) scale(1.08); }
+/* MAIN */
+.website{display:none}
+
+/* CENTER INVITE */
+.container{
+max-width:720px;
+margin:auto;
+padding:40px 20px;
+position:relative;
+z-index:2;
 }
 
-.open .flap {
-  transform: rotateX(180deg);
+.invite{
+background:rgba(30,10,10,.6);
+backdrop-filter:blur(14px);
+border-radius:30px;
+padding:40px 25px;
+text-align:center;
+border:1px solid rgba(255,215,150,.4);
+box-shadow:
+0 0 60px rgba(255,0,0,.5),
+inset 0 0 40px rgba(255,215,150,.1);
 }
 
-.open .seal {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(.2);
+.names{
+font-family:'Great Vibes';
+font-size:90px;
+text-shadow:
+0 0 20px red,
+0 0 50px rgba(255,200,100,.4);
 }
 
-/* MAIN WEBSITE */
-.website {
-  display: none;
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(170,0,0,.35), transparent 35%),
-    linear-gradient(#070303, #170606, #070303);
-  animation: fadeIn 1.5s ease forwards;
+.and{color:#ffd98a;font-size:30px;margin:10px 0}
+
+.date{
+font-family:Playfair Display;
+font-size:36px;
+color:#ffd98a;
+margin-top:15px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.info{
+margin-top:10px;
+line-height:1.8;
+color:#fff3dc;
 }
 
-/* WHOLE INVITE */
-.invite-wrap {
-  min-height: 100vh;
-  padding: 24px 14px 60px;
-  display: flex;
-  justify-content: center;
+/* COUNTDOWN */
+.countdown{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+margin-top:25px;
 }
 
-.invite-card {
-  width: 100%;
-  max-width: 1050px;
-  min-height: 100vh;
-  border-radius: 38px;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(255,218,150,.4);
-  box-shadow:
-    0 0 90px rgba(160,0,0,.55),
-    inset 0 0 80px rgba(255,215,150,.08);
-  background:
-    linear-gradient(rgba(20,5,5,.58), rgba(20,5,5,.88)),
-    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80");
-  background-size: cover;
-  background-position: center;
+.time-box{
+background:rgba(255,255,255,.08);
+padding:12px;
+border-radius:12px;
+border:1px solid rgba(255,215,150,.2);
 }
 
-.invite-card::before {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border-radius: 30px;
-  border: 1px solid rgba(255,215,150,.42);
-  pointer-events: none;
-  z-index: 10;
+.time-box span{
+display:block;
+font-size:20px;
+color:#ffd98a;
 }
 
-.invite-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 15%, rgba(255,215,150,.2), transparent 22%),
-    radial-gradient(circle at 80% 50%, rgba(255,0,0,.18), transparent 28%);
-  pointer-events: none;
+/* RSVP */
+.rsvp{
+margin-top:40px;
+padding:30px 20px;
+border-radius:25px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,215,150,.3);
+box-shadow:0 0 40px rgba(255,0,0,.3);
 }
 
-/* STICKY TITLE AREA */
-.invite-header {
-  min-height: 100vh;
-  padding: 48px 22px;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  position: relative;
-  z-index: 2;
+.rsvp h2{
+font-family:'Great Vibes';
+font-size:55px;
+color:#ffd98a;
 }
 
-.pre-title {
-  font-family: Montserrat;
-  font-size: 12px;
-  letter-spacing: 4px;
-  color: #f0cc82;
-  text-transform: uppercase;
-  margin-bottom: 20px;
+.rsvp p{
+margin-top:10px;
+font-size:14px;
+color:#fff1d8;
 }
 
-.quote {
-  font-family: Playfair Display;
-  font-size: clamp(18px, 4vw, 26px);
-  line-height: 1.7;
-  color: #fff0d1;
-  margin-bottom: 25px;
+.rsvp-buttons{
+margin-top:20px;
+display:flex;
+flex-direction:column;
+gap:12px;
 }
 
-.names {
-  font-family: "Great Vibes", cursive;
-  font-size: clamp(78px, 20vw, 145px);
-  line-height: .85;
-  color: white;
-  text-shadow:
-    0 0 18px rgba(255,0,0,.9),
-    0 0 48px rgba(255,200,100,.35);
+.btn{
+padding:14px;
+border-radius:30px;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
 }
 
-.and {
-  font-family: Playfair Display;
-  color: #ffd98a;
-  font-size: 32px;
-  margin: 15px 0;
+.btn.yes{
+background:linear-gradient(135deg,#ffd98a,#b8862b);
+color:#1e0707;
+box-shadow:0 0 25px rgba(255,200,100,.6);
 }
 
-.date {
-  font-family: Playfair Display;
-  font-size: clamp(34px, 9vw, 62px);
-  color: #ffd98a;
-  margin-top: 35px;
+.btn.no{
+background:rgba(255,255,255,.1);
+color:white;
+border:1px solid rgba(255,215,150,.3);
 }
 
-.info {
-  font-family: Montserrat;
-  color: #fff3dc;
-  line-height: 2;
-  font-size: 15px;
-  margin-top: 15px;
+.btn:hover{transform:scale(1.06)}
+
+/* POLAROIDS */
+.polaroid{
+position:absolute;
+width:140px;
+background:white;
+color:black;
+padding:8px;
+border-radius:10px;
+box-shadow:0 20px 50px rgba(0,0,0,.9);
+opacity:0;
+transform:translateY(120px) scale(.8);
+transition:1s ease;
 }
 
-/* EMBEDDED PHOTO FLOW */
-.invite-flow {
-  position: relative;
-  z-index: 3;
-  padding: 20px 14px 70px;
+.polaroid img{
+width:100%;
+height:140px;
+object-fit:cover;
 }
 
-.photo-invite-row {
-  min-height: 85vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-  gap: 22px;
-  padding: 20px 0;
+.polaroid span{
+display:block;
+text-align:center;
+margin-top:6px;
+font-family:'Great Vibes';
+font-size:22px;
 }
 
-.photo-frame {
-  position: relative;
-  width: 88%;
-  margin: auto;
-  border-radius: 34px;
-  padding: 8px;
-  background: linear-gradient(145deg, #ffe3a0, #7c4a15, #ffd98a);
-  box-shadow:
-    0 0 45px rgba(255,210,130,.35),
-    0 25px 60px rgba(0,0,0,.75);
-  opacity: 0;
-  transform: translateY(80px) rotate(-3deg) scale(.92);
-  transition: 1s ease;
+/* positions */
+.left{left:-60px}
+.right{right:-60px}
+
+.p1{top:200px}
+.p2{top:500px}
+.p3{top:800px}
+.p4{top:1100px}
+.p5{top:1400px}
+
+.polaroid.show{
+opacity:1;
+transform:translateY(0) scale(1) rotate(var(--r));
 }
 
-.photo-frame.right {
-  transform: translateY(80px) rotate(3deg) scale(.92);
+/* ✨ FLOATING PARTICLES */
+.sparkle{
+position:fixed;
+width:4px;
+height:4px;
+background:#ffd98a;
+border-radius:50%;
+box-shadow:0 0 10px #ffd98a;
+pointer-events:none;
+animation:float 4s linear forwards;
 }
 
-.photo-frame.show {
-  opacity: 1;
-  transform: translateY(0) rotate(0deg) scale(1);
+@keyframes float{
+to{
+transform:translateY(-120px);
+opacity:0;
+}
 }
 
-.photo-frame img {
-  width: 100%;
-  height: 430px;
-  object-fit: cover;
-  display: block;
-  border-radius: 27px;
-  filter: brightness(.9) contrast(1.08) saturate(1.12);
+/* MOBILE */
+@media(max-width:768px){
+.polaroid{width:110px}
+.polaroid img{height:110px}
+.left{left:-40px}
+.right{right:-40px}
 }
 
-.photo-text {
-  width: 88%;
-  margin: auto;
-  padding: 24px;
-  border-radius: 28px;
-  background: rgba(30, 5, 5, .62);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255,215,150,.32);
-  text-align: center;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: 1s ease .15s;
-}
-
-.photo-text.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.photo-text h3 {
-  font-family: "Great Vibes", cursive;
-  font-size: 50px;
-  color: #ffd98a;
-  text-shadow: 0 0 20px rgba(255,0,0,.5);
-}
-
-.photo-text p {
-  font-family: Montserrat;
-  color: #fff1d8;
-  line-height: 1.8;
-  margin-top: 8px;
-  font-size: 14px;
-}
-
-/* DETAILS INSIDE SAME INVITE */
-.details-panel {
-  margin: 40px auto;
-  width: 90%;
-  padding: 30px 20px;
-  text-align: center;
-  border-radius: 32px;
-  background: rgba(255,255,255,.08);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,215,150,.35);
-  box-shadow: 0 0 45px rgba(120,0,0,.45);
-}
-
-.details-panel h2 {
-  font-family: "Great Vibes", cursive;
-  font-size: 62px;
-  color: #ffd98a;
-}
-
-.detail-line {
-  font-family: Montserrat;
-  color: #fff3dc;
-  line-height: 2;
-  margin-top: 16px;
-}
-
-.countdown {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin: 26px 0;
-}
-
-.time-box {
-  background: rgba(0,0,0,.25);
-  border: 1px solid rgba(255,215,150,.25);
-  border-radius: 17px;
-  padding: 13px 4px;
-}
-
-.time-box span {
-  display: block;
-  font-family: Playfair Display;
-  font-size: 23px;
-  color: #ffd98a;
-}
-
-.time-box small {
-  font-family: Montserrat;
-  font-size: 9px;
-  color: white;
-}
-
-.no-kids {
-  margin-top: 20px;
-  padding: 16px;
-  border-radius: 18px;
-  background: rgba(120,0,0,.45);
-  border: 1px solid rgba(255,180,180,.3);
-  font-family: Montserrat;
-  color: #ffeaea;
-}
-
-.btn {
-  display: inline-block;
-  margin-top: 25px;
-  text-decoration: none;
-  color: #210606;
-  background: linear-gradient(135deg, #ffe39d, #b88328);
-  padding: 15px 24px;
-  border-radius: 50px;
-  font-family: Montserrat;
-  font-weight: 600;
-  box-shadow: 0 0 30px rgba(255,210,120,.48);
-}
-
-/* FLOATING SPARKLES */
-.sparkle {
-  position: fixed;
-  width: 5px;
-  height: 5px;
-  background: #ffd98a;
-  border-radius: 50%;
-  pointer-events: none;
-  box-shadow: 0 0 14px #ffd98a;
-  animation: sparkleFloat 3s linear forwards;
-  z-index: 999;
-}
-
-@keyframes sparkleFloat {
-  from {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-110px) scale(0);
-    opacity: 0;
-  }
-}
-
-@media (orientation: landscape) {
-  .invite-wrap {
-    padding: 28px;
-  }
-
-  .photo-invite-row {
-    grid-template-columns: 1fr 1fr;
-    min-height: 92vh;
-    padding: 20px 55px;
-  }
-
-  .photo-invite-row:nth-child(even) .photo-frame {
-    order: 2;
-  }
-
-  .photo-frame,
-  .photo-text {
-    width: 100%;
-  }
-
-  .photo-frame img {
-    height: 420px;
-  }
-
-  .photo-text h3 {
-    font-size: 56px;
-  }
-
-  .invite-header {
-    padding: 45px;
-  }
-}
 </style>
 </head>
 
 <body>
 
-<section class="intro" id="intro">
+<div class="intro" id="intro">
   <div class="envelope" id="envelope">
     <div class="flap"></div>
     <div class="seal" id="seal">Love</div>
     <div class="tap">TAP TO OPEN</div>
   </div>
-</section>
+</div>
 
-<main class="website" id="website">
+<div class="website" id="website">
 
-  <section class="invite-wrap">
-    <div class="invite-card">
+<div class="container">
 
-      <section class="invite-header">
-        <div>
-          <div class="pre-title">You are invited to celebrate the wedding of</div>
+<div class="invite">
+<div class="names">Maamoun</div>
+<div class="and">&</div>
+<div class="names">Aycha</div>
 
-          <div class="quote">
-            With the ocean as our witness,<br>
-            we invite you to celebrate their love<br>
-            under the sun and stars.
-          </div>
+<div class="date">10 / 7 / 2026</div>
 
-          <h1 class="names">Maamoun</h1>
-          <div class="and">&</div>
-          <h1 class="names">Aycha</h1>
+<div class="info">
+Rmeileh Resort & Hotel<br>
+8:00 PM<br>
+Adults Only · No Kids
+</div>
 
-          <div class="date">10 / 7 / 2026</div>
+<div class="countdown">
+<div class="time-box"><span id="days">00</span>Days</div>
+<div class="time-box"><span id="hours">00</span>Hours</div>
+<div class="time-box"><span id="minutes">00</span>Minutes</div>
+<div class="time-box"><span id="seconds">00</span>Seconds</div>
+</div>
 
-          <div class="info">
-            Rmeileh Resort & Hotel<br>
-            Wedding starts at 8:00 PM
-          </div>
-        </div>
-      </section>
+<div class="rsvp">
+<h2>Will You Be Joining Us?</h2>
+<p>Let us know if you’ll celebrate with us 💌</p>
 
-      <section class="invite-flow">
+<div class="rsvp-buttons">
+<a class="btn yes"
+href="https://wa.me/96178960826?text=I%20am%20coming%20to%20your%20wedding%20❤️"
+target="_blank">
+Yes, I’m Coming 🎉
+</a>
 
-        <div class="photo-invite-row">
-          <div class="photo-frame">
-            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80">
-          </div>
-          <div class="photo-text">
-            <h3>The Beginning</h3>
-            <p>Every love story starts with one unforgettable moment.</p>
-          </div>
-        </div>
+<a class="btn no"
+href="https://wa.me/96178960826?text=Unfortunately%20I%20can’t%20make%20it%20💔"
+target="_blank">
+Can’t Make It
+</a>
+</div>
+</div>
 
-        <div class="photo-invite-row">
-          <div class="photo-frame right">
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80">
-          </div>
-          <div class="photo-text">
-            <h3>Two Hearts</h3>
-            <p>Different paths, one beautiful destination.</p>
-          </div>
-        </div>
+</div>
 
-        <div class="photo-invite-row">
-          <div class="photo-frame">
-            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80">
-          </div>
-          <div class="photo-text">
-            <h3>The Promise</h3>
-            <p>A love held softly, deeply, and forever.</p>
-          </div>
-        </div>
+<!-- POLAROIDS -->
+<div class="polaroid left p1" style="--r:-8deg">
+<img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486">
+<span>Beginning</span>
+</div>
 
-        <div class="photo-invite-row">
-          <div class="photo-frame right">
-            <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80">
-          </div>
-          <div class="photo-text">
-            <h3>Under the Stars</h3>
-            <p>A night made for memories, laughter, and love.</p>
-          </div>
-        </div>
+<div class="polaroid right p2" style="--r:6deg">
+<img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+<span>Moments</span>
+</div>
 
-        <div class="photo-invite-row">
-          <div class="photo-frame">
-            <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1200&q=80">
-          </div>
-          <div class="photo-text">
-            <h3>By the Ocean</h3>
-            <p>With waves beside us, we celebrate forever.</p>
-          </div>
-        </div>
+<div class="polaroid left p3" style="--r:-5deg">
+<img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc">
+<span>Love</span>
+</div>
 
-        <div class="photo-invite-row">
-          <div class="photo-frame right">
-            <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1200&q=80">
-          </div>
-          <div class="photo-text">
-            <h3>The Celebration</h3>
-            <p>Family, friends, music, and a night to remember.</p>
-          </div>
-        </div>
+<div class="polaroid right p4" style="--r:7deg">
+<img src="https://images.unsplash.com/photo-1606800052052-a08af7148866">
+<span>Promise</span>
+</div>
 
-        <div class="photo-invite-row">
-          <div class="photo-frame">
-            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80">
-          </div>
-          <div class="photo-text">
-            <h3>Forever Begins</h3>
-            <p>Join us as Maamoun and Aycha begin their next chapter.</p>
-          </div>
-        </div>
+<div class="polaroid left p5" style="--r:-6deg">
+<img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e">
+<span>Forever</span>
+</div>
 
-        <section class="details-panel">
-          <h2>Wedding Details</h2>
-
-          <div class="detail-line">
-            Maamoun & Aycha<br>
-            10 / 7 / 2026<br>
-            Rmeileh Resort & Hotel<br>
-            8:00 PM
-          </div>
-
-          <div class="countdown">
-            <div class="time-box"><span id="days">00</span><small>Days</small></div>
-            <div class="time-box"><span id="hours">00</span><small>Hours</small></div>
-            <div class="time-box"><span id="minutes">00</span><small>Minutes</small></div>
-            <div class="time-box"><span id="seconds">00</span><small>Seconds</small></div>
-          </div>
-
-          <div class="no-kids">
-            With love, we kindly request an adults-only celebration. No kids.
-          </div>
-
-          <a class="btn" href="https://www.google.com/maps/search/Rmeileh+Resort+%26+Hotel" target="_blank">Open Location</a>
-        </section>
-
-      </section>
-    </div>
-  </section>
-
-</main>
+</div>
+</div>
 
 <script>
-const seal = document.getElementById("seal");
-const envelope = document.getElementById("envelope");
-const intro = document.getElementById("intro");
-const website = document.getElementById("website");
+const seal=document.getElementById("seal")
+const envelope=document.getElementById("envelope")
+const intro=document.getElementById("intro")
+const website=document.getElementById("website")
 
-seal.addEventListener("click", () => {
-  envelope.classList.add("open");
-
-  setTimeout(() => {
-    intro.style.display = "none";
-    website.style.display = "block";
-    window.scrollTo(0, 0);
-  }, 1200);
-});
-
-const weddingDate = new Date("2026-07-10T20:00:00").getTime();
-
-function updateCountdown() {
-  const now = new Date().getTime();
-  const distance = weddingDate - now;
-
-  if (distance < 0) return;
-
-  document.getElementById("days").innerText =
-    Math.floor(distance / (1000 * 60 * 60 * 24));
-
-  document.getElementById("hours").innerText =
-    Math.floor((distance / (1000 * 60 * 60)) % 24);
-
-  document.getElementById("minutes").innerText =
-    Math.floor((distance / (1000 * 60)) % 60);
-
-  document.getElementById("seconds").innerText =
-    Math.floor((distance / 1000) % 60);
+seal.onclick=()=>{
+envelope.classList.add("open")
+setTimeout(()=>{
+intro.style.display="none"
+website.style.display="block"
+},1200)
 }
 
-setInterval(updateCountdown, 1000);
-updateCountdown();
+/* countdown */
+const weddingDate=new Date("2026-07-10T20:00:00").getTime()
 
-const revealItems = document.querySelectorAll(".photo-frame, .photo-text");
+setInterval(()=>{
+let now=new Date().getTime()
+let d=weddingDate-now
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
-    }
-  });
-}, {
-  threshold: 0.3
-});
+document.getElementById("days").innerText=Math.floor(d/(1000*60*60*24))
+document.getElementById("hours").innerText=Math.floor((d/(1000*60*60))%24)
+document.getElementById("minutes").innerText=Math.floor((d/(1000*60))%60)
+document.getElementById("seconds").innerText=Math.floor((d/1000)%60)
+},1000)
 
-revealItems.forEach(item => observer.observe(item));
+/* reveal */
+const polaroids=document.querySelectorAll(".polaroid")
+const obs=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting){e.target.classList.add("show")}
+})
+},{threshold:0.2})
+polaroids.forEach(p=>obs.observe(p))
 
-function createSparkle() {
-  if (website.style.display !== "block") return;
-
-  const sparkle = document.createElement("div");
-  sparkle.className = "sparkle";
-  sparkle.style.left = Math.random() * window.innerWidth + "px";
-  sparkle.style.top = Math.random() * window.innerHeight + "px";
-
-  document.body.appendChild(sparkle);
-
-  setTimeout(() => sparkle.remove(), 3000);
+/* sparkles */
+function sparkle(){
+const s=document.createElement("div")
+s.className="sparkle"
+s.style.left=Math.random()*window.innerWidth+"px"
+s.style.top=Math.random()*window.innerHeight+"px"
+document.body.appendChild(s)
+setTimeout(()=>s.remove(),4000)
 }
-
-setInterval(createSparkle, 180);
+setInterval(sparkle,200)
 </script>
 
 </body>
