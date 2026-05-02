@@ -20,7 +20,6 @@ radial-gradient(circle at 80% 70%, rgba(180,0,0,.28), transparent 40%),
 linear-gradient(145deg,#220707,#050000);
 }
 
-/* glow */
 body::before{
 content:"";
 position:fixed;
@@ -30,6 +29,7 @@ animation:moveGlow 10s infinite alternate;
 pointer-events:none;
 z-index:0;
 }
+
 @keyframes moveGlow{
 from{transform:translateY(0)}
 to{transform:translateY(80px)}
@@ -110,7 +110,7 @@ z-index:2;
 .container{
 max-width:760px;
 margin:auto;
-padding:40px 20px 100px;
+padding:40px 20px 120px;
 position:relative;
 }
 
@@ -161,7 +161,7 @@ line-height:1.9;
 color:#fff3dc;
 }
 
-/* sections */
+/* SECTIONS */
 .lux-section{
 min-height:70vh;
 display:flex;
@@ -268,9 +268,9 @@ font-size:23px;
 .p3{top:1070px}
 .p4{top:1560px}
 .p5{top:2050px}
-.p6{top:2520px}
+.p6{top:2600px}
 
-/* sparkles */
+/* SPARKLES */
 .sparkle{
 position:fixed;
 width:4px;
@@ -286,27 +286,51 @@ z-index:999;
 to{transform:translateY(-120px);opacity:0}
 }
 
+/* MOBILE FIX */
 @media(max-width:768px){
-  .lux-box h2{
-    font-size:52px;
-    line-height:.95;
-  }
 
-  .lux-box p{
-    font-size:15px;
-    line-height:1.7;
-  }
+.container{padding:30px 12px 120px}
 
-  .lux-section:last-of-type .lux-box{
-    padding:28px 18px;
-    overflow:hidden;
-  }
+.names{font-size:70px}
 
-  .lux-section:last-of-type .btn{
-    width:fit-content;
-    margin:22px auto 0;
-    padding:14px 24px;
-  }
+.lux-box{
+width:90%;
+margin:auto;
+}
+
+/* POLAROIDS INSIDE SCREEN */
+.polaroid{
+width:92px;
+padding:6px;
+opacity:0;
+transform:translateY(40px) scale(.9);
+}
+
+.polaroid img{height:92px}
+.polaroid span{font-size:18px}
+
+.polaroid.left{left:12px}
+.polaroid.right{right:12px}
+
+.polaroid.show{
+opacity:1;
+transform:translateY(0) scale(1) rotate(var(--r));
+}
+
+/* FINAL SECTION FIX */
+.lux-section:last-of-type{
+min-height:75vh;
+padding-bottom:80px;
+}
+
+.lux-section:last-of-type .lux-box{
+padding:26px 18px;
+}
+
+.lux-section:last-of-type h2{
+font-size:52px;
+line-height:.95;
+}
 }
 </style>
 </head>
@@ -410,6 +434,7 @@ envelope.classList.add("open")
 setTimeout(()=>{
 intro.style.display="none"
 website.style.display="block"
+window.scrollTo(0,0)
 },1200)
 }
 
