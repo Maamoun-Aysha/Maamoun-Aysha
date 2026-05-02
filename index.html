@@ -319,46 +319,76 @@ to{transform:translateY(-120px);opacity:0}
 
 /* MOBILE */
 @media(max-width:768px){
-
-/* 🔥 REDUCE SPACE BETWEEN SECTIONS */
-.lux-section{
-  min-height:60vh;       /* was ~70–80 → too big */
-  padding:10px 0;        /* reduce vertical spacing */
-}
-
-/* tighter boxes */
-.lux-box{
-  width:88%;
-  margin:auto;
-  padding:24px 16px;
-}
-
-/* headings smaller */
-.lux-box h2{
-  font-size:48px;
-  line-height:0.95;
-}
-
-/* paragraph tighter */
-.lux-box p{
-  font-size:15px;
-  line-height:1.6;
-}
-
-/* invite section also tighter */
-.invite{
-  min-height:85vh;
-}
-
-/* reduce container bottom padding */
 .container{
-  padding:25px 12px 60px;
+padding:30px 12px 80px;
 }
 
-/* fix last section specifically */
-.lux-section:last-of-type{
-  min-height:55vh;
-  padding-bottom:40px;
+.invite{
+min-height:92vh;
+}
+
+.names{
+font-size:76px;
+}
+
+.lux-section{
+min-height:76vh;
+padding:20px 0;
+}
+
+.lux-box{
+width:88%;
+margin:auto;
+padding:28px 18px;
+}
+
+.lux-box h2{
+font-size:54px;
+line-height:.95;
+}
+
+.lux-box p{
+font-size:15px;
+line-height:1.7;
+}
+
+.polaroid{
+width:88px;
+padding:6px;
+z-index:4;
+}
+
+.polaroid img{
+height:88px;
+}
+
+.polaroid span{
+font-size:18px;
+}
+
+.polaroid.left{
+left:8px;
+top:9%;
+transform:translateY(40px) scale(.9);
+}
+
+.polaroid.right{
+right:8px;
+bottom:7%;
+transform:translateY(40px) scale(.9);
+}
+
+.polaroid.show{
+opacity:1;
+transform:translateY(0) scale(1) rotate(var(--r));
+}
+
+.final-section{
+min-height:72vh;
+}
+
+.final-section .polaroid{
+display:none;
 }
 }
 </style>
