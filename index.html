@@ -736,6 +736,52 @@ font-size:23px;
   min-height:94vh;
   padding:42px 0;
 }
+
+/* LUXURY IMAGE BACKGROUND POLISH */
+
+/* make section images clearer and more styled */
+.lux-section{
+  border-radius:32px;
+  margin:24px 0;
+  overflow:hidden;
+  border:1px solid rgba(255,215,150,.26);
+  box-shadow:
+    0 0 45px rgba(255,0,0,.22),
+    inset 0 0 60px rgba(255,215,150,.08);
+}
+
+/* reduce darkness/blur feeling on images */
+.lux-section::after{
+  background:
+    linear-gradient(to bottom, rgba(10,3,3,.25), rgba(10,3,3,.48)),
+    radial-gradient(circle at center, rgba(255,215,150,.10), transparent 58%) !important;
+}
+
+/* make the glass card cleaner over the clearer image */
+.lux-box{
+  background:rgba(20,5,5,.42) !important;
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,215,150,.45);
+}
+
+/* mobile refinement */
+@media(max-width:768px){
+  .lux-section{
+    border-radius:26px;
+    margin:18px 0;
+  }
+
+  .lux-section::after{
+    background:
+      linear-gradient(to bottom, rgba(10,3,3,.22), rgba(10,3,3,.52)),
+      radial-gradient(circle at center, rgba(255,215,150,.12), transparent 58%) !important;
+  }
+
+  .lux-box{
+    background:rgba(20,5,5,.46) !important;
+    backdrop-filter:blur(7px);
+  }
+}
 </style>
 </head>
 
