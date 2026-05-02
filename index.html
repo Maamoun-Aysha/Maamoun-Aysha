@@ -1,170 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maamoun & Aycha</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maamoun & Aycha Wedding</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background: #0a0a0a;
-    font-family: 'Playfair Display', serif;
-    overflow-x: hidden;
+  background: #080404;
+  color: white;
+  overflow-x: hidden;
 }
 
-/* ===== INTRO SCREEN ===== */
+/* INTRO */
 .intro {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
-    position: relative;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at top, rgba(255,0,0,.18), transparent 35%),
+    linear-gradient(145deg, #120606, #030303);
 }
 
-/* Envelope background */
 .envelope {
-    width: 90%;
-    max-width: 350px;
-    height: 220px;
-    background: #f5f1ea;
-    border-radius: 10px;
-    position: relative;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-    overflow: hidden;
+  width: 88vw;
+  max-width: 390px;
+  height: 250px;
+  background: linear-gradient(145deg, #fff8ee, #e9ddcc);
+  border-radius: 16px;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0,0,0,.8);
+  overflow: hidden;
 }
 
-/* Top flap */
+.envelope::before,
+.envelope::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent 49%, rgba(180,120,60,.25) 50%, transparent 51%);
+}
+
 .flap {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 50%;
-    background: #e8e2d8;
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    transform-origin: top;
-    transition: transform 1s ease;
-    z-index: 3;
+  position: absolute;
+  width: 100%;
+  height: 55%;
+  top: 0;
+  background: linear-gradient(145deg, #f7efe3, #d8c6ad);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: 1.2s ease;
+  z-index: 2;
 }
 
-/* Wax seal */
 .seal {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle, #ff3b3b, #b30000);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-family: 'Great Vibes', cursive;
-    font-size: 22px;
-    cursor: pointer;
-    z-index: 5;
-    box-shadow: 0 5px 20px rgba(255,0,0,0.5);
-    transition: 0.3s;
+  position: absolute;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff3025, #b00000 70%);
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  font-family: "Great Vibes", cursive;
+  font-size: 30px;
+  z-index: 4;
+  cursor: pointer;
+  box-shadow: 0 0 35px rgba(255,0,0,.7);
+  animation: pulse 1.8s infinite;
 }
 
-.seal:hover {
-    transform: translate(-50%, -50%) scale(1.1);
+.tap {
+  position: absolute;
+  bottom: -55px;
+  width: 100%;
+  text-align: center;
+  font-family: Montserrat;
+  color: #d8b56d;
+  letter-spacing: 2px;
+  font-size: 12px;
 }
 
-/* Hidden main content */
-.main-content {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: 1s;
-    padding: 20px;
+@keyframes pulse {
+  50% { transform: translate(-50%, -50%) scale(1.08); }
 }
 
-/* Reveal state */
 .open .flap {
-    transform: rotateX(180deg);
+  transform: rotateX(180deg);
 }
 
 .open .seal {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.3);
 }
 
-.open + .main-content {
-    opacity: 1;
-    pointer-events: all;
+/* MAIN WEBSITE */
+.website {
+  display: none;
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.75)),
+    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+  animation: fadeIn 1.5s ease forwards;
 }
 
-/* Wedding text */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.hero {
+  min-height: 100vh;
+  padding: 35px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 900px;
+  min-height: 520px;
+  padding: 38px 24px;
+  border-radius: 32px;
+  text-align: center;
+  background: rgba(20, 5, 5, .62);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,215,150,.35);
+  box-shadow: 0 0 60px rgba(140,0,0,.55);
+}
+
+.small {
+  font-family: Montserrat;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #e7c478;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.quote {
+  font-family: Playfair Display;
+  font-size: 20px;
+  line-height: 1.7;
+  color: #fff3dc;
+  margin-bottom: 30px;
+}
+
 .names {
-    font-family: 'Great Vibes', cursive;
-    font-size: 48px;
-    margin-bottom: 20px;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(64px, 14vw, 120px);
+  color: #fff;
+  text-shadow: 0 0 25px rgba(255,40,40,.8);
+  margin-bottom: 10px;
 }
 
-.details {
+.and {
+  font-family: Playfair Display;
+  color: #d8b56d;
+  font-size: 26px;
+  margin: -10px 0;
+}
+
+.date {
+  font-family: Playfair Display;
+  font-size: 38px;
+  color: #ffd98a;
+  margin: 25px 0 8px;
+}
+
+.info {
+  font-family: Montserrat;
+  font-size: 16px;
+  line-height: 2;
+  color: #f7ead4;
+}
+
+.divider {
+  width: 130px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d8b56d, transparent);
+  margin: 28px auto;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 28px 0;
+}
+
+.time-box {
+  background: rgba(255,255,255,.09);
+  border: 1px solid rgba(255,215,150,.25);
+  border-radius: 18px;
+  padding: 14px 5px;
+}
+
+.time-box span {
+  display: block;
+  font-family: Playfair Display;
+  font-size: 24px;
+  color: #ffd98a;
+}
+
+.time-box small {
+  font-family: Montserrat;
+  font-size: 10px;
+  color: #eee;
+}
+
+.note {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(120,0,0,.45);
+  border: 1px solid rgba(255,180,180,.25);
+  font-family: Montserrat;
+  color: #ffeaea;
+}
+
+.buttons {
+  margin-top: 25px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  text-decoration: none;
+  color: #1c0505;
+  background: linear-gradient(135deg, #ffd98a, #b8862b);
+  padding: 14px 22px;
+  border-radius: 50px;
+  font-family: Montserrat;
+  font-weight: 600;
+  box-shadow: 0 0 25px rgba(255,200,100,.45);
+}
+
+.btn.dark {
+  color: white;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,215,150,.35);
+}
+
+@media (orientation: landscape) {
+  .card {
+    max-width: 1000px;
+    min-height: 430px;
+  }
+
+  .names {
+    font-size: 90px;
+  }
+
+  .hero {
+    padding: 25px 40px;
+  }
+
+  .quote {
     font-size: 18px;
-    opacity: 0.8;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div class="intro" id="intro">
-    <div class="envelope" id="envelope">
-        <div class="flap"></div>
-        <div class="seal" id="seal">Love</div>
-    </div>
-</div>
+<section class="intro" id="intro">
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="seal" id="seal">Love</div>
+    <div class="tap">TAP TO OPEN</div>
+  </div>
+</section>
 
-<!-- MAIN CONTENT -->
-<div class="main-content" id="mainContent">
-    <div>
-        <div class="names">Maamoun & Aycha</div>
-        <div class="details">
-            July 10, 2026 <br>
-            Rmeileh Resort & Hotel <br><br>
-            8:00 PM <br>
-            Adults Only
-        </div>
+<main class="website" id="website">
+  <section class="hero">
+    <div class="card">
+
+      <div class="small">You are invited to celebrate the wedding of</div>
+
+      <div class="quote">
+        With the ocean as our witness,<br>
+        we invite you to celebrate their love<br>
+        under the sun and stars.
+      </div>
+
+      <h1 class="names">Maamoun</h1>
+      <div class="and">&</div>
+      <h1 class="names">Aycha</h1>
+
+      <div class="divider"></div>
+
+      <div class="date">10 / 7 / 2026</div>
+
+      <div class="info">
+        Rmeileh Resort & Hotel<br>
+        Wedding starts at 8:00 PM
+      </div>
+
+      <div class="countdown">
+        <div class="time-box"><span id="days">00</span><small>Days</small></div>
+        <div class="time-box"><span id="hours">00</span><small>Hours</small></div>
+        <div class="time-box"><span id="minutes">00</span><small>Minutes</small></div>
+        <div class="time-box"><span id="seconds">00</span><small>Seconds</small></div>
+      </div>
+
+      <div class="note">
+        With love, we kindly request an adults-only celebration. No kids.
+      </div>
+
+      <div class="buttons">
+        <a class="btn" href="https://www.google.com/maps/search/Rmeileh+Resort+%26+Hotel" target="_blank">Open Location</a>
+        <a class="btn dark" href="#">RSVP Coming Soon</a>
+      </div>
+
     </div>
-</div>
+  </section>
+</main>
 
 <script>
 const seal = document.getElementById("seal");
 const envelope = document.getElementById("envelope");
 const intro = document.getElementById("intro");
+const website = document.getElementById("website");
 
 seal.addEventListener("click", () => {
-    envelope.classList.add("open");
+  envelope.classList.add("open");
 
-    setTimeout(() => {
-        intro.style.display = "none";
-        document.getElementById("mainContent").style.opacity = "1";
-    }, 1200);
+  setTimeout(() => {
+    intro.style.display = "none";
+    website.style.display = "block";
+  }, 1200);
 });
+
+const weddingDate = new Date("2026-07-10T20:00:00").getTime();
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+
+  if (distance < 0) return;
+
+  document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+  document.getElementById("hours").innerText = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  document.getElementById("minutes").innerText = Math.floor((distance / (1000 * 60)) % 60);
+  document.getElementById("seconds").innerText = Math.floor((distance / 1000) % 60);
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
 </script>
 
 </body>
