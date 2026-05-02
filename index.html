@@ -454,7 +454,7 @@ to{transform:translateY(-120px);opacity:0}
   .envelope .emboss::after{
     font-size:62px;
   }
-  
+
 .container{
 padding:25px 12px 55px;
 }
@@ -519,6 +519,40 @@ transform:translateY(0) scale(1) rotate(var(--r));
 
 .final-section .polaroid{
 display:none;
+}
+/* CINEMATIC SECTION HEIGHT */
+.lux-section{
+  min-height:72vh;
+  padding:28px 0;
+}
+
+.invite{
+  min-height:90vh;
+  padding:40px 0;
+}
+
+/* MOBILE CINEMATIC SECTIONS */
+@media(max-width:768px){
+  .invite{
+    min-height:92svh;
+    padding:32px 0;
+  }
+
+  .lux-section{
+    min-height:82svh;
+    padding:24px 0;
+  }
+
+  .lux-box{
+    min-height:48svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+
+  .final-section{
+    min-height:86svh;
+  }
 }
 }
 </style>
