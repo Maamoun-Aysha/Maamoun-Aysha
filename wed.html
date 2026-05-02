@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maamoun & Aycha's Wedding</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0a1f33; /* Luxurious Ultra-Deep Blue */
+            --accent: #e5c060;  /* Intense Sparkling Gold */
+            --bg-dark: #071524;
+            --text-light: #ffffff;
+            --gold-gradient: linear-gradient(135deg, #fce08d 0%, #d4af37 50%, #aa7c11 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Continuous shimmering background effect */
+        .bg-glow {
+            background: radial-gradient(circle at 50% 30%, #153c61 0%, var(--bg-dark) 70%);
+            background-attachment: fixed;
+        }
+
+        /* --- Full Screen Mobile Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            background: linear-gradient(rgba(7, 21, 36, 0.4), rgba(7, 21, 36, 0.8)), 
+                        url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1080&q=80') no-repeat center center/cover;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* Sparkle animation for names */
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Alex Brush', cursive;
+            font-size: 4rem;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            animation: pulse-glow 3s infinite alternate;
+        }
+
+        .hero .ampersand {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin: 5px 0;
+            font-weight: 900;
+        }
+
+        .hero p.subtitle {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .hero-date {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            font-weight: 500;
+            border: 1px solid var(--accent);
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(5px);
+            padding: 12px 25px;
+            border-radius: 50px;
+            box-shadow: 0 0 20px rgba(229, 192, 96, 0.3);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 25px;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            animation: bounce 2s infinite;
+        }
+
+        /* --- Global Sections (Optimized for scrolling) --- */
+        section {
+            padding: 80px 24px;
+            max-width: 600px; /* Perfectly bounds mobile widths */
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Alex Brush', cursive;
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(229, 192, 96, 0.4);
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--accent);
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        /* --- Quote Section --- */
+        .quote-box {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            padding: 45px 25px;
+            border-radius: 24px;
+            border: 1px solid rgba(229, 192, 96, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(229, 192, 96, 0.1);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .quote-text {
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #f1f1f1;
+            line-height: 1.8;
+        }
+
+        /* --- Mobile Responsive Image Grid --- */
+        .gallery-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .gallery-card {
+            position: relative;
+            height: 380px;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .gallery-card:active img {
+            transform: scale(1.1);
+        }
+
+        /* --- Flashy Venue & Time Section --- */
+        .details-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .detail-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            padding: 40px 25px;
+            border-radius: 20px;
+            border-left: 5px solid var(--accent);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .detail-card h3 {
+            font-size: 1.3rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .detail-card p {
+            font-size: 1.1rem;
+            color: #ddd;
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .policy-alert {
+            background: rgba(229, 192, 96, 0.08);
+            border: 1px dashed var(--accent);
+            padding: 25px 20px;
+            border-radius: 16px;
+            margin-top: 10px;
+        }
+
+        .policy-alert p {
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #f1f1f1;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        /* --- Dynamic Glowing Countdown --- */
+        .countdown-container {
+            background: linear-gradient(145deg, rgba(21, 60, 97, 0.3), rgba(7, 21, 36, 0.5));
+            border-radius: 24px;
+            padding: 50px 20px;
+            border: 1px solid rgba(229, 192, 96, 0.2);
+            box-shadow: 0 0 40px rgba(229, 192, 96, 0.15);
+            margin: 40px 0;
+        }
+
+        .countdown-title {
+            font-family: 'Alex Brush', cursive;
+            font-size: 3.2rem;
+            color: var(--accent);
+            margin-bottom: 30px;
+        }
+
+        .timer {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .timer-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 22px 10px;
+            border-radius: 16px;
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.02);
+            transition: transform 0.2s ease;
+        }
+
+        .timer-box:active {
+            transform: scale(0.95);
+        }
+
+        .timer-number {
+            font-size: 2.8rem;
+            font-weight: 900;
+            display: block;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .timer-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #aaa;
+            margin-top: 5px;
+            display: block;
+        }
+
+        /* --- RSVP Button (Mobile Flashy Style) --- */
+        .rsvp-btn {
+            display: inline-block;
+            width: 100%;
+            background: var(--gold-gradient);
+            color: #000;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 22px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(229, 192, 96, 0.4);
+            margin: 40px 0;
+            border: none;
+            cursor: pointer;
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        footer {
+            padding: 50px 20px;
+            background: rgba(7, 21, 36, 0.9);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        /* --- Subtle Floating Animations --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 10px rgba(229,192,96,0.3); }
+            100% { box-shadow: 0 0 25px rgba(229,192,96,0.6); }
+        }
+
+        /* Desktop Optimization to keep it looking perfect everywhere */
+        @media (min-width: 768px) {
+            .hero h1 { font-size: 5.5rem; }
+            .timer { grid-template-columns: repeat(4, 1fr); }
+            section { max-width: 650px; }
+        }
+    </style>
+</head>
+<body class="bg-glow">
+
+    <div class="hero">
+        <h1 data-aos="zoom-out" data-aos-duration="1500">
+            Maamoun 
+            <span class="ampersand">&</span> 
+            Aycha
+        </h1>
+        <p class="subtitle" data-aos="fade-up" data-aos-delay="400">Are Getting Married</p>
+        <p class="hero-date" data-aos="fade-up" data-aos-delay="800">10 . 07 . 2026</p>
+        <div class="scroll-indicator">Swipe Down</div>
+    </div>
+
+    <section>
+        <div class="quote-box" data-aos="zoom-in" data-aos-duration="1200">
+            <p class="quote-text">
+                "With the ocean as our witness, we invite you to celebrate our love under the sun and stars."
+            </p>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2 class="section-title" data-aos="fade-down">Moments</h2>
+        <p class="section-subtitle" data-aos="fade-up">Our Journey</p>
+        
+        <div class="gallery-stack">
+            <div class="gallery-card" data-aos="fade-up" data-aos-duration="1000">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Beautiful Moment">
+            </div>
+            <div class="gallery-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&w=600&q=80" alt="The Coastline">
+            </div>
+        </div>
+    </section>
+
+    <section id="details">
+        <h2 class="section-title" data-aos="fade-down">Details</h2>
+        <p class="section-subtitle" data-aos="fade-up">When & Where</p>
+
+        <div class="details-stack">
+            <div class="detail-card" data-aos="fade-right" data-aos-duration="1000">
+                <h3>When</h3>
+                <p class="highlight">Friday, July 10, 2026</p>
+                <p>Doors open at 8:00 PM</p>
+            </div>
+
+            <div class="detail-card" data-aos="fade-left" data-aos-duration="1000">
+                <h3>Where</h3>
+                <p class="highlight">Rmeileh Resort & Hotel</p>
+                <p>Rmeileh, Lebanon</p>
+            </div>
+
+            <div class="policy-alert" data-aos="zoom-in" data-aos-duration="800">
+                <p><strong>Note:</strong> We love your children, but our wedding is an adult-only event.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="countdown-container" data-aos="flip-up" data-aos-duration="1200">
+            <h2 class="countdown-title">The Big Day</h2>
+            <div class="timer" id="timer">
+                <div class="timer-box">
+                    <span class="timer-number" id="days">00</span>
+                    <span class="timer-label">Days</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-number" id="hours">00</span>
+                    <span class="timer-label">Hours</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-number" id="minutes">00</span>
+                    <span class="timer-label">Mins</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-number" id="seconds">00</span>
+                    <span class="timer-label">Secs</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="rsvp-btn" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});" data-aos="zoom-in">
+            Save the Date
+        </button>
+    </section>
+
+    <footer>
+        <p data-aos="fade-up">See you under the stars!</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Scroll Animations
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Live Countdown Timer
+        const weddingDate = new Date('July 10, 2026 20:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(interval);
+                document.getElementById('timer').innerHTML = "<h3 style='color: var(--accent); font-size:1.8rem; grid-column: 1/-1;'>It's time to celebrate!</h3>";
+            }
+        }
+
+        updateCountdown();
+        const interval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
