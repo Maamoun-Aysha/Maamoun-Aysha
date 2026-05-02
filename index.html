@@ -859,36 +859,35 @@ font-size:23px;
   }
 }
 
-/* MOBILE ENVELOPE GEOMETRY FIX */
+/* MOBILE ENVELOPE GEOMETRY FIX — TRIANGLES MEET BEHIND SEAL */
 @media(max-width:768px){
 
-  /* make the envelope panels perfectly aligned */
   .envelope{
     width:100%;
     height:100dvh;
     min-height:100svh;
-    background:#f7f1e6; /* side flaps color */
+    background:#f7f1e6;
     overflow:hidden;
   }
 
-  /* remove the old diagonal line background that causes mismatch */
+  /* remove old diagonal line layer */
   .envelope::before{
     display:none !important;
   }
 
-  /* top triangle */
+  /* top triangle: point reaches exact center */
   .flap{
     top:0;
     left:0;
     width:100%;
     height:50%;
-    background:#ead8bd;
-    clip-path:polygon(0 0, 100% 0, 50% 50%);
+    background:linear-gradient(160deg,#f1dfc2,#dec39a);
+    clip-path:polygon(0 0, 100% 0, 50% 100%);
     box-shadow:none;
     z-index:5;
   }
 
-  /* bottom triangle */
+  /* bottom triangle: point reaches exact center */
   .envelope::after{
     content:"";
     position:absolute;
@@ -896,20 +895,19 @@ font-size:23px;
     right:0;
     bottom:0;
     height:50%;
-    background:#ead8bd;
-    clip-path:polygon(0 100%, 50% 50%, 100% 100%);
+    background:linear-gradient(145deg,#ead4ad,#d8bc92);
+    clip-path:polygon(0 100%, 50% 0, 100% 100%);
     z-index:3;
     box-shadow:none;
   }
 
-  /* perfectly centered seal */
   .seal{
     top:50%;
     left:50%;
+    z-index:10;
     transform:translate(-50%,-50%);
   }
 
-  /* keep the tap text nicely placed */
   .tap{
     left:50%;
     transform:translateX(-50%);
