@@ -52,13 +52,6 @@
             border-bottom: 2px solid var(--accent);
         }
 
-        /* Sparkle animation for names */
-        @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
-        }
-
         .hero h1 {
             font-family: 'Alex Brush', cursive;
             font-size: 4rem;
@@ -110,10 +103,10 @@
             animation: bounce 2s infinite;
         }
 
-        /* --- Global Sections (Optimized for scrolling) --- */
+        /* --- Global Sections --- */
         section {
             padding: 80px 24px;
-            max-width: 600px; /* Perfectly bounds mobile widths */
+            max-width: 600px;
             margin: 0 auto;
         }
 
@@ -142,7 +135,6 @@
             border-radius: 24px;
             border: 1px solid rgba(229, 192, 96, 0.3);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(229, 192, 96, 0.1);
-            animation: float 4s ease-in-out infinite;
         }
 
         .quote-text {
@@ -150,34 +142,6 @@
             font-size: 1.3rem;
             color: #f1f1f1;
             line-height: 1.8;
-        }
-
-        /* --- Mobile Responsive Image Grid --- */
-        .gallery-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .gallery-card {
-            position: relative;
-            height: 380px;
-            overflow: hidden;
-            border-radius: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s ease;
-        }
-
-        .gallery-card:active img {
-            transform: scale(1.1);
         }
 
         /* --- Flashy Venue & Time Section --- */
@@ -194,8 +158,6 @@
             border-radius: 20px;
             border-left: 5px solid var(--accent);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
 
@@ -236,44 +198,86 @@
             line-height: 1.6;
         }
 
-        /* --- Dynamic Glowing Countdown --- */
-        .countdown-container {
-            background: linear-gradient(145deg, rgba(21, 60, 97, 0.3), rgba(7, 21, 36, 0.5));
+        /* --- RSVP SECTION --- */
+        .rsvp-section {
+            background: rgba(255, 255, 255, 0.03);
             border-radius: 24px;
-            padding: 50px 20px;
+            padding: 45px 20px;
             border: 1px solid rgba(229, 192, 96, 0.2);
             box-shadow: 0 0 40px rgba(229, 192, 96, 0.15);
-            margin: 40px 0;
+            margin: 40px auto;
         }
 
-        .countdown-title {
-            font-family: 'Alex Brush', cursive;
-            font-size: 3.2rem;
-            color: var(--accent);
-            margin-bottom: 30px;
+        .rsvp-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .rsvp-yes {
+            background: var(--gold-gradient);
+            color: #000;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 20px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(229, 192, 96, 0.4);
+            animation: pulse-glow 2s infinite alternate;
+            transition: transform 0.2s;
+        }
+
+        .rsvp-no {
+            background: transparent;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 18px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .rsvp-no:active {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(0.96);
+        }
+        
+        .rsvp-yes:active {
+            transform: scale(0.96);
+        }
+
+        /* --- Dynamic Glowing Countdown --- */
+        .countdown-container {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 24px;
+            padding: 40px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 40px 0;
         }
 
         .timer {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
         }
 
         .timer-box {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 22px 10px;
-            border-radius: 16px;
-            box-shadow: inset 0 0 10px rgba(255,255,255,0.02);
-            transition: transform 0.2s ease;
-        }
-
-        .timer-box:active {
-            transform: scale(0.95);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 15px 5px;
+            border-radius: 12px;
         }
 
         .timer-number {
-            font-size: 2.8rem;
+            font-size: 2rem;
             font-weight: 900;
             display: block;
             background: var(--gold-gradient);
@@ -282,32 +286,12 @@
         }
 
         .timer-label {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             color: #aaa;
             margin-top: 5px;
             display: block;
-        }
-
-        /* --- RSVP Button (Mobile Flashy Style) --- */
-        .rsvp-btn {
-            display: inline-block;
-            width: 100%;
-            background: var(--gold-gradient);
-            color: #000;
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 22px;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(229, 192, 96, 0.4);
-            margin: 40px 0;
-            border: none;
-            cursor: pointer;
-            animation: pulse-glow 2s infinite alternate;
         }
 
         footer {
@@ -323,13 +307,7 @@
             color: var(--accent);
         }
 
-        /* --- Subtle Floating Animations --- */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0px); }
-        }
-
+        /* Animations */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
             40% { transform: translateY(-10px); }
@@ -341,10 +319,8 @@
             100% { box-shadow: 0 0 25px rgba(229,192,96,0.6); }
         }
 
-        /* Desktop Optimization to keep it looking perfect everywhere */
         @media (min-width: 768px) {
             .hero h1 { font-size: 5.5rem; }
-            .timer { grid-template-columns: repeat(4, 1fr); }
             section { max-width: 650px; }
         }
     </style>
@@ -367,20 +343,6 @@
             <p class="quote-text">
                 "With the ocean as our witness, we invite you to celebrate our love under the sun and stars."
             </p>
-        </div>
-    </section>
-
-    <section id="gallery">
-        <h2 class="section-title" data-aos="fade-down">Moments</h2>
-        <p class="section-subtitle" data-aos="fade-up">Our Journey</p>
-        
-        <div class="gallery-stack">
-            <div class="gallery-card" data-aos="fade-up" data-aos-duration="1000">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Beautiful Moment">
-            </div>
-            <div class="gallery-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&w=600&q=80" alt="The Coastline">
-            </div>
         </div>
     </section>
 
@@ -407,9 +369,20 @@
         </div>
     </section>
 
+    <section id="rsvp">
+        <div class="rsvp-section" data-aos="flip-up" data-aos-duration="1200">
+            <h2 class="section-title" style="font-size:3.2rem; margin-bottom: 0;">R.S.V.P</h2>
+            <p style="letter-spacing: 2px; color: #ccc; margin-top: 10px;">Kindly respond by tapping below</p>
+            
+            <div class="rsvp-buttons">
+                <button class="rsvp-yes" onclick="sendToWhatsApp()">Yes, I'm coming!</button>
+                <button class="rsvp-no" onclick="alert('Thank you for letting us know! You will be missed.')">No, I can't make it</button>
+            </div>
+        </div>
+    </section>
+
     <section>
-        <div class="countdown-container" data-aos="flip-up" data-aos-duration="1200">
-            <h2 class="countdown-title">The Big Day</h2>
+        <div class="countdown-container" data-aos="fade-up" data-aos-duration="1000">
             <div class="timer" id="timer">
                 <div class="timer-box">
                     <span class="timer-number" id="days">00</span>
@@ -429,10 +402,6 @@
                 </div>
             </div>
         </div>
-
-        <button class="rsvp-btn" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});" data-aos="zoom-in">
-            Save the Date
-        </button>
     </section>
 
     <footer>
@@ -446,6 +415,15 @@
             duration: 1000,
             once: true
         });
+
+        // WhatsApp Custom Setup with your number
+        function sendToWhatsApp() {
+            const phoneNumber = "96178960826"; 
+            const text = "Hi Maamoun & Aycha! Yes, I'm coming to celebrate your special day. Can't wait! 🎉🥂";
+            const encodedText = encodeURIComponent(text);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+            window.open(whatsappURL, '_blank');
+        }
 
         // Live Countdown Timer
         const weddingDate = new Date('July 10, 2026 20:00:00').getTime();
