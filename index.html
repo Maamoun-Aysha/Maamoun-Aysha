@@ -556,28 +556,62 @@ display:none;
     min-height:100svh;
   }
 }
-/* LARGE MOBILE POLAROIDS */
+/* FIX MOBILE POLAROIDS COVERING TEXT */
 @media(max-width:768px){
+
+  /* keep the text/card above the polaroids */
+  .invite-box,
+  .lux-box{
+    position:relative;
+    z-index:10;
+  }
+
+  /* polaroids become background decorations on mobile */
   .polaroid{
-    width:125px;
-    padding:8px;
+    z-index:2;
+    pointer-events:none;
+    width:118px;
+    padding:7px;
+    opacity:0;
   }
 
   .polaroid img{
-    height:125px;
+    height:118px;
   }
 
   .polaroid span{
-    font-size:23px;
-    margin-top:7px;
+    font-size:21px;
   }
 
+  /* left polaroids: move to corner, behind card */
   .polaroid.left{
-    left:4px;
+    left:-6px;
+    top:-22px;
+    transform:translateY(35px) scale(.9) rotate(-10deg);
   }
 
+  /* right polaroids: move to corner, behind card */
   .polaroid.right{
-    right:4px;
+    right:-6px;
+    bottom:-22px;
+    transform:translateY(35px) scale(.9) rotate(10deg);
+  }
+
+  .polaroid.show{
+    opacity:1;
+    transform:translateY(0) scale(1) rotate(var(--r));
+  }
+
+  /* first invite polaroid needs to be lower so it doesn't cover quote/name */
+  .invite .polaroid.left{
+    top:18px;
+    left:-12px;
+  }
+
+  /* RSVP section: move forever polaroid away from title/buttons */
+  .lux-section:nth-of-type(5) .polaroid.left{
+    top:-45px;
+    left:-8px;
   }
 }
 }
