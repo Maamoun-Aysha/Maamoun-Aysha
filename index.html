@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
 <title>Maamoun & Aycha</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Parisienne&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
@@ -17,7 +19,13 @@
   box-sizing:border-box;
 }
 
+html{
+  color-scheme: light only;
+}
+
 body{
+    forced-color-adjust: none;
+  -webkit-text-size-adjust: 100%;
   font-family:Montserrat, sans-serif;
   overflow-x:hidden;
   color:white;
@@ -40,6 +48,17 @@ body::before{
 @keyframes moveGlow{
   from{transform:translateY(0)}
   to{transform:translateY(80px)}
+}
+
+.intro,
+.envelope,
+.envelope::before,
+.envelope::after,
+.flap,
+.invite-box,
+.lux-box,
+.polaroid{
+  forced-color-adjust: none;
 }
 
 /* ==============================
