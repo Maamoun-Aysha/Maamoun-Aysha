@@ -14,6 +14,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: #080404;
   color: white;
@@ -26,7 +30,7 @@ body {
   display: grid;
   place-items: center;
   background:
-    radial-gradient(circle at top, rgba(255,0,0,.18), transparent 35%),
+    radial-gradient(circle at top, rgba(255,0,0,.22), transparent 35%),
     linear-gradient(145deg, #120606, #030303);
 }
 
@@ -105,15 +109,11 @@ body {
   transform: translate(-50%, -50%) scale(.3);
 }
 
-/* MAIN WEBSITE */
+/* WEBSITE */
 .website {
   display: none;
   min-height: 100vh;
-  background:
-    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.75)),
-    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80");
-  background-size: cover;
-  background-position: center;
+  background: #080404;
   animation: fadeIn 1.5s ease forwards;
 }
 
@@ -128,12 +128,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background:
+    linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.78)),
+    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
 }
 
 .card {
   width: 100%;
   max-width: 900px;
-  min-height: 520px;
   padding: 38px 24px;
   border-radius: 32px;
   text-align: center;
@@ -165,28 +169,13 @@ body {
   font-size: clamp(64px, 14vw, 120px);
   color: #fff;
   text-shadow: 0 0 25px rgba(255,40,40,.8);
-  margin-bottom: 10px;
 }
 
 .and {
   font-family: Playfair Display;
   color: #d8b56d;
   font-size: 26px;
-  margin: -10px 0;
-}
-
-.date {
-  font-family: Playfair Display;
-  font-size: 38px;
-  color: #ffd98a;
-  margin: 25px 0 8px;
-}
-
-.info {
-  font-family: Montserrat;
-  font-size: 16px;
-  line-height: 2;
-  color: #f7ead4;
+  margin: -8px 0;
 }
 
 .divider {
@@ -194,6 +183,19 @@ body {
   height: 1px;
   background: linear-gradient(90deg, transparent, #d8b56d, transparent);
   margin: 28px auto;
+}
+
+.date {
+  font-family: Playfair Display;
+  font-size: 38px;
+  color: #ffd98a;
+}
+
+.info {
+  font-family: Montserrat;
+  font-size: 16px;
+  line-height: 2;
+  color: #f7ead4;
 }
 
 .countdown {
@@ -220,7 +222,6 @@ body {
 .time-box small {
   font-family: Montserrat;
   font-size: 10px;
-  color: #eee;
 }
 
 .note {
@@ -252,28 +253,195 @@ body {
   box-shadow: 0 0 25px rgba(255,200,100,.45);
 }
 
-.btn.dark {
-  color: white;
-  background: rgba(255,255,255,.12);
+/* PHOTO STORY */
+.story {
+  position: relative;
+  background:
+    radial-gradient(circle at top, rgba(130,0,0,.35), transparent 35%),
+    linear-gradient(#080404, #160707, #080404);
+  padding: 50px 18px;
+  overflow: hidden;
+}
+
+.story-title {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.story-title h2 {
+  font-family: "Great Vibes", cursive;
+  font-size: 62px;
+  color: #ffd98a;
+  text-shadow: 0 0 30px rgba(255,0,0,.4);
+}
+
+.story-title p {
+  font-family: Montserrat;
+  color: #f5dfbd;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+.photo-section {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.photo-card {
+  width: min(92vw, 520px);
+  border-radius: 34px;
+  overflow: hidden;
+  position: relative;
+  opacity: 0;
+  transform: translateY(90px) scale(.92);
+  transition: 1s ease;
+  box-shadow:
+    0 0 40px rgba(255,0,0,.35),
+    0 25px 70px rgba(0,0,0,.8);
+  border: 1px solid rgba(255,215,150,.38);
+}
+
+.photo-card.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.photo-card.left {
+  transform: translateX(-100px) scale(.92);
+}
+
+.photo-card.right {
+  transform: translateX(100px) scale(.92);
+}
+
+.photo-card.left.show,
+.photo-card.right.show {
+  transform: translateX(0) scale(1);
+}
+
+.photo-card img {
+  width: 100%;
+  height: 620px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(.85) contrast(1.08) saturate(1.1);
+}
+
+.photo-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(transparent 40%, rgba(0,0,0,.82)),
+    radial-gradient(circle at top right, rgba(255,215,150,.22), transparent 35%);
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 28px;
+  z-index: 2;
+  text-align: center;
+}
+
+.caption h3 {
+  font-family: "Great Vibes", cursive;
+  font-size: 48px;
+  color: #fff;
+  text-shadow: 0 0 18px rgba(255,0,0,.8);
+}
+
+.caption p {
+  margin-top: 8px;
+  font-family: Montserrat;
+  font-size: 13px;
+  color: #ffe8c4;
+  line-height: 1.7;
+}
+
+.sparkle {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background: #ffd98a;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 15px #ffd98a;
+  animation: sparkleFloat 3s linear forwards;
+  z-index: 999;
+}
+
+@keyframes sparkleFloat {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100px) scale(0);
+    opacity: 0;
+  }
+}
+
+.final-section {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 40px 22px;
+  background:
+    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.8)),
+    url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+}
+
+.final-card {
+  max-width: 620px;
+  padding: 35px 24px;
+  border-radius: 32px;
+  text-align: center;
+  background: rgba(20,5,5,.68);
+  backdrop-filter: blur(14px);
   border: 1px solid rgba(255,215,150,.35);
+  box-shadow: 0 0 60px rgba(255,0,0,.35);
+}
+
+.final-card h2 {
+  font-family: "Great Vibes", cursive;
+  font-size: 66px;
+  color: #ffd98a;
+}
+
+.final-card p {
+  font-family: Montserrat;
+  line-height: 2;
+  color: #fff1d8;
+  margin: 20px 0;
 }
 
 @media (orientation: landscape) {
   .card {
     max-width: 1000px;
-    min-height: 430px;
+  }
+
+  .photo-section {
+    min-height: 100vh;
+  }
+
+  .photo-card {
+    width: min(65vw, 760px);
+  }
+
+  .photo-card img {
+    height: 450px;
   }
 
   .names {
-    font-size: 90px;
-  }
-
-  .hero {
-    padding: 25px 40px;
-  }
-
-  .quote {
-    font-size: 18px;
+    font-size: 86px;
   }
 }
 </style>
@@ -290,9 +458,9 @@ body {
 </section>
 
 <main class="website" id="website">
+
   <section class="hero">
     <div class="card">
-
       <div class="small">You are invited to celebrate the wedding of</div>
 
       <div class="quote">
@@ -327,11 +495,98 @@ body {
 
       <div class="buttons">
         <a class="btn" href="https://www.google.com/maps/search/Rmeileh+Resort+%26+Hotel" target="_blank">Open Location</a>
-        <a class="btn dark" href="#">RSVP Coming Soon</a>
       </div>
-
     </div>
   </section>
+
+  <section class="story">
+    <div class="story-title">
+      <h2>Our Story</h2>
+      <p>SCROLL THROUGH THE MOMENTS</p>
+    </div>
+
+    <section class="photo-section">
+      <div class="photo-card left">
+        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80">
+        <div class="caption">
+          <h3>The Beginning</h3>
+          <p>Every love story starts with one unforgettable moment.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="photo-section">
+      <div class="photo-card right">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80">
+        <div class="caption">
+          <h3>Two Hearts</h3>
+          <p>Different paths, one beautiful destination.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="photo-section">
+      <div class="photo-card left">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80">
+        <div class="caption">
+          <h3>The Promise</h3>
+          <p>A love held softly, deeply, and forever.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="photo-section">
+      <div class="photo-card right">
+        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80">
+        <div class="caption">
+          <h3>Under the Stars</h3>
+          <p>A night made for memories, laughter, and love.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="photo-section">
+      <div class="photo-card left">
+        <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1200&q=80">
+        <div class="caption">
+          <h3>By the Ocean</h3>
+          <p>With waves beside us, we celebrate forever.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="photo-section">
+      <div class="photo-card right">
+        <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1200&q=80">
+        <div class="caption">
+          <h3>The Celebration</h3>
+          <p>Family, friends, music, and a night to remember.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="photo-section">
+      <div class="photo-card left">
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80">
+        <div class="caption">
+          <h3>Forever Begins</h3>
+          <p>Join us as Maamoun and Aycha begin their next chapter.</p>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="final-section">
+    <div class="final-card">
+      <h2>We Can’t Wait</h2>
+      <p>
+        Join us on 10 / 7 / 2026 at Rmeileh Resort & Hotel<br>
+        as we celebrate the wedding of Maamoun and Aycha.
+      </p>
+      <a class="btn" href="https://www.google.com/maps/search/Rmeileh+Resort+%26+Hotel" target="_blank">View Location</a>
+    </div>
+  </section>
+
 </main>
 
 <script>
@@ -346,6 +601,7 @@ seal.addEventListener("click", () => {
   setTimeout(() => {
     intro.style.display = "none";
     website.style.display = "block";
+    window.scrollTo(0, 0);
   }, 1200);
 });
 
@@ -365,6 +621,36 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
+const cards = document.querySelectorAll(".photo-card");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, {
+  threshold: 0.35
+});
+
+cards.forEach(card => observer.observe(card));
+
+function createSparkle() {
+  if (website.style.display !== "block") return;
+
+  const sparkle = document.createElement("div");
+  sparkle.classList.add("sparkle");
+
+  sparkle.style.left = Math.random() * window.innerWidth + "px";
+  sparkle.style.top = Math.random() * window.innerHeight + "px";
+
+  document.body.appendChild(sparkle);
+
+  setTimeout(() => sparkle.remove(), 3000);
+}
+
+setInterval(createSparkle, 220);
 </script>
 
 </body>
