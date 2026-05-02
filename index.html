@@ -315,23 +315,49 @@ z-index:999;
 to{transform:translateY(-120px);opacity:0}
 }
 
+/* 🔥 FIXED MOBILE */
 @media(max-width:768px){
-.container{padding:32px 18px 90px}
+
+.container{padding:32px 12px 90px}
 .names{font-size:78px}
 
+.lux-box{
+width:88%;
+margin:auto;
+}
+
 .polaroid{
-width:105px;
+width:92px;
+padding:6px;
+z-index:20;
 }
 
 .polaroid img{
-height:105px;
+height:92px;
 }
 
-.polaroid.left{left:-35px}
-.polaroid.right{right:-35px}
+.polaroid span{
+font-size:18px;
+}
 
-.p1{top:160px}
-.p2{top:660px}
+.polaroid.left{
+left:8px;
+transform:translateX(-90px) rotate(-12deg);
+}
+
+.polaroid.right{
+right:8px;
+transform:translateX(90px) rotate(12deg);
+}
+
+.polaroid.show{
+opacity:1;
+transform:translateX(0) rotate(var(--r));
+}
+
+/* adjusted positions */
+.p1{top:150px}
+.p2{top:650px}
 .p3{top:1120px}
 .p4{top:1620px}
 .p5{top:2140px}
