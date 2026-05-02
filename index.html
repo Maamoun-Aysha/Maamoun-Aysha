@@ -556,74 +556,7 @@ display:none;
     min-height:100svh;
   }
 }
-/* MOBILE POLAROIDS - FRONT BUT NOT COVERING TEXT */
-@media(max-width:768px){
 
-  .lux-section,
-  .invite{
-    padding-top:70px;
-    padding-bottom:70px;
-  }
-
-  .invite-box,
-  .lux-box{
-    position:relative;
-    z-index:5;
-  }
-
-  .polaroid{
-    z-index:8;
-    pointer-events:none;
-    width:112px;
-    padding:7px;
-  }
-
-  .polaroid img{
-    height:112px;
-  }
-
-  .polaroid span{
-    font-size:21px;
-    margin-top:6px;
-  }
-
-  /* left polaroids sit above the card */
-  .polaroid.left{
-    left:16px;
-    top:12px;
-    transform:translateY(35px) scale(.9) rotate(-10deg);
-  }
-
-  /* right polaroids sit below the card */
-  .polaroid.right{
-    right:16px;
-    bottom:12px;
-    transform:translateY(35px) scale(.9) rotate(10deg);
-  }
-
-  .polaroid.show{
-    opacity:1;
-    transform:translateY(0) scale(1) rotate(var(--r));
-  }
-
-  /* first invite polaroid: keep it away from Maamoun/Aycha text */
-  .invite .polaroid.left{
-    top:8px;
-    left:14px;
-  }
-
-  /* RSVP polaroid: move higher so it doesn't block title/buttons */
-  .lux-section:nth-of-type(5) .polaroid.left{
-    top:6px;
-    left:14px;
-  }
-
-  /* make sure the card itself has enough space inside */
-  .lux-box{
-    padding-top:42px;
-    padding-bottom:42px;
-  }
-}
 }
 </style>
 </head>
