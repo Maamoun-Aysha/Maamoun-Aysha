@@ -35,70 +35,86 @@ from{transform:translateY(0)}
 to{transform:translateY(80px)}
 }
 
-/* INTRO */
+/* FULLSCREEN ENVELOPE */
 .intro{
-height:100vh;
-display:grid;
-place-items:center;
-position:relative;
-z-index:10;
+  height:100vh;
+  width:100%;
+  position:relative;
+  overflow:hidden;
 }
 
+/* paper background */
 .envelope{
-width:90vw;
-max-width:380px;
-height:240px;
-background:linear-gradient(145deg,#fff8ee,#e6d4b5);
-border-radius:16px;
-position:relative;
-box-shadow:0 40px 120px rgba(0,0,0,.9);
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(0,0,0,.03), transparent 60%),
+    linear-gradient(145deg,#f6efe6,#e8d7bd);
 }
 
+/* top flap */
 .flap{
-position:absolute;
-width:100%;
-height:55%;
-background:#e6d4b5;
-clip-path:polygon(0 0,100% 0,50% 100%);
-transform-origin:top;
-transition:1.2s;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:50%;
+  background:#e2c9a5;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;
+  transition:1.2s ease;
+  z-index:2;
 }
 
+/* wax seal centered */
 .seal{
-position:absolute;
-width:90px;
-height:90px;
-background:radial-gradient(circle,#ff3b2f,#900000);
-border-radius:50%;
-display:grid;
-place-items:center;
-color:white;
-font-family:'Great Vibes';
-font-size:30px;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-cursor:pointer;
-box-shadow:0 0 50px rgba(255,0,0,.9);
-animation:pulse 1.8s infinite;
-}
-
-@keyframes pulse{
-50%{transform:translate(-50%,-50%) scale(1.1)}
+  position:absolute;
+  width:110px;
+  height:110px;
+  background:radial-gradient(circle,#ff3b2f,#900000);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:white;
+  font-family:'Great Vibes';
+  font-size:34px;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  cursor:pointer;
+  box-shadow:0 0 60px rgba(255,0,0,.8);
+  z-index:3;
+  animation:pulse 1.8s infinite;
 }
 
 .tap{
-position:absolute;
-bottom:-50px;
-width:100%;
-text-align:center;
-font-size:12px;
-color:#e5c777;
-letter-spacing:2px;
+  position:absolute;
+  bottom:40px;
+  width:100%;
+  text-align:center;
+  font-size:12px;
+  color:#9c7b4f;
+  letter-spacing:2px;
 }
 
-.open .flap{transform:rotateX(180deg)}
-.open .seal{opacity:0;transform:translate(-50%,-50%) scale(.3)}
+/* OPEN ANIMATION */
+.open .flap{
+  transform:rotateX(180deg);
+}
+
+.open .seal{
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.3);
+}
+
+.envelope::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+  opacity:.2;
+  pointer-events:none;
+}
 
 .website{
 display:none;
@@ -333,7 +349,6 @@ font-size:76px;
 
 .lux-section{
   padding:18px 0;
-}
 
 .lux-box{
 width:88%;
