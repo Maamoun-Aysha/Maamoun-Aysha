@@ -320,7 +320,8 @@ to{transform:translateY(-120px);opacity:0}
 /* MOBILE */
 @media(max-width:768px){
 .container{
-padding:25px 12px 55px;
+  padding-left:16px;
+  padding-right:16px;
 }
 
 .invite{
@@ -336,10 +337,15 @@ font-size:76px;
 }
 
 
+.invite-box,
 .lux-box{
-width:88%;
-margin:auto;
-padding:24px 16px;
+  width:100%;
+  max-width:100%;
+}
+
+/* REMOVE SHRINKING */
+.lux-box{
+  margin:0;
 }
 
 .lux-box h2{
