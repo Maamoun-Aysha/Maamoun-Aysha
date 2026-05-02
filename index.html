@@ -286,32 +286,27 @@ z-index:999;
 to{transform:translateY(-120px);opacity:0}
 }
 
-/* 🔥 MOBILE FIX (FINAL) */
 @media(max-width:768px){
+  .lux-box h2{
+    font-size:52px;
+    line-height:.95;
+  }
 
-.container{padding:30px 12px 90px}
-.names{font-size:70px}
+  .lux-box p{
+    font-size:15px;
+    line-height:1.7;
+  }
 
-.polaroid{
-width:92px;
-padding:6px;
-z-index:20;
-opacity:0;
-transform:translateY(40px) scale(.9);
-}
+  .lux-section:last-of-type .lux-box{
+    padding:28px 18px;
+    overflow:hidden;
+  }
 
-.polaroid img{height:92px}
-.polaroid span{font-size:18px}
-
-/* KEEP INSIDE SCREEN */
-.polaroid.left{left:12px}
-.polaroid.right{right:12px}
-
-/* NEW MOBILE ANIMATION */
-.polaroid.show{
-opacity:1;
-transform:translateY(0) scale(1) rotate(var(--r));
-}
+  .lux-section:last-of-type .btn{
+    width:fit-content;
+    margin:22px auto 0;
+    padding:14px 24px;
+  }
 }
 </style>
 </head>
