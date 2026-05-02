@@ -556,6 +556,30 @@ display:none;
     min-height:100svh;
   }
 }
+/* LARGE MOBILE POLAROIDS */
+@media(max-width:768px){
+  .polaroid{
+    width:125px;
+    padding:8px;
+  }
+
+  .polaroid img{
+    height:125px;
+  }
+
+  .polaroid span{
+    font-size:23px;
+    margin-top:7px;
+  }
+
+  .polaroid.left{
+    left:4px;
+  }
+
+  .polaroid.right{
+    right:4px;
+  }
+}
 }
 </style>
 </head>
@@ -647,7 +671,7 @@ display:none;
       </div>
 
       <div class="polaroid right" style="--r:8deg">
-        <img src="images/4.jpeg">
+        <img src="images/7.jpeg">
         <span>Promise</span>
       </div>
     </section>
