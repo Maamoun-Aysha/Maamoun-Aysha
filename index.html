@@ -1,455 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maamoun & Aycha's Wedding</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary: #0a1f33; /* Luxurious Ultra-Deep Blue */
-            --accent: #e5c060;  /* Intense Sparkling Gold */
-            --bg-dark: #071524;
-            --text-light: #ffffff;
-            --gold-gradient: linear-gradient(135deg, #fce08d 0%, #d4af37 50%, #aa7c11 100%);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maamoun & Aycha</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            overflow-x: hidden;
-            text-align: center;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Continuous shimmering background effect */
-        .bg-glow {
-            background: radial-gradient(circle at 50% 30%, #153c61 0%, var(--bg-dark) 70%);
-            background-attachment: fixed;
-        }
+body {
+    background: #0a0a0a;
+    font-family: 'Playfair Display', serif;
+    overflow-x: hidden;
+}
 
-        /* --- Full Screen Mobile Hero Section --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            position: relative;
-            background: linear-gradient(rgba(7, 21, 36, 0.4), rgba(7, 21, 36, 0.8)), 
-                        url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1080&q=80') no-repeat center center/cover;
-            border-bottom: 2px solid var(--accent);
-        }
+/* ===== INTRO SCREEN ===== */
+.intro {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+    position: relative;
+}
 
-        .hero h1 {
-            font-family: 'Alex Brush', cursive;
-            font-size: 4rem;
-            color: #ffffff;
-            line-height: 1.1;
-            margin-bottom: 15px;
-            animation: pulse-glow 3s infinite alternate;
-        }
+/* Envelope background */
+.envelope {
+    width: 90%;
+    max-width: 350px;
+    height: 220px;
+    background: #f5f1ea;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    overflow: hidden;
+}
 
-        .hero .ampersand {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.2rem;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-            margin: 5px 0;
-            font-weight: 900;
-        }
+/* Top flap */
+.flap {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    background: #e8e2d8;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top;
+    transition: transform 1s ease;
+    z-index: 3;
+}
 
-        .hero p.subtitle {
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 30px;
-        }
+/* Wax seal */
+.seal {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #ff3b3b, #b30000);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Great Vibes', cursive;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 5;
+    box-shadow: 0 5px 20px rgba(255,0,0,0.5);
+    transition: 0.3s;
+}
 
-        .hero-date {
-            font-size: 1.2rem;
-            letter-spacing: 4px;
-            font-weight: 500;
-            border: 1px solid var(--accent);
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(5px);
-            padding: 12px 25px;
-            border-radius: 50px;
-            box-shadow: 0 0 20px rgba(229, 192, 96, 0.3);
-        }
+.seal:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 25px;
-            font-size: 0.75rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.6);
-            animation: bounce 2s infinite;
-        }
+/* Hidden main content */
+.main-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 1s;
+    padding: 20px;
+}
 
-        /* --- Global Sections --- */
-        section {
-            padding: 80px 24px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+/* Reveal state */
+.open .flap {
+    transform: rotateX(180deg);
+}
 
-        .section-title {
-            font-family: 'Alex Brush', cursive;
-            font-size: 3.5rem;
-            color: #ffffff;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(229, 192, 96, 0.4);
-        }
+.open .seal {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+}
 
-        .section-subtitle {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            color: var(--accent);
-            margin-bottom: 40px;
-            font-weight: 700;
-        }
+.open + .main-content {
+    opacity: 1;
+    pointer-events: all;
+}
 
-        /* --- Quote Section --- */
-        .quote-box {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            padding: 45px 25px;
-            border-radius: 24px;
-            border: 1px solid rgba(229, 192, 96, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(229, 192, 96, 0.1);
-        }
+/* Wedding text */
+.names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    margin-bottom: 20px;
+}
 
-        .quote-text {
-            font-style: italic;
-            font-size: 1.3rem;
-            color: #f1f1f1;
-            line-height: 1.8;
-        }
-
-        /* --- Flashy Venue & Time Section --- */
-        .details-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .detail-card {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(12px);
-            padding: 40px 25px;
-            border-radius: 20px;
-            border-left: 5px solid var(--accent);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
-
-        .detail-card h3 {
-            font-size: 1.3rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-        }
-
-        .detail-card p {
-            font-size: 1.1rem;
-            color: #ddd;
-        }
-
-        .highlight {
-            font-weight: 700;
-            color: #ffffff;
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-
-        .policy-alert {
-            background: rgba(229, 192, 96, 0.08);
-            border: 1px dashed var(--accent);
-            padding: 25px 20px;
-            border-radius: 16px;
-            margin-top: 10px;
-        }
-
-        .policy-alert p {
-            font-size: 0.85rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #f1f1f1;
-            font-weight: 600;
-            line-height: 1.6;
-        }
-
-        /* --- RSVP SECTION --- */
-        .rsvp-section {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 24px;
-            padding: 45px 20px;
-            border: 1px solid rgba(229, 192, 96, 0.2);
-            box-shadow: 0 0 40px rgba(229, 192, 96, 0.15);
-            margin: 40px auto;
-        }
-
-        .rsvp-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .rsvp-yes {
-            background: var(--gold-gradient);
-            color: #000;
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            padding: 20px;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(229, 192, 96, 0.4);
-            animation: pulse-glow 2s infinite alternate;
-            transition: transform 0.2s;
-        }
-
-        .rsvp-no {
-            background: transparent;
-            color: #ffffff;
-            font-weight: 500;
-            font-size: 0.95rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 18px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .rsvp-no:active {
-            background: rgba(255, 255, 255, 0.1);
-            transform: scale(0.96);
-        }
-        
-        .rsvp-yes:active {
-            transform: scale(0.96);
-        }
-
-        /* --- Dynamic Glowing Countdown --- */
-        .countdown-container {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 24px;
-            padding: 40px 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin: 40px 0;
-        }
-
-        .timer {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        .timer-box {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            padding: 15px 5px;
-            border-radius: 12px;
-        }
-
-        .timer-number {
-            font-size: 2rem;
-            font-weight: 900;
-            display: block;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .timer-label {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #aaa;
-            margin-top: 5px;
-            display: block;
-        }
-
-        footer {
-            padding: 50px 20px;
-            background: rgba(7, 21, 36, 0.9);
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        footer p {
-            font-size: 0.85rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--accent);
-        }
-
-        /* Animations */
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 10px rgba(229,192,96,0.3); }
-            100% { box-shadow: 0 0 25px rgba(229,192,96,0.6); }
-        }
-
-        @media (min-width: 768px) {
-            .hero h1 { font-size: 5.5rem; }
-            section { max-width: 650px; }
-        }
-    </style>
+.details {
+    font-size: 18px;
+    opacity: 0.8;
+}
+</style>
 </head>
-<body class="bg-glow">
 
-    <div class="hero">
-        <h1 data-aos="zoom-out" data-aos-duration="1500">
-            Maamoun 
-            <span class="ampersand">&</span> 
-            Aycha
-        </h1>
-        <p class="subtitle" data-aos="fade-up" data-aos-delay="400">Are Getting Married</p>
-        <p class="hero-date" data-aos="fade-up" data-aos-delay="800">10 . 07 . 2026</p>
-        <div class="scroll-indicator">Swipe Down</div>
+<body>
+
+<!-- INTRO -->
+<div class="intro" id="intro">
+    <div class="envelope" id="envelope">
+        <div class="flap"></div>
+        <div class="seal" id="seal">Love</div>
     </div>
+</div>
 
-    <section>
-        <div class="quote-box" data-aos="zoom-in" data-aos-duration="1200">
-            <p class="quote-text">
-                "With the ocean as our witness, we invite you to celebrate our love under the sun and stars."
-            </p>
+<!-- MAIN CONTENT -->
+<div class="main-content" id="mainContent">
+    <div>
+        <div class="names">Maamoun & Aycha</div>
+        <div class="details">
+            July 10, 2026 <br>
+            Rmeileh Resort & Hotel <br><br>
+            8:00 PM <br>
+            Adults Only
         </div>
-    </section>
+    </div>
+</div>
 
-    <section id="details">
-        <h2 class="section-title" data-aos="fade-down">Details</h2>
-        <p class="section-subtitle" data-aos="fade-up">When & Where</p>
+<script>
+const seal = document.getElementById("seal");
+const envelope = document.getElementById("envelope");
+const intro = document.getElementById("intro");
 
-        <div class="details-stack">
-            <div class="detail-card" data-aos="fade-right" data-aos-duration="1000">
-                <h3>When</h3>
-                <p class="highlight">Friday, July 10, 2026</p>
-                <p>Doors open at 8:00 PM</p>
-            </div>
+seal.addEventListener("click", () => {
+    envelope.classList.add("open");
 
-            <div class="detail-card" data-aos="fade-left" data-aos-duration="1000">
-                <h3>Where</h3>
-                <p class="highlight">Rmeileh Resort & Hotel</p>
-                <p>Rmeileh, Lebanon</p>
-            </div>
+    setTimeout(() => {
+        intro.style.display = "none";
+        document.getElementById("mainContent").style.opacity = "1";
+    }, 1200);
+});
+</script>
 
-            <div class="policy-alert" data-aos="zoom-in" data-aos-duration="800">
-                <p><strong>Note:</strong> We love your children, but our wedding is an adult-only event.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="rsvp">
-        <div class="rsvp-section" data-aos="flip-up" data-aos-duration="1200">
-            <h2 class="section-title" style="font-size:3.2rem; margin-bottom: 0;">R.S.V.P</h2>
-            <p style="letter-spacing: 2px; color: #ccc; margin-top: 10px;">Kindly respond by tapping below</p>
-            
-            <div class="rsvp-buttons">
-                <button class="rsvp-yes" onclick="sendToWhatsApp()">Yes, I'm coming!</button>
-                <button class="rsvp-no" onclick="alert('Thank you for letting us know! You will be missed.')">No, I can't make it</button>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="countdown-container" data-aos="fade-up" data-aos-duration="1000">
-            <div class="timer" id="timer">
-                <div class="timer-box">
-                    <span class="timer-number" id="days">00</span>
-                    <span class="timer-label">Days</span>
-                </div>
-                <div class="timer-box">
-                    <span class="timer-number" id="hours">00</span>
-                    <span class="timer-label">Hours</span>
-                </div>
-                <div class="timer-box">
-                    <span class="timer-number" id="minutes">00</span>
-                    <span class="timer-label">Mins</span>
-                </div>
-                <div class="timer-box">
-                    <span class="timer-number" id="seconds">00</span>
-                    <span class="timer-label">Secs</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p data-aos="fade-up">See you under the stars!</p>
-    </footer>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize Scroll Animations
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
-
-        // WhatsApp Custom Setup with your number
-        function sendToWhatsApp() {
-            const phoneNumber = "96178960826"; 
-            const text = "Hi Maamoun & Aycha! Yes, I'm coming to celebrate your special day. Can't wait! 🎉🥂";
-            const encodedText = encodeURIComponent(text);
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedText}`;
-            window.open(whatsappURL, '_blank');
-        }
-
-        // Live Countdown Timer
-        const weddingDate = new Date('July 10, 2026 20:00:00').getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = days < 10 ? '0' + days : days;
-            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
-            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
-            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
-
-            if (distance < 0) {
-                clearInterval(interval);
-                document.getElementById('timer').innerHTML = "<h3 style='color: var(--accent); font-size:1.8rem; grid-column: 1/-1;'>It's time to celebrate!</h3>";
-            }
-        }
-
-        updateCountdown();
-        const interval = setInterval(updateCountdown, 1000);
-    </script>
 </body>
 </html>
