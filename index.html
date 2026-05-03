@@ -1156,6 +1156,40 @@ left:12px;
   opacity:1;
   transform:translateY(0) scale(1);
 }
+/* FLOATING LANGUAGE TOGGLE */
+.lang-toggle{
+  position:fixed;
+  top:calc(16px + env(safe-area-inset-top));
+  right:16px;
+  z-index:9997;
+  border:none;
+  padding:10px 14px;
+  border-radius:999px;
+  font-family:Montserrat, sans-serif;
+  font-size:13px;
+  font-weight:600;
+  color:#1e0707;
+  background:linear-gradient(135deg,#ffd98a,#b8862b);
+  box-shadow:
+    0 0 22px rgba(255,200,100,.45),
+    0 8px 22px rgba(0,0,0,.35);
+  cursor:pointer;
+  transition:.3s ease;
+  display:none;
+}
+
+.lang-toggle:hover{
+  transform:scale(1.05);
+}
+
+@media(max-width:768px){
+  .lang-toggle{
+    top:calc(12px + env(safe-area-inset-top));
+    right:12px;
+    font-size:12px;
+    padding:9px 12px;
+  }
+}
 </style>
 </head>
 
@@ -1183,6 +1217,7 @@ left:12px;
 </div>
 
 <div class="website" id="website">
+    <button class="lang-toggle" id="langToggle" type="button">عربي</button>
     <button class="music-toggle" id="musicToggle" type="button">🔊</button>
     <div class="language-modal" id="languageModal">
   <div class="language-box">
@@ -1537,7 +1572,11 @@ const translations={
 }
 };
 
+let currentLang="en";
+
 function setLanguage(lang){
+    currentLang=lang;
+
   document.body.classList.toggle("ar", lang==="ar");
 
   document.querySelectorAll("[data-i18n]").forEach(el=>{
@@ -1559,7 +1598,14 @@ function setLanguage(lang){
   }
 
   document.getElementById("languageModal").style.display="none";
+  const langToggle=document.getElementById("langToggle");
+langToggle.style.display="block";
+langToggle.textContent=lang==="en" ? "عربي" : "English";
 }
+
+document.getElementById("langToggle").onclick=()=>{
+  setLanguage(currentLang==="en" ? "ar" : "en");
+};
 </script>
 </body>
 </html>
