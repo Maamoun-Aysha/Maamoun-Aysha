@@ -1220,55 +1220,6 @@ left:12px;
     padding:24px 10px 16px;
   }
 }
-
-/* IMAGE LOADING FALLBACK */
-.invite-box,
-.lux-section,
-.polaroid img{
-  background-color:#2b0808;
-  background-image:
-    linear-gradient(135deg, rgba(255,215,150,.10), rgba(120,20,20,.12)),
-    radial-gradient(circle at center, rgba(255,215,150,.16), transparent 55%);
-}
-
-/* soft shimmer while images load */
-.invite-box,
-.lux-section{
-  position:relative;
-}
-
-.invite-box::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    110deg,
-    transparent 0%,
-    rgba(255,215,150,.12) 45%,
-    transparent 70%
-  );
-  transform:translateX(-100%);
-  animation:imageShimmer 2.8s ease-in-out infinite;
-  pointer-events:none;
-  z-index:1;
-}
-
-.invite-box > *{
-  position:relative;
-  z-index:2;
-}
-
-@keyframes imageShimmer{
-  0%{transform:translateX(-100%)}
-  60%,100%{transform:translateX(100%)}
-}
-
-/* if polaroid images fail, they still look intentional */
-.polaroid img{
-  border-radius:4px;
-  background-size:cover;
-  background-position:center;
-}
 </style>
 </head>
 
@@ -1349,7 +1300,7 @@ left:12px;
       </div>
 
       <div class="polaroid right" style="--r:7deg">
-    <img src="images/2.jpeg" alt="Wedding moment" loading="lazy">
+        <img src="images/2.jpeg" alt="Wedding moment">
         <span>Moments</span>
       </div>
     </section>
@@ -1364,7 +1315,7 @@ left:12px;
       </div>
 
       <div class="polaroid left" style="--r:-6deg">
-    <img src="images/3.jpeg" alt="Wedding moment" loading="lazy">
+        <img src="images/3.jpeg" alt="Love">
         <span>Love</span>
       </div>
     </section>
@@ -1379,7 +1330,7 @@ left:12px;
       </div>
 
       <div class="polaroid right" style="--r:8deg">
-    <img src="images/7.jpeg" alt="Wedding moment" loading="lazy">
+        <img src="images/7.jpeg" alt="Promise">
         <span>Promise</span>
       </div>
     </section>
@@ -1409,7 +1360,7 @@ left:12px;
       </div>
 
       <div class="polaroid left" style="--r:-7deg">
-    <img src="images/5.jpeg" alt="Wedding moment" loading="lazy">
+        <img src="images/5.jpeg" alt="Forever">
         <span>Forever</span>
       </div>
     </section>
@@ -1430,7 +1381,7 @@ left:12px;
       </div>
 
       <div class="polaroid right" style="--r:6deg">
-    <img src="images/6.jpeg" alt="Wedding moment" loading="lazy">
+        <img src="images/6.jpeg" alt="Celebrate">
         <span>Celebrate</span>
       </div>
     </section>
