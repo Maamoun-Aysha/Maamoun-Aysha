@@ -1220,35 +1220,7 @@ left:12px;
     padding:24px 10px 16px;
   }
 }
-/* OLD DEVICE FALLBACK MODE ONLY */
-body.old-device .open .flap{
-  transform:translateY(-100%);
-  opacity:0;
-}
 
-body.old-device .open .seal{
-  opacity:0;
-  transform:translate(-50%,-50%) scale(.35);
-  transition:.7s ease;
-}
-
-/* older browsers that don't understand dvh/svh */
-@supports not (height:100dvh){
-  .intro,
-  .envelope{
-    height:100vh;
-    min-height:100vh;
-  }
-}
-
-/* if blur is unsupported, avoid broken glass effects */
-@supports not (backdrop-filter:blur(5px)){
-  .lux-box,
-  .invite-box,
-  .language-modal{
-    backdrop-filter:none;
-  }
-}
 </style>
 </head>
 
@@ -1438,9 +1410,7 @@ const weddingSongs=[
 const randomSong=weddingSongs[Math.floor(Math.random()*weddingSongs.length)];
 music.src=randomSong;
 
-function openInvite(){
-  if(envelope.classList.contains("open")) return;
-
+seal.onclick=()=>{
   envelope.classList.add("open");
 
   music.volume=0.15;
@@ -1460,55 +1430,19 @@ function openInvite(){
 
     window.scrollTo(0,0);
   },1200);
-}
+};
 
-function isOlderDevice(){
-  let old=false;
-
-  if(!window.CSS || !CSS.supports){
-    old=true;
+musicToggle.onclick=()=>{
+  if(music.paused){
+    music.play();
+    musicToggle.textContent="🔊";
+    musicToggle.classList.remove("muted");
   }else{
-    if(!CSS.supports("height", "100dvh")) old=true;
-    if(!CSS.supports("clip-path", "polygon(0 0, 100% 0, 50% 100%)")) old=true;
-  }
-
-  if(navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4){
-    old=true;
-  }
-
-  return old;
-}
-
-if(isOlderDevice()){
-  document.body.classList.add("old-device");
-}
-
-function openInvite(){
-  if(envelope.classList.contains("open")) return;
-
-  envelope.classList.add("open");
-
-  music.volume=0.15;
-  music.play().catch(()=>{
+    music.pause();
     musicToggle.textContent="🔇";
     musicToggle.classList.add("muted");
-  });
-
-  setTimeout(()=>{
-    intro.style.display="none";
-    website.style.display="block";
-
-    const modal=document.getElementById("languageModal");
-    if(modal){
-      modal.style.display="flex";
-    }
-
-    window.scrollTo(0,0);
-  },1200);
-}
-
-seal.addEventListener("click", openInvite);
-envelope.addEventListener("click", openInvite);
+  }
+};
 
 const weddingDate=new Date("2026-06-26T20:00:00").getTime();
 
