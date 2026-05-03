@@ -1428,15 +1428,6 @@ const intro=document.getElementById("intro");
 const website=document.getElementById("website");
 const music=document.getElementById("weddingMusic");
 const musicToggle=document.getElementById("musicToggle");
-const isOldDevice =
-  !CSS.supports("height", "100dvh") ||
-  !CSS.supports("transform-style", "preserve-3d") ||
-  !CSS.supports("clip-path", "polygon(0 0, 100% 0, 50% 100%)") ||
-  navigator.hardwareConcurrency <= 4;
-
-if(isOldDevice){
-  document.body.classList.add("old-device");
-}
 const weddingSongs=[
   "music/1.mp3",
   "music/2.mp3",
@@ -1471,20 +1462,53 @@ function openInvite(){
   },1200);
 }
 
-seal.onclick=openInvite;
-envelope.onclick=openInvite;
+function isOlderDevice(){
+  let old=false;
 
-musicToggle.onclick=()=>{
-  if(music.paused){
-    music.play();
-    musicToggle.textContent="🔊";
-    musicToggle.classList.remove("muted");
+  if(!window.CSS || !CSS.supports){
+    old=true;
   }else{
-    music.pause();
+    if(!CSS.supports("height", "100dvh")) old=true;
+    if(!CSS.supports("clip-path", "polygon(0 0, 100% 0, 50% 100%)")) old=true;
+  }
+
+  if(navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4){
+    old=true;
+  }
+
+  return old;
+}
+
+if(isOlderDevice()){
+  document.body.classList.add("old-device");
+}
+
+function openInvite(){
+  if(envelope.classList.contains("open")) return;
+
+  envelope.classList.add("open");
+
+  music.volume=0.15;
+  music.play().catch(()=>{
     musicToggle.textContent="🔇";
     musicToggle.classList.add("muted");
-  }
-};
+  });
+
+  setTimeout(()=>{
+    intro.style.display="none";
+    website.style.display="block";
+
+    const modal=document.getElementById("languageModal");
+    if(modal){
+      modal.style.display="flex";
+    }
+
+    window.scrollTo(0,0);
+  },1200);
+}
+
+seal.addEventListener("click", openInvite);
+envelope.addEventListener("click", openInvite);
 
 const weddingDate=new Date("2026-06-26T20:00:00").getTime();
 
