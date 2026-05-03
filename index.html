@@ -1145,9 +1145,7 @@ body.ar .time-box{
 
 <body>
 
-<audio id="weddingMusic" loop preload="auto">
-  <source src="music/1.mp3" type="audio/mpeg">
-</audio>
+<audio id="weddingMusic" loop preload="auto"></audio>
 
 <div class="intro" id="intro">
   <div class="envelope" id="envelope">
@@ -1316,6 +1314,15 @@ const intro=document.getElementById("intro");
 const website=document.getElementById("website");
 const music=document.getElementById("weddingMusic");
 const musicToggle=document.getElementById("musicToggle");
+const weddingSongs=[
+  "music/1.mp3",
+  "music/2.mp3",
+  "music/3.mp3",
+  "music/4.mp3"
+];
+
+const randomSong=weddingSongs[Math.floor(Math.random()*weddingSongs.length)];
+music.src=randomSong;
 
 seal.onclick=()=>{
   envelope.classList.add("open");
