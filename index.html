@@ -1101,10 +1101,54 @@ body.ar .time-box{
   font-family:'Scheherazade New', serif;
 }
 
+/* MUSIC TOGGLE BUTTON */
+.music-toggle{
+  position:fixed;
+  top:calc(16px + env(safe-area-inset-top));
+  right:16px;
+  z-index:9997;
+  border:none;
+  padding:10px 14px;
+  border-radius:999px;
+  font-family:Montserrat, sans-serif;
+  font-size:13px;
+  font-weight:600;
+  color:#1e0707;
+  background:linear-gradient(135deg,#ffd98a,#b8862b);
+  box-shadow:
+    0 0 22px rgba(255,200,100,.45),
+    0 8px 22px rgba(0,0,0,.35);
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.music-toggle:hover{
+  transform:scale(1.05);
+}
+
+.music-toggle.muted{
+  background:rgba(255,255,255,.12);
+  color:white;
+  border:1px solid rgba(255,215,150,.35);
+}
+
+@media(max-width:768px){
+  .music-toggle{
+    top:calc(12px + env(safe-area-inset-top));
+    right:12px;
+    font-size:12px;
+    padding:9px 12px;
+  }
+}
 </style>
 </head>
 
 <body>
+
+<audio id="weddingMusic" loop preload="auto">
+  <source src="music/1.mp3" type="audio/mpeg">
+</audio>
+
 <div class="intro" id="intro">
   <div class="envelope" id="envelope">
     <div class="flap"></div>
@@ -1125,6 +1169,7 @@ body.ar .time-box{
 </div>
 
 <div class="website" id="website">
+    <button class="music-toggle" id="musicToggle" type="button">🔊</button>
     <div class="language-modal" id="languageModal">
   <div class="language-box">
     <h2>Choose Language</h2>
@@ -1269,15 +1314,41 @@ const seal=document.getElementById("seal");
 const envelope=document.getElementById("envelope");
 const intro=document.getElementById("intro");
 const website=document.getElementById("website");
+const music=document.getElementById("weddingMusic");
+const musicToggle=document.getElementById("musicToggle");
 
 seal.onclick=()=>{
   envelope.classList.add("open");
+
+  music.volume=0.35;
+  music.play().catch(()=>{
+    musicToggle.textContent="🔇";
+    musicToggle.classList.add("muted");
+  });
+
   setTimeout(()=>{
     intro.style.display="none";
     website.style.display="block";
-    document.getElementById("languageModal").style.display="flex";
+
+    const modal=document.getElementById("languageModal");
+    if(modal){
+      modal.style.display="flex";
+    }
+
     window.scrollTo(0,0);
   },1200);
+};
+
+musicToggle.onclick=()=>{
+  if(music.paused){
+    music.play();
+    musicToggle.textContent="🔊";
+    musicToggle.classList.remove("muted");
+  }else{
+    music.pause();
+    musicToggle.textContent="🔇";
+    musicToggle.classList.add("muted");
+  }
 };
 
 const weddingDate=new Date("2026-06-26T20:00:00").getTime();
