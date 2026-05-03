@@ -1220,6 +1220,35 @@ left:12px;
     padding:24px 10px 16px;
   }
 }
+/* OLD DEVICE FALLBACK MODE ONLY */
+body.old-device .open .flap{
+  transform:translateY(-100%);
+  opacity:0;
+}
+
+body.old-device .open .seal{
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.35);
+  transition:.7s ease;
+}
+
+/* older browsers that don't understand dvh/svh */
+@supports not (height:100dvh){
+  .intro,
+  .envelope{
+    height:100vh;
+    min-height:100vh;
+  }
+}
+
+/* if blur is unsupported, avoid broken glass effects */
+@supports not (backdrop-filter:blur(5px)){
+  .lux-box,
+  .invite-box,
+  .language-modal{
+    backdrop-filter:none;
+  }
+}
 </style>
 </head>
 
@@ -1399,6 +1428,15 @@ const intro=document.getElementById("intro");
 const website=document.getElementById("website");
 const music=document.getElementById("weddingMusic");
 const musicToggle=document.getElementById("musicToggle");
+const isOldDevice =
+  !CSS.supports("height", "100dvh") ||
+  !CSS.supports("transform-style", "preserve-3d") ||
+  !CSS.supports("clip-path", "polygon(0 0, 100% 0, 50% 100%)") ||
+  navigator.hardwareConcurrency <= 4;
+
+if(isOldDevice){
+  document.body.classList.add("old-device");
+}
 const weddingSongs=[
   "music/1.mp3",
   "music/2.mp3",
@@ -1409,7 +1447,9 @@ const weddingSongs=[
 const randomSong=weddingSongs[Math.floor(Math.random()*weddingSongs.length)];
 music.src=randomSong;
 
-seal.onclick=()=>{
+function openInvite(){
+  if(envelope.classList.contains("open")) return;
+
   envelope.classList.add("open");
 
   music.volume=0.15;
@@ -1429,7 +1469,10 @@ seal.onclick=()=>{
 
     window.scrollTo(0,0);
   },1200);
-};
+}
+
+seal.onclick=openInvite;
+envelope.onclick=openInvite;
 
 musicToggle.onclick=()=>{
   if(music.paused){
