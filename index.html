@@ -6,6 +6,8 @@
 <title>Maamoun & Aycha</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Parisienne&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Parisienne&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Parisienne&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 /* ==============================
@@ -1002,6 +1004,101 @@ body::before{
     opacity:1;
   }
 }
+
+}
+
+/* LANGUAGE POPUP */
+.language-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(15,3,3,.72);
+  backdrop-filter:blur(10px);
+  z-index:9998;
+}
+
+.language-box{
+  width:86%;
+  max-width:360px;
+  padding:32px 22px;
+  border-radius:28px;
+  text-align:center;
+  background:
+    linear-gradient(145deg, rgba(35,5,5,.82), rgba(95,20,15,.70));
+  border:1px solid rgba(255,215,150,.45);
+  box-shadow:
+    0 0 60px rgba(255,0,0,.35),
+    inset 0 0 35px rgba(255,215,150,.08);
+  animation:languagePop .55s ease forwards;
+}
+
+.language-box h2{
+  font-family:'Great Vibes', cursive;
+  font-size:54px;
+  color:#ffd98a;
+  text-shadow:0 0 18px rgba(255,0,0,.55);
+}
+
+.language-box p{
+  margin-top:6px;
+  color:#fff1d8;
+  font-size:18px;
+}
+
+.language-buttons{
+  display:flex;
+  gap:12px;
+  margin-top:24px;
+}
+
+.language-buttons button{
+  flex:1;
+  border:none;
+  padding:14px 12px;
+  border-radius:28px;
+  font-family:Montserrat, sans-serif;
+  font-weight:600;
+  cursor:pointer;
+  color:#1e0707;
+  background:linear-gradient(135deg,#ffd98a,#b8862b);
+  box-shadow:0 0 22px rgba(255,200,100,.35);
+  transition:.3s ease;
+}
+
+.language-buttons button:hover{
+  transform:scale(1.05);
+}
+
+@keyframes languagePop{
+  from{
+    opacity:0;
+    transform:scale(.88) translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:scale(1) translateY(0);
+  }
+}
+
+/* ARABIC MODE */
+body.ar{
+  direction:rtl;
+}
+
+body.ar .lux-box h2{
+  font-family:'Amiri', serif;
+  font-weight:700;
+}
+
+body.ar .lux-box h2,
+body.ar .quote,
+body.ar .info,
+body.ar .lux-box p,
+body.ar .btn,
+body.ar .time-box{
+  font-family:'Scheherazade New', serif;
 }
 
 </style>
@@ -1028,43 +1125,54 @@ body::before{
 </div>
 
 <div class="website" id="website">
+    <div class="language-modal" id="languageModal">
+  <div class="language-box">
+    <h2>Choose Language</h2>
+    <p>اختر اللغة</p>
+
+    <div class="language-buttons">
+      <button onclick="setLanguage('en')">English</button>
+      <button onclick="setLanguage('ar')">العربية</button>
+    </div>
+  </div>
+</div>
   <div class="container">
     <section class="invite">
       <div class="invite-box">
-        <div class="quote">
-          With the ocean as our witness,<br>
-          we invite you to celebrate their love<br>
-          under the sun and stars.
-        </div>
+        <div class="quote" data-i18n="quote">
+  With the ocean as our witness,<br>
+  we invite you to celebrate their love<br>
+  under the sun and stars.
+</div>
 
-        <div class="names">Maamoun</div>
-        <div class="and">&</div>
-        <div class="names">Aycha</div>
+        <div class="names" data-i18n="groom">Maamoun</div>
+<div class="and">&</div>
+<div class="names" data-i18n="bride">Aycha</div>
 
         <div class="date">26 / 6 / 2026</div>
 
-        <div class="info">
-          Rmeileh Resort & Hotel<br>
-          Wedding starts at 8:00 PM<br>
-          Adults Only · No Kids
-        </div>
+     <div class="info" data-i18n="mainInfo">
+  Rmeileh Resort & Hotel<br>
+  Wedding starts at 8:00 PM<br>
+  Adults Only · No Kids
+</div>
 
-        <div class="countdown">
-          <div class="time-box"><span id="days">00</span>Days</div>
-          <div class="time-box"><span id="hours">00</span>Hours</div>
-          <div class="time-box"><span id="minutes">00</span>Minutes</div>
-          <div class="time-box"><span id="seconds">00</span>Seconds</div>
-        </div>
+     <div class="countdown">
+  <div class="time-box"><span id="days">00</span><small data-i18n="days">Days</small></div>
+  <div class="time-box"><span id="hours">00</span><small data-i18n="hours">Hours</small></div>
+  <div class="time-box"><span id="minutes">00</span><small data-i18n="minutes">Minutes</small></div>
+  <div class="time-box"><span id="seconds">00</span><small data-i18n="seconds">Seconds</small></div>
+</div>
       </div>
     </section>
 
     <section class="lux-section section-night">
       <div class="lux-box">
-        <h2>Our Night</h2>
-        <p>
-          A celebration by the sea, surrounded by love, music, lights,
-          and the people who mean the most to us.
-        </p>
+        <h2 data-i18n="ourNightTitle">Our Night</h2>
+<p data-i18n="ourNightText">
+  A celebration by the sea, surrounded by love, music, lights,
+  and the people who mean the most to us.
+</p>
       </div>
 
       <div class="polaroid right" style="--r:7deg">
@@ -1075,11 +1183,11 @@ body::before{
 
     <section class="lux-section section-place">
       <div class="lux-box">
-        <h2>The Place</h2>
-        <p>
-          Join us at Rmeileh Resort & Hotel for an elegant evening
-          under the stars, beginning at 8:00 PM.
-        </p>
+        <h2 data-i18n="placeTitle">The Place</h2>
+<p data-i18n="placeText">
+  Join us at Rmeileh Resort & Hotel for an elegant evening
+  under the stars, beginning at 8:00 PM.
+</p>
       </div>
 
       <div class="polaroid left" style="--r:-6deg">
@@ -1090,11 +1198,11 @@ body::before{
 
     <section class="lux-section section-adults">
       <div class="lux-box">
-        <h2>Adults Only</h2>
-        <p>
-          With love, we kindly request an adults-only celebration.
-          No kids, please.
-        </p>
+        <h2 data-i18n="adultsTitle">Adults Only</h2>
+<p data-i18n="adultsText">
+  With love, we kindly request an adults-only celebration.
+  No kids, please.
+</p>
       </div>
 
       <div class="polaroid right" style="--r:8deg">
@@ -1105,19 +1213,23 @@ body::before{
 
     <section class="lux-section section-rsvp">
       <div class="lux-box">
-        <h2>Will You Join Us?</h2>
-        <p>Please let us know if you’ll be celebrating this special night with us.</p>
+        <h2 data-i18n="rsvpTitle">Will You Join Us?</h2>
+<p data-i18n="rsvpText">Please let us know if you’ll be celebrating this special night with us.</p>
 
         <div class="rsvp-buttons">
-          <a class="btn yes"
+     <a class="btn yes"
+   id="yesBtn"
    href="https://wa.me/96178960826?text=Yes%2C%20I%E2%80%99m%20Coming%20%E2%9C%85%0ANumber%20of%20People%3A"
-   target="_blank">
+   target="_blank"
+   data-i18n="yesBtn">
   Yes, I’m Coming 🎉
-            </a>
+</a>
 
-       <a class="btn no"
+<a class="btn no"
+   id="noBtn"
    href="https://wa.me/96178960826?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C"
-   target="_blank">
+   target="_blank"
+   data-i18n="noBtn">
   Can’t Make It
 </a>
         </div>
@@ -1131,14 +1243,17 @@ body::before{
 
     <section class="lux-section final-section section-final">
       <div class="lux-box">
-        <h2>See You There</h2>
-        <p>
-          We cannot wait to celebrate this unforgettable evening with you.
-        </p>
+      <h2 data-i18n="finalTitle">See You There</h2>
+<p data-i18n="finalText">
+  We cannot wait to celebrate this unforgettable evening with you.
+</p>
 
-        <a class="btn yes" href="https://www.google.com/maps/search/Rmeileh+Resort+%26+Hotel" target="_blank">
-          Open Location 📍
-        </a>
+       <a class="btn yes"
+   href="https://www.google.com/maps/search/Rmeileh+Resort+%26+Hotel"
+   target="_blank"
+   data-i18n="locationBtn">
+  Open Location 📍
+</a>
       </div>
 
       <div class="polaroid right" style="--r:6deg">
@@ -1160,6 +1275,7 @@ seal.onclick=()=>{
   setTimeout(()=>{
     intro.style.display="none";
     website.style.display="block";
+    document.getElementById("languageModal").style.display="flex";
     window.scrollTo(0,0);
   },1200);
 };
@@ -1247,6 +1363,94 @@ function flower(){
 }
 
 setInterval(flower,1100);
+
+const translations={
+  en:{
+    quote:"With the ocean as our witness,<br>we invite you to celebrate their love<br>under the sun and stars.",
+    groom:"Maamoun",
+    bride:"Aycha",
+    mainInfo:"Rmeileh Resort & Hotel<br>Wedding starts at 8:00 PM<br>Adults Only · No Kids",
+
+    days:"Days",
+    hours:"Hours",
+    minutes:"Minutes",
+    seconds:"Seconds",
+
+    ourNightTitle:"Our Night",
+    ourNightText:"A celebration by the sea, surrounded by love, music, lights, and the people who mean the most to us.",
+
+    placeTitle:"The Place",
+    placeText:"Join us at Rmeileh Resort & Hotel for an elegant evening under the stars, beginning at 8:00 PM.",
+
+    adultsTitle:"Adults Only",
+    adultsText:"With love, we kindly request an adults-only celebration. No kids, please.",
+
+    rsvpTitle:"Will You Join Us?",
+    rsvpText:"Please let us know if you’ll be celebrating this special night with us.",
+
+    yesBtn:"Yes, I’m Coming 🎉",
+    noBtn:"Can’t Make It",
+
+    finalTitle:"See You There",
+    finalText:"We cannot wait to celebrate this unforgettable evening with you.",
+    locationBtn:"Open Location 📍"
+  },
+
+  ar:{
+  quote:"والبحر شاهد على حبّنا،<br>منحب ندعيكن تشاركونا فرحة العمر<br>تحت الشمس والنجوم.",
+  groom:"مأمون",
+  bride:"عائشة",
+  mainInfo:"منتجع وفندق الرميلة<br>بيبلّش الحفل الساعة 8:00 مساءً<br>للكبار فقط · بدون أطفال",
+
+  days:"أيام",
+  hours:"ساعات",
+  minutes:"دقايق",
+  seconds:"ثواني",
+
+  ourNightTitle:"ليلتنا",
+  ourNightText:"سهرة على البحر، مليانة حب، موسيقى، أضواء، ومع أغلى الناس على قلوبنا.",
+
+  placeTitle:"المكان",
+  placeText:"ناطرينكن بمنتجع وفندق الرميلة بسهرة حلوة تحت النجوم، بتبلّش الساعة 8:00 مساءً.",
+
+  adultsTitle:"للكبار فقط",
+  adultsText:"بكل محبة، منطلب يكون الحفل للكبار فقط. بدون أطفال، لو سمحتوا.",
+
+  rsvpTitle:"رح تكونوا معنا؟",
+  rsvpText:"خبرونا إذا رح تشاركونا هالليلة المميزة.",
+
+  yesBtn:"نعم، رح أحضر 🎉",
+  noBtn:"ما فيني إحضر",
+
+  finalTitle:"منشوفكن هونيك",
+  finalText:"ناطرينكن لنحتفل سوا بهالليلة الحلوة يلي ما بتنتسى.",
+  locationBtn:"افتح الموقع 📍"
+}
+};
+
+function setLanguage(lang){
+  document.body.classList.toggle("ar", lang==="ar");
+
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key=el.getAttribute("data-i18n");
+    if(translations[lang][key]){
+      el.innerHTML=translations[lang][key];
+    }
+  });
+
+  const yesBtn=document.getElementById("yesBtn");
+  const noBtn=document.getElementById("noBtn");
+
+  if(lang==="ar"){
+    yesBtn.href="https://wa.me/96178960826?text=%D9%86%D8%B9%D9%85%D8%8C%20%D8%B3%D8%A3%D8%AD%D8%B6%D8%B1%20%E2%9C%85%0A%D8%B9%D8%AF%D8%AF%20%D8%A7%D9%84%D8%A3%D8%B4%D8%AE%D8%A7%D8%B5%3A";
+    noBtn.href="https://wa.me/96178960826?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C";
+  }else{
+    yesBtn.href="https://wa.me/96178960826?text=Yes%2C%20I%E2%80%99m%20Coming%20%E2%9C%85%0ANumber%20of%20People%3A";
+    noBtn.href="https://wa.me/96178960826?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C";
+  }
+
+  document.getElementById("languageModal").style.display="none";
+}
 </script>
 </body>
 </html>
