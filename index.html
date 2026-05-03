@@ -146,7 +146,6 @@ body::before{
   right:14%;
   transform:rotate(18deg);
 }
-
 /* BETTER LOOKING WAX STAMP ONLY */
 .seal{
   position:absolute;
@@ -161,8 +160,12 @@ body::before{
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  display:grid;
-  place-items:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  line-height:1;
+  padding-top:4px;
   font-family:'Great Vibes', cursive;
   font-size:42px;
   z-index:10;
@@ -216,6 +219,7 @@ body::before{
     inset 0 0 14px rgba(255,255,255,.08);
   pointer-events:none;
 }
+
 @keyframes sealPulse{
   50%{transform:translate(-50%,-50%) scale(1.06)}
 }
@@ -1105,13 +1109,17 @@ body::before{
         <p>Please let us know if you’ll be celebrating this special night with us.</p>
 
         <div class="rsvp-buttons">
-          <a class="btn yes" href="https://wa.me/96178960826?text=I%20am%20coming" target="_blank">
-            Yes, I’m Coming 🎉
-          </a>
+          <a class="btn yes"
+   href="https://wa.me/96178960826?text=Yes%2C%20I%E2%80%99m%20Coming%20%E2%9C%85%0ANumber%20of%20People%3A"
+   target="_blank">
+  Yes, I’m Coming 🎉
+            </a>
 
-          <a class="btn no" href="https://wa.me/96178960826?text=Unfortunately%20I%20can’t%20make%20it" target="_blank">
-            Can’t Make It
-          </a>
+       <a class="btn no"
+   href="https://wa.me/96178960826?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C"
+   target="_blank">
+  Can’t Make It
+</a>
         </div>
       </div>
 
