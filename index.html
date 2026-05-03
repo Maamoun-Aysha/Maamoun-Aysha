@@ -1140,6 +1140,22 @@ left:12px;
     padding:9px 12px;
   }
 }
+/* SECTION TEXT CARD FADE-IN */
+.lux-box,
+.invite-box{
+  opacity:0;
+  transform:translateY(34px) scale(.98);
+  transition:
+    opacity .9s ease,
+    transform .9s ease,
+    box-shadow .9s ease;
+}
+
+.lux-box.card-show,
+.invite-box.card-show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
 </style>
 </head>
 
@@ -1389,6 +1405,21 @@ const obs=new IntersectionObserver(entries=>{
 });
 
 polaroids.forEach(p=>obs.observe(p));
+
+const cards=document.querySelectorAll(".lux-box, .invite-box");
+
+const cardObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add("card-show");
+    }
+  });
+},{
+  threshold:0.15,
+  rootMargin:"80px"
+});
+
+cards.forEach(card=>cardObs.observe(card));
 
 function butterfly(){
   if(website.style.display!=="block")return;
