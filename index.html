@@ -5,8 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maamoun & Aycha</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Parisienne&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Parisienne&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Parisienne&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* ==============================
    BASE
@@ -146,8 +148,7 @@ body::before{
   right:14%;
   transform:rotate(18deg);
 }
-
-/* wax stamp */
+/* BETTER LOOKING WAX STAMP ONLY */
 .seal{
   position:absolute;
   width:128px;
@@ -182,6 +183,7 @@ body::before{
     0 -1px 0 rgba(80,0,0,.45);
 }
 
+/* rough wax edge */
 .seal::before{
   content:"";
   position:absolute;
@@ -207,6 +209,7 @@ body::before{
   filter:blur(.35px);
 }
 
+/* inner stamped ring */
 .seal::after{
   content:"";
   position:absolute;
@@ -237,7 +240,6 @@ body::before{
 }
 
 .open .flap{transform:rotateX(180deg)}
-
 .open .seal{
   opacity:0;
   transform:translate(-50%,-50%) scale(.35);
@@ -250,7 +252,7 @@ body::before{
   pointer-events:none;
 }
 
-/* Decorative groom + bride */
+/* Decorative groom + bride used in the current build */
 .side-character{
   position:absolute;
   top:50%;
@@ -278,15 +280,11 @@ body::before{
   box-shadow:0 0 8px rgba(180,120,60,.18);
 }
 
-.groom-deco .body,
-.bride-deco .body{
+.groom-deco .body{
   position:absolute;
+  top:30px;
   left:50%;
   transform:translateX(-50%);
-}
-
-.groom-deco .body{
-  top:30px;
   width:88px;
   height:150px;
   background:linear-gradient(180deg, rgba(184,141,86,.9), rgba(138,96,48,.95));
@@ -294,18 +292,12 @@ body::before{
   border-radius:8px;
 }
 
-.groom-deco .body::before,
-.groom-deco .body::after,
-.bride-deco .body::before,
-.bride-deco .body::after{
+.groom-deco .body::before{
   content:"";
   position:absolute;
   left:50%;
-  transform:translateX(-50%);
-}
-
-.groom-deco .body::before{
   top:16px;
+  transform:translateX(-50%);
   width:30px;
   height:42px;
   background:rgba(247,239,226,.8);
@@ -314,7 +306,11 @@ body::before{
 }
 
 .groom-deco .body::after{
+  content:"";
+  position:absolute;
+  left:50%;
   top:22px;
+  transform:translateX(-50%);
   width:8px;
   height:48px;
   background:#9a6631;
@@ -323,7 +319,10 @@ body::before{
 }
 
 .bride-deco .body{
+  position:absolute;
   top:28px;
+  left:50%;
+  transform:translateX(-50%);
   width:108px;
   height:165px;
   background:linear-gradient(180deg, rgba(203,169,118,.9), rgba(152,114,65,.95));
@@ -332,7 +331,11 @@ body::before{
 }
 
 .bride-deco .body::before{
+  content:"";
+  position:absolute;
   top:-18px;
+  left:50%;
+  transform:translateX(-50%);
   width:74px;
   height:70px;
   background:rgba(239,228,205,.65);
@@ -342,7 +345,11 @@ body::before{
 }
 
 .bride-deco .body::after{
+  content:"";
+  position:absolute;
   top:20px;
+  left:50%;
+  transform:translateX(-50%);
   width:20px;
   height:20px;
   background:#f0e6d5;
@@ -501,11 +508,25 @@ body::before{
   pointer-events:none;
 }
 
-.section-night{background-image:url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80")}
-.section-place{background-image:url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80")}
-.section-adults{background-image:url("https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1600&q=80")}
-.section-rsvp{background-image:url("https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=80")}
-.section-final{background-image:url("images/9.jpeg")}
+.section-night{
+  background-image:url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80");
+}
+
+.section-place{
+  background-image:url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80");
+}
+
+.section-adults{
+  background-image:url("https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1600&q=80");
+}
+
+.section-rsvp{
+  background-image:url("https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=80");
+}
+
+.section-final{
+  background-image:url("images/9.jpeg");
+}
 
 .lux-box{
   width:100%;
@@ -536,13 +557,6 @@ body::before{
   text-shadow:0 2px 10px rgba(0,0,0,.85);
 }
 
-.final-section .lux-box p{
-  margin-bottom:20px;
-}
-
-/* ==============================
-   BUTTONS + CONTROLS
-============================== */
 .rsvp-buttons{
   margin-top:24px;
   display:flex;
@@ -571,49 +585,7 @@ body::before{
   border:1px solid rgba(255,215,150,.3);
 }
 
-.btn:hover,
-.lang-toggle:hover,
-.music-toggle:hover,
-.language-buttons button:hover,
-.side-buttons button:hover{
-  transform:scale(1.05);
-}
-
-.lang-toggle,
-.music-toggle{
-  position:fixed;
-  z-index:9997;
-  border:none;
-  padding:10px 14px;
-  border-radius:999px;
-  font-family:Montserrat, sans-serif;
-  font-size:13px;
-  font-weight:600;
-  color:#1e0707;
-  background:linear-gradient(135deg,#ffd98a,#b8862b);
-  box-shadow:
-    0 0 22px rgba(255,200,100,.45),
-    0 8px 22px rgba(0,0,0,.35);
-  cursor:pointer;
-  transition:.3s ease;
-}
-
-.lang-toggle{
-  top:calc(16px + env(safe-area-inset-top));
-  right:16px;
-  display:none;
-}
-
-.music-toggle{
-  bottom:calc(16px + env(safe-area-inset-bottom));
-  left:16px;
-}
-
-.music-toggle.muted{
-  background:rgba(255,255,255,.12);
-  color:white;
-  border:1px solid rgba(255,215,150,.35);
-}
+.btn:hover{transform:scale(1.05)}
 
 /* ==============================
    POLAROIDS
@@ -664,201 +636,15 @@ body::before{
 }
 
 /* ==============================
-   MODALS
-============================== */
-.language-modal,
-.side-modal{
-  position:fixed;
-  inset:0;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  background:rgba(15,3,3,.72);
-  backdrop-filter:blur(10px);
-  z-index:9998;
-}
-
-.language-box,
-.side-box{
-  width:86%;
-  border-radius:28px;
-  text-align:center;
-  background:
-    linear-gradient(145deg, rgba(35,5,5,.82), rgba(95,20,15,.70));
-  border:1px solid rgba(255,215,150,.45);
-  box-shadow:
-    0 0 60px rgba(255,0,0,.35),
-    inset 0 0 35px rgba(255,215,150,.08);
-  animation:languagePop .55s ease forwards;
-}
-
-.language-box{
-  max-width:360px;
-  padding:32px 22px;
-}
-
-.side-box{
-  max-width:380px;
-  padding:34px 24px 28px;
-  position:relative;
-  background:
-    linear-gradient(145deg, rgba(35,5,5,.88), rgba(95,20,15,.74));
-}
-
-.language-box h2,
-.side-box h2{
-  font-family:'Great Vibes', cursive;
-  color:#ffd98a;
-  text-shadow:0 0 18px rgba(255,0,0,.55);
-}
-
-.language-box h2{font-size:54px}
-.side-box h2{font-size:46px}
-
-.language-box p,
-.side-box p{
-  color:#fff1d8;
-}
-
-.language-box p{
-  margin-top:6px;
-  font-size:18px;
-}
-
-.side-box p{
-  margin-top:8px;
-  font-size:15px;
-  line-height:1.6;
-}
-
-.language-buttons,
-.side-buttons{
-  display:flex;
-  gap:12px;
-  margin-top:24px;
-}
-
-.language-buttons button,
-.side-buttons button{
-  flex:1;
-  border:none;
-  border-radius:28px;
-  font-family:Montserrat, sans-serif;
-  font-weight:600;
-  cursor:pointer;
-  color:#1e0707;
-  background:linear-gradient(135deg,#ffd98a,#b8862b);
-  box-shadow:0 0 22px rgba(255,200,100,.35);
-  transition:.3s ease;
-}
-
-.language-buttons button{padding:14px 12px}
-.side-buttons button{padding:14px 10px}
-
-.side-close{
-  position:absolute;
-  top:10px;
-  right:14px;
-  width:30px;
-  height:30px;
-  border:none;
-  border-radius:50%;
-  background:rgba(255,255,255,.12);
-  color:white;
-  font-size:22px;
-  cursor:pointer;
-}
-
-@keyframes languagePop{
-  from{opacity:0;transform:scale(.88) translateY(20px)}
-  to{opacity:1;transform:scale(1) translateY(0)}
-}
-
-/* ==============================
-   FOOTER + SCROLL HINT
-============================== */
-.site-footer{
-  text-align:center;
-  padding:28px 10px 18px;
-  color:#fff1d8;
-  font-family:Montserrat, sans-serif;
-  position:relative;
-  z-index:3;
-}
-
-.site-footer p{
-  font-family:'Playfair Display', serif;
-  font-size:15px;
-  letter-spacing:1px;
-  color:#ffd98a;
-}
-
-.site-footer span{
-  display:block;
-  margin-top:8px;
-  font-size:13px;
-  opacity:.85;
-}
-
-.scroll-hint{
-  position:fixed;
-  left:50%;
-  bottom:calc(22px + env(safe-area-inset-bottom));
-  transform:translateX(-50%);
-  z-index:9997;
-  display:none;
-  flex-direction:column;
-  align-items:center;
-  gap:2px;
-  color:#ffd98a;
-  font-family:Montserrat, sans-serif;
-  font-size:11px;
-  font-weight:600;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  text-shadow:
-    0 0 10px rgba(255,215,150,.85),
-    0 2px 10px rgba(0,0,0,.65);
-  pointer-events:none;
-}
-
-.scroll-hint.show-scroll{
-  display:flex;
-  animation:scrollHintAppear 4s ease forwards;
-}
-
-.scroll-arrow{
-  font-size:26px;
-  line-height:1;
-  animation:scrollArrowBounce 1.1s ease-in-out infinite;
-}
-
-@keyframes scrollArrowBounce{
-  0%,100%{transform:translateY(0);opacity:.65}
-  50%{transform:translateY(8px);opacity:1}
-}
-
-@keyframes scrollHintAppear{
-  0%{opacity:0;transform:translateX(-50%) translateY(8px)}
-  15%{opacity:1;transform:translateX(-50%) translateY(0)}
-  80%{opacity:1}
-  100%{opacity:0;transform:translateX(-50%) translateY(8px)}
-}
-
-/* ==============================
    BUTTERFLIES + FLOWERS
 ============================== */
-.butterfly,
-.flower{
-  position:fixed;
-  pointer-events:none;
-  opacity:0;
-}
-
 .butterfly{
+  position:fixed;
   width:24px;
   height:24px;
+  pointer-events:none;
   z-index:999;
+  opacity:0;
   animation:flutterUp linear forwards;
 }
 
@@ -899,10 +685,27 @@ body::before{
   box-shadow:0 0 6px rgba(255,217,138,.5);
 }
 
+@keyframes wingFlap{
+  from{scale:1 1}
+  to{scale:.65 1}
+}
+
+@keyframes flutterUp{
+  0%{opacity:0;transform:translateY(0) translateX(0) scale(.7) rotate(0deg)}
+  10%{opacity:.9}
+  25%{transform:translateY(-40px) translateX(14px) scale(.95) rotate(8deg)}
+  50%{transform:translateY(-95px) translateX(-12px) scale(1) rotate(-8deg)}
+  75%{opacity:.85;transform:translateY(-155px) translateX(16px) scale(.9) rotate(10deg)}
+  100%{opacity:0;transform:translateY(-230px) translateX(-8px) scale(.75) rotate(-5deg)}
+}
+
 .flower{
+  position:fixed;
   width:26px;
   height:26px;
+  pointer-events:none;
   z-index:998;
+  opacity:0;
   animation:flowerFall linear forwards;
 }
 
@@ -936,20 +739,6 @@ body::before{
   box-shadow:0 0 8px rgba(255,217,138,.8);
 }
 
-@keyframes wingFlap{
-  from{scale:1 1}
-  to{scale:.65 1}
-}
-
-@keyframes flutterUp{
-  0%{opacity:0;transform:translateY(0) translateX(0) scale(.7) rotate(0deg)}
-  10%{opacity:.9}
-  25%{transform:translateY(-40px) translateX(14px) scale(.95) rotate(8deg)}
-  50%{transform:translateY(-95px) translateX(-12px) scale(1) rotate(-8deg)}
-  75%{opacity:.85;transform:translateY(-155px) translateX(16px) scale(.9) rotate(10deg)}
-  100%{opacity:0;transform:translateY(-230px) translateX(-8px) scale(.75) rotate(-5deg)}
-}
-
 @keyframes flowerFall{
   0%{opacity:0;transform:translateY(-40px) translateX(0) rotate(0deg) scale(.75)}
   10%{opacity:.9}
@@ -957,48 +746,6 @@ body::before{
   55%{transform:translateY(280px) translateX(-15px) rotate(180deg) scale(1)}
   80%{opacity:.85;transform:translateY(460px) translateX(22px) rotate(280deg) scale(.9)}
   100%{opacity:0;transform:translateY(650px) translateX(-10px) rotate(360deg) scale(.75)}
-}
-
-/* ==============================
-   FADE-IN + ARABIC MODE
-============================== */
-.lux-box,
-.invite-box{
-  opacity:0;
-  transform:translateY(34px) scale(.98);
-  transition:
-    opacity .9s ease,
-    transform .9s ease,
-    box-shadow .9s ease;
-}
-
-.lux-box.card-show,
-.invite-box.card-show{
-  opacity:1;
-  transform:translateY(0) scale(1);
-}
-
-body.ar{
-  direction:rtl;
-}
-
-body.ar .lux-box h2,
-body.ar .names,
-body.ar .quote,
-body.ar .info,
-body.ar .lux-box p,
-body.ar .btn,
-body.ar .time-box,
-body.ar .site-footer,
-body.ar .language-box,
-body.ar .side-box{
-  font-family:'Amiri', serif;
-}
-
-body.ar .lux-box h2,
-body.ar .names{
-  font-weight:700;
-  letter-spacing:0;
 }
 
 /* ==============================
@@ -1059,23 +806,6 @@ body.ar .names{
     font-size:11px;
     letter-spacing:4px;
     bottom:calc(28px + env(safe-area-inset-bottom));
-    animation:tapFloat 1.8s ease-in-out infinite;
-    text-shadow:
-      0 0 8px rgba(155,107,51,.45),
-      0 0 18px rgba(255,215,150,.55);
-  }
-
-  .tap::after{
-    content:"";
-    position:absolute;
-    left:50%;
-    bottom:-10px;
-    width:42px;
-    height:1px;
-    background:linear-gradient(90deg, transparent, #9b6b33, transparent);
-    transform:translateX(-50%) scaleX(.4);
-    transform-origin:center;
-    animation:tapLine 1.8s ease-in-out infinite;
   }
 
   .envelope .emboss::before,
@@ -1228,26 +958,321 @@ body.ar .names{
     display:none;
   }
 
+  /* ANIMATED TAP TO OPEN */
+.tap{
+  animation:tapFloat 1.8s ease-in-out infinite;
+  text-shadow:
+    0 0 8px rgba(155,107,51,.45),
+    0 0 18px rgba(255,215,150,.55);
+}
+
+.tap::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-10px;
+  width:42px;
+  height:1px;
+  background:linear-gradient(90deg, transparent, #9b6b33, transparent);
+  transform:translateX(-50%) scaleX(.4);
+  transform-origin:center;
+  animation:tapLine 1.8s ease-in-out infinite;
+}
+
+@keyframes tapFloat{
+  0%,100%{
+    transform:translateX(-50%) translateY(0);
+    opacity:.75;
+    letter-spacing:4px;
+  }
+
+  50%{
+    transform:translateX(-50%) translateY(-6px);
+    opacity:1;
+    letter-spacing:5px;
+  }
+}
+
+@keyframes tapLine{
+  0%,100%{
+    transform:translateX(-50%) scaleX(.4);
+    opacity:.35;
+  }
+
+  50%{
+    transform:translateX(-50%) scaleX(1.4);
+    opacity:1;
+  }
+}
+
+}
+
+/* LANGUAGE POPUP */
+.language-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(15,3,3,.72);
+  backdrop-filter:blur(10px);
+  z-index:9998;
+}
+
+.language-box{
+  width:86%;
+  max-width:360px;
+  padding:32px 22px;
+  border-radius:28px;
+  text-align:center;
+  background:
+    linear-gradient(145deg, rgba(35,5,5,.82), rgba(95,20,15,.70));
+  border:1px solid rgba(255,215,150,.45);
+  box-shadow:
+    0 0 60px rgba(255,0,0,.35),
+    inset 0 0 35px rgba(255,215,150,.08);
+  animation:languagePop .55s ease forwards;
+}
+
+.language-box h2{
+  font-family:'Great Vibes', cursive;
+  font-size:54px;
+  color:#ffd98a;
+  text-shadow:0 0 18px rgba(255,0,0,.55);
+}
+
+.language-box p{
+  margin-top:6px;
+  color:#fff1d8;
+  font-size:18px;
+}
+
+.language-buttons{
+  display:flex;
+  gap:12px;
+  margin-top:24px;
+}
+
+.language-buttons button{
+  flex:1;
+  border:none;
+  padding:14px 12px;
+  border-radius:28px;
+  font-family:Montserrat, sans-serif;
+  font-weight:600;
+  cursor:pointer;
+  color:#1e0707;
+  background:linear-gradient(135deg,#ffd98a,#b8862b);
+  box-shadow:0 0 22px rgba(255,200,100,.35);
+  transition:.3s ease;
+}
+
+.language-buttons button:hover{
+  transform:scale(1.05);
+}
+
+@keyframes languagePop{
+  from{
+    opacity:0;
+    transform:scale(.88) translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:scale(1) translateY(0);
+  }
+}
+
+/* ARABIC MODE */
+body.ar{
+  direction:rtl;
+}
+
+/* MUSIC TOGGLE BUTTON */
+.music-toggle{
+  position:fixed;
+bottom:calc(16px + env(safe-area-inset-bottom));
+left:16px;
+  z-index:9997;
+  border:none;
+  padding:10px 14px;
+  border-radius:999px;
+  font-family:Montserrat, sans-serif;
+  font-size:13px;
+  font-weight:600;
+  color:#1e0707;
+  background:linear-gradient(135deg,#ffd98a,#b8862b);
+  box-shadow:
+    0 0 22px rgba(255,200,100,.45),
+    0 8px 22px rgba(0,0,0,.35);
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.music-toggle:hover{
+  transform:scale(1.05);
+}
+
+.music-toggle.muted{
+  background:rgba(255,255,255,.12);
+  color:white;
+  border:1px solid rgba(255,215,150,.35);
+}
+
+@media(max-width:768px){
   .music-toggle{
-    bottom:calc(12px + env(safe-area-inset-bottom));
-    left:12px;
-  }
-
-  .lang-toggle{
-    top:calc(12px + env(safe-area-inset-top));
-    right:12px;
-  }
-
-  .music-toggle,
-  .lang-toggle{
+bottom:calc(12px + env(safe-area-inset-bottom));
+left:12px;
     font-size:12px;
     padding:9px 12px;
   }
+}
+/* SECTION TEXT CARD FADE-IN */
+.lux-box,
+.invite-box{
+  opacity:0;
+  transform:translateY(34px) scale(.98);
+  transition:
+    opacity .9s ease,
+    transform .9s ease,
+    box-shadow .9s ease;
+}
 
+.lux-box.card-show,
+.invite-box.card-show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+/* FLOATING LANGUAGE TOGGLE */
+.lang-toggle{
+  position:fixed;
+  top:calc(16px + env(safe-area-inset-top));
+  right:16px;
+  z-index:9997;
+  border:none;
+  padding:10px 14px;
+  border-radius:999px;
+  font-family:Montserrat, sans-serif;
+  font-size:13px;
+  font-weight:600;
+  color:#1e0707;
+  background:linear-gradient(135deg,#ffd98a,#b8862b);
+  box-shadow:
+    0 0 22px rgba(255,200,100,.45),
+    0 8px 22px rgba(0,0,0,.35);
+  cursor:pointer;
+  transition:.3s ease;
+  display:none;
+}
+
+.lang-toggle:hover{
+  transform:scale(1.05);
+}
+
+@media(max-width:768px){
+  .lang-toggle{
+    top:calc(12px + env(safe-area-inset-top));
+    right:12px;
+    font-size:12px;
+    padding:9px 12px;
+  }
+}
+/* FOOTER */
+.site-footer{
+  text-align:center;
+  padding:28px 10px 18px;
+  color:#fff1d8;
+  font-family:Montserrat, sans-serif;
+  position:relative;
+  z-index:3;
+}
+
+.site-footer p{
+  font-family:'Playfair Display', serif;
+  font-size:15px;
+  letter-spacing:1px;
+  color:#ffd98a;
+}
+
+.site-footer span{
+  display:block;
+  margin-top:8px;
+  font-size:13px;
+  opacity:.85;
+}
+
+@media(max-width:768px){
   .site-footer{
     padding:24px 10px 16px;
   }
+}
+/* SUBTLE SCROLL INDICATOR */
+.scroll-hint{
+  position:fixed;
+  left:50%;
+  bottom:calc(22px + env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  z-index:9997;
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  gap:2px;
+  color:#ffd98a;
+  font-family:Montserrat, sans-serif;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  text-shadow:
+    0 0 10px rgba(255,215,150,.85),
+    0 2px 10px rgba(0,0,0,.65);
+  pointer-events:none;
+}
 
+.scroll-hint.show-scroll{
+  display:flex;
+  animation:scrollHintAppear 4s ease forwards;
+}
+
+.scroll-arrow{
+  font-size:26px;
+  line-height:1;
+  animation:scrollArrowBounce 1.1s ease-in-out infinite;
+}
+
+@keyframes scrollArrowBounce{
+  0%,100%{
+    transform:translateY(0);
+    opacity:.65;
+  }
+
+  50%{
+    transform:translateY(8px);
+    opacity:1;
+  }
+}
+
+@keyframes scrollHintAppear{
+  0%{
+    opacity:0;
+    transform:translateX(-50%) translateY(8px);
+  }
+
+  15%{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+  }
+
+  80%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+    transform:translateX(-50%) translateY(8px);
+  }
+}
+
+@media(max-width:768px){
   .scroll-hint{
     bottom:calc(20px + env(safe-area-inset-bottom));
     font-size:10px;
@@ -1258,19 +1283,122 @@ body.ar .names{
   }
 }
 
-@keyframes tapFloat{
-  0%,100%{transform:translateX(-50%) translateY(0);opacity:.75;letter-spacing:4px}
-  50%{transform:translateX(-50%) translateY(-6px);opacity:1;letter-spacing:5px}
+.final-section .lux-box p{
+  margin-bottom:20px;
+}
+/* RSVP SIDE POPUP */
+.side-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(15,3,3,.72);
+  backdrop-filter:blur(10px);
+  z-index:9998;
 }
 
-@keyframes tapLine{
-  0%,100%{transform:translateX(-50%) scaleX(.4);opacity:.35}
-  50%{transform:translateX(-50%) scaleX(1.4);opacity:1}
+.side-box{
+  width:86%;
+  max-width:380px;
+  padding:34px 24px 28px;
+  border-radius:28px;
+  text-align:center;
+  position:relative;
+  background:
+    linear-gradient(145deg, rgba(35,5,5,.88), rgba(95,20,15,.74));
+  border:1px solid rgba(255,215,150,.45);
+  box-shadow:
+    0 0 60px rgba(255,0,0,.35),
+    inset 0 0 35px rgba(255,215,150,.08);
+  animation:languagePop .55s ease forwards;
+}
+
+.side-box h2{
+  font-family:'Great Vibes', cursive;
+  font-size:46px;
+  color:#ffd98a;
+  text-shadow:0 0 18px rgba(255,0,0,.55);
+}
+
+.side-box p{
+  margin-top:8px;
+  color:#fff1d8;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.side-buttons{
+  display:flex;
+  gap:12px;
+  margin-top:24px;
+}
+
+.side-buttons button{
+  flex:1;
+  border:none;
+  padding:14px 10px;
+  border-radius:28px;
+  font-family:Montserrat, sans-serif;
+  font-weight:600;
+  cursor:pointer;
+  color:#1e0707;
+  background:linear-gradient(135deg,#ffd98a,#b8862b);
+  box-shadow:0 0 22px rgba(255,200,100,.35);
+  transition:.3s ease;
+}
+
+.side-buttons button:hover{
+  transform:scale(1.05);
+}
+
+.side-close{
+  position:absolute;
+  top:10px;
+  right:14px;
+  width:30px;
+  height:30px;
+  border:none;
+  border-radius:50%;
+  background:rgba(255,255,255,.12);
+  color:white;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* ARABIC MODE */
+body.ar{
+  direction:rtl;
+}
+
+/* ARABIC FONT ONLY */
+body.ar .lux-box h2,
+body.ar .names,
+body.ar .quote,
+body.ar .info,
+body.ar .lux-box p,
+body.ar .btn,
+body.ar .time-box,
+body.ar .site-footer,
+body.ar .language-box,
+body.ar .side-box{
+  font-family:'Amiri', serif;
+}
+
+body.ar .lux-box h2{
+  font-weight:700;
+  letter-spacing:0;
+}
+
+body.ar .names{
+  font-weight:700;
+  letter-spacing:0;
 }
 </style>
 </head>
 
 <body>
+
 <audio id="weddingMusic" loop preload="auto"></audio>
 
 <div class="intro" id="intro">
@@ -1293,77 +1421,73 @@ body.ar .names{
 </div>
 
 <div class="website" id="website">
-  <button class="lang-toggle" id="langToggle" type="button">عربي</button>
-  <button class="music-toggle" id="musicToggle" type="button">🔊</button>
+    <button class="lang-toggle" id="langToggle" type="button">عربي</button>
+    <button class="music-toggle" id="musicToggle" type="button">🔊</button>
+    <div class="scroll-hint" id="scrollHint">
+  <span data-i18n="scrollHintText">Scroll</span>
+  <div class="scroll-arrow">⌄</div>
+</div>
+    <div class="language-modal" id="languageModal">
+  <div class="language-box">
+    <h2>Choose Language</h2>
+    <p>اختر اللغة</p>
 
-  <div class="scroll-hint" id="scrollHint">
-    <span data-i18n="scrollHintText">Scroll</span>
-    <div class="scroll-arrow">⌄</div>
-  </div>
-
-  <div class="language-modal" id="languageModal">
-    <div class="language-box">
-      <h2>Choose Language</h2>
-      <p>اختر اللغة</p>
-
-      <div class="language-buttons">
-        <button onclick="setLanguage('en')">English</button>
-        <button onclick="setLanguage('ar')">العربية</button>
-      </div>
+    <div class="language-buttons">
+      <button onclick="setLanguage('en')">English</button>
+      <button onclick="setLanguage('ar')">العربية</button>
     </div>
   </div>
+</div>
+<div class="side-modal" id="sideModal">
+  <div class="side-box">
+    <h2 data-i18n="sideTitle">Which side are you from?</h2>
+    <p data-i18n="sideText">Please choose before confirming your RSVP.</p>
 
-  <div class="side-modal" id="sideModal">
-    <div class="side-box">
-      <h2 data-i18n="sideTitle">Which side are you from?</h2>
-      <p data-i18n="sideText">Please choose before confirming your RSVP.</p>
-
-      <div class="side-buttons">
-        <button type="button" id="brideSideBtn" data-i18n="brideSide">Bride’s Side</button>
-        <button type="button" id="groomSideBtn" data-i18n="groomSide">Groom’s Side</button>
-      </div>
-
-      <button type="button" class="side-close" id="sideCloseBtn">×</button>
+    <div class="side-buttons">
+      <button type="button" id="brideSideBtn" data-i18n="brideSide">Bride’s Side</button>
+      <button type="button" id="groomSideBtn" data-i18n="groomSide">Groom’s Side</button>
     </div>
-  </div>
 
+    <button type="button" class="side-close" id="sideCloseBtn">×</button>
+  </div>
+</div>
   <div class="container">
     <section class="invite">
       <div class="invite-box">
         <div class="quote" data-i18n="quote">
-          With the ocean as our witness,<br>
-          we invite you to celebrate their love<br>
-          under the sun and stars.
-        </div>
+  With the ocean as our witness,<br>
+  we invite you to celebrate their love<br>
+  under the sun and stars.
+</div>
 
         <div class="names" data-i18n="groom">Maamoun</div>
-        <div class="and">&</div>
-        <div class="names" data-i18n="bride">Aycha</div>
+<div class="and">&</div>
+<div class="names" data-i18n="bride">Aycha</div>
 
         <div class="date">26 / 6 / 2026</div>
 
-        <div class="info" data-i18n="mainInfo">
-          Rmeileh Resort & Hotel<br>
-          Wedding starts at 8:00 PM<br>
-          Adults Only · No Kids
-        </div>
+     <div class="info" data-i18n="mainInfo">
+  Rmeileh Resort & Hotel<br>
+  Wedding starts at 8:00 PM<br>
+  Adults Only · No Kids
+</div>
 
-        <div class="countdown">
-          <div class="time-box"><span id="days">00</span><small data-i18n="days">Days</small></div>
-          <div class="time-box"><span id="hours">00</span><small data-i18n="hours">Hours</small></div>
-          <div class="time-box"><span id="minutes">00</span><small data-i18n="minutes">Minutes</small></div>
-          <div class="time-box"><span id="seconds">00</span><small data-i18n="seconds">Seconds</small></div>
-        </div>
+     <div class="countdown">
+  <div class="time-box"><span id="days">00</span><small data-i18n="days">Days</small></div>
+  <div class="time-box"><span id="hours">00</span><small data-i18n="hours">Hours</small></div>
+  <div class="time-box"><span id="minutes">00</span><small data-i18n="minutes">Minutes</small></div>
+  <div class="time-box"><span id="seconds">00</span><small data-i18n="seconds">Seconds</small></div>
+</div>
       </div>
     </section>
 
     <section class="lux-section section-night">
       <div class="lux-box">
         <h2 data-i18n="ourNightTitle">Our Night</h2>
-        <p data-i18n="ourNightText">
-          A celebration by the sea, surrounded by love, music, lights,
-          and the people who mean the most to us.
-        </p>
+<p data-i18n="ourNightText">
+  A celebration by the sea, surrounded by love, music, lights,
+  and the people who mean the most to us.
+</p>
       </div>
 
       <div class="polaroid right" style="--r:7deg">
@@ -1375,10 +1499,10 @@ body.ar .names{
     <section class="lux-section section-place">
       <div class="lux-box">
         <h2 data-i18n="placeTitle">The Place</h2>
-        <p data-i18n="placeText">
-          Join us at Rmeileh Resort & Hotel for an elegant evening
-          under the stars, beginning at 8:00 PM.
-        </p>
+<p data-i18n="placeText">
+  Join us at Rmeileh Resort & Hotel for an elegant evening
+  under the stars, beginning at 8:00 PM.
+</p>
       </div>
 
       <div class="polaroid left" style="--r:-6deg">
@@ -1390,10 +1514,10 @@ body.ar .names{
     <section class="lux-section section-adults">
       <div class="lux-box">
         <h2 data-i18n="adultsTitle">Adults Only</h2>
-        <p data-i18n="adultsText">
-          With love, we kindly request an adults-only celebration.
-          No kids, please.
-        </p>
+<p data-i18n="adultsText">
+  With love, we kindly request an adults-only celebration.
+  No kids, please.
+</p>
       </div>
 
       <div class="polaroid right" style="--r:8deg">
@@ -1405,18 +1529,23 @@ body.ar .names{
     <section class="lux-section section-rsvp">
       <div class="lux-box">
         <h2 data-i18n="rsvpTitle">Will You Join Us?</h2>
-        <p data-i18n="rsvpText">Please let us know if you’ll be celebrating this special night with us.</p>
+<p data-i18n="rsvpText">Please let us know if you’ll be celebrating this special night with us.</p>
 
         <div class="rsvp-buttons">
-          <a class="btn yes" id="yesBtn" href="#" data-i18n="yesBtn">Yes, I’m Coming 🎉</a>
+  <a class="btn yes"
+   id="yesBtn"
+   href="#"
+   data-i18n="yesBtn">
+  Yes, I’m Coming 🎉
+</a>
 
-          <a class="btn no"
-             id="noBtn"
-             href="https://wa.me/96178960826?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C"
-             target="_blank"
-             data-i18n="noBtn">
-            Can’t Make It
-          </a>
+<a class="btn no"
+   id="noBtn"
+   href="https://wa.me/96178960826?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C"
+   target="_blank"
+   data-i18n="noBtn">
+  Can’t Make It
+</a>
         </div>
       </div>
 
@@ -1428,17 +1557,17 @@ body.ar .names{
 
     <section class="lux-section final-section section-final">
       <div class="lux-box">
-        <h2 data-i18n="finalTitle">See You There</h2>
-        <p data-i18n="finalText">
-          We cannot wait to celebrate this unforgettable evening with you.
-        </p>
+      <h2 data-i18n="finalTitle">See You There</h2>
+<p data-i18n="finalText">
+  We cannot wait to celebrate this unforgettable evening with you.
+</p>
 
-        <a class="btn yes"
-           href="https://www.google.com/maps/search/Rmeileh+Resort+%26+Hotel"
-           target="_blank"
-           data-i18n="locationBtn">
-          Open Location 📍
-        </a>
+       <a class="btn yes"
+   href="https://www.google.com/maps/search/Rmeileh+Resort+%26+Hotel"
+   target="_blank"
+   data-i18n="locationBtn">
+  Open Location 📍
+</a>
       </div>
 
       <div class="polaroid right" style="--r:6deg">
@@ -1446,11 +1575,10 @@ body.ar .names{
         <span>Celebrate</span>
       </div>
     </section>
-
-    <footer class="site-footer">
-      <p data-i18n="footerNames">Maamoun &amp; Aycha · 26 June 2026</p>
-      <span data-i18n="footerLove">Made with love 🤍</span>
-    </footer>
+   <footer class="site-footer">
+  <p data-i18n="footerNames">Maamoun &amp; Aycha · 26 June 2026</p>
+  <span data-i18n="footerLove">Made with love 🤍</span>
+</footer>
   </div>
 </div>
 
@@ -1461,9 +1589,6 @@ const intro=document.getElementById("intro");
 const website=document.getElementById("website");
 const music=document.getElementById("weddingMusic");
 const musicToggle=document.getElementById("musicToggle");
-const yesBtn=document.getElementById("yesBtn");
-const noBtn=document.getElementById("noBtn");
-
 const weddingSongs=[
   "music/1.mp3",
   "music/2.mp3",
@@ -1471,7 +1596,8 @@ const weddingSongs=[
   "music/4.mp3"
 ];
 
-music.src=weddingSongs[Math.floor(Math.random()*weddingSongs.length)];
+const randomSong=weddingSongs[Math.floor(Math.random()*weddingSongs.length)];
+music.src=randomSong;
 
 seal.onclick=()=>{
   envelope.classList.add("open");
@@ -1613,70 +1739,90 @@ const translations={
     groom:"Maamoun",
     bride:"Aycha",
     mainInfo:"Rmeileh Resort & Hotel<br>Wedding starts at 8:00 PM<br>Adults Only · No Kids",
+
     days:"Days",
     hours:"Hours",
     minutes:"Minutes",
     seconds:"Seconds",
+
     ourNightTitle:"Our Night",
     ourNightText:"A celebration by the sea, surrounded by love, music, lights, and the people who mean the most to us.",
+
     placeTitle:"The Place",
     placeText:"Join us at Rmeileh Resort & Hotel for an elegant evening under the stars, beginning at 8:00 PM.",
+
     adultsTitle:"Adults Only",
     adultsText:"We’re so excited to celebrate with you, this will be an adults only evening. Thank you for your understanding 🤍",
+
     rsvpTitle:"Will You Join Us?",
     rsvpText:"Please let us know if you’ll be celebrating this special night with us.",
+
     yesBtn:"Yes, I’m Coming 🎉",
     noBtn:"Can’t Make It",
+
     sideTitle:"Which side are you from?",
     sideText:"Please choose before confirming your RSVP.",
     brideSide:"Bride’s Side",
     groomSide:"Groom’s Side",
+
     finalTitle:"See You There",
     finalText:"We cannot wait to celebrate this unforgettable evening with you.",
     locationBtn:"Open Location 📍",
     footerNames:"Maamoun & Aycha · 26 June 2026",
     footerLove:"Made with love 💛"
   },
+
   ar:{
-    scrollHintText:"انزل",
-    quote:"والبحر شاهد على حبّنا،<br>منحب ندعيكن تشاركونا فرحة العمر<br>تحت الشمس والنجوم.",
-    groom:"مأمون",
-    bride:"عائشة",
-    mainInfo:"منتجع وفندق الرميلة<br>بيبلّش الحفل الساعة 8:00 مساءً<br>للكبار فقط · بدون أطفال",
-    days:"أيام",
-    hours:"ساعات",
-    minutes:"دقايق",
-    seconds:"ثواني",
-    ourNightTitle:"ليلتنا",
-    ourNightText:"سهرة على البحر، مليانة حب، موسيقى، أضواء، ومع أغلى الناس على قلوبنا.",
-    placeTitle:"المكان",
-    placeText:"ناطرينكن بمنتجع وفندق الرميلة بسهرة حلوة تحت النجوم، بتبلّش الساعة 8:00 مساءً.",
-    adultsTitle:"ليلة هادئة",
-    adultsText:"يسعدنا حضوركم ومشاركتكم فرحتنا، وسيكون الحفل مخصصًا للكبار فقط. شكرًا لتفهمكم ❤️",
-    rsvpTitle:"رح تكونوا معنا؟",
-    rsvpText:"خبرونا إذا رح تشاركونا هالليلة المميزة.",
-    yesBtn:"نعم، رح أحضر 🎉",
-    noBtn:"ما فيني إحضر",
-    sideTitle:"من أي طرف؟",
-    sideText:"اختاروا قبل تأكيد الحضور.",
-    brideSide:"طرف العروس",
-    groomSide:"طرف العريس",
-    finalTitle:"منشوفكن هونيك",
-    finalText:"ناطرينكن لنحتفل سوا بهالليلة الحلوة يلي ما بتنتسى.",
-    locationBtn:"افتح الموقع 📍",
-    footerNames:"مأمون وعائشة · ٢٦ حزيران ٢٠٢٦",
-    footerLove:"مع كل الحب 💛"
-  }
+  scrollHintText:"انزل",
+  quote:"والبحر شاهد على حبّنا،<br>منحب ندعيكن تشاركونا فرحة العمر<br>تحت الشمس والنجوم.",
+  groom:"مأمون",
+  bride:"عائشة",
+  mainInfo:"منتجع وفندق الرميلة<br>بيبلّش الحفل الساعة 8:00 مساءً<br>للكبار فقط · بدون أطفال",
+
+  days:"أيام",
+  hours:"ساعات",
+  minutes:"دقايق",
+  seconds:"ثواني",
+
+  ourNightTitle:"ليلتنا",
+  ourNightText:"سهرة على البحر، مليانة حب، موسيقى، أضواء، ومع أغلى الناس على قلوبنا.",
+
+  placeTitle:"المكان",
+  placeText:"ناطرينكن بمنتجع وفندق الرميلة بسهرة حلوة تحت النجوم، بتبلّش الساعة 8:00 مساءً.",
+
+  adultsTitle:"ليلة هادئة",
+  adultsText:"يسعدنا حضوركم ومشاركتكم فرحتنا، وسيكون الحفل مخصصًا للكبار فقط. شكرًا لتفهمكم ❤️",
+
+  rsvpTitle:"رح تكونوا معنا؟",
+  rsvpText:"خبرونا إذا رح تشاركونا هالليلة المميزة.",
+
+  yesBtn:"نعم، رح أحضر 🎉",
+  noBtn:"ما فيني إحضر",
+
+  sideTitle:"من أي طرف؟",
+  sideText:"اختاروا قبل تأكيد الحضور.",
+  brideSide:"طرف العروس",
+  groomSide:"طرف العريس",
+
+  finalTitle:"منشوفكن هونيك",
+  finalText:"ناطرينكن لنحتفل سوا بهالليلة الحلوة يلي ما بتنتسى.",
+  locationBtn:"افتح الموقع 📍",
+
+  footerNames:"مأمون وعائشة · ٢٦ حزيران ٢٠٢٦",
+  footerLove:"مع كل الحب 💛"
+}
 };
 
 let currentLang="en";
 
 function showScrollHint(){
   const scrollHint=document.getElementById("scrollHint");
-  if(!scrollHint)return;
+  if(!scrollHint) return;
 
   scrollHint.classList.remove("show-scroll");
+
   void scrollHint.offsetWidth;
+
   scrollHint.classList.add("show-scroll");
 
   setTimeout(()=>{
@@ -1685,7 +1831,9 @@ function showScrollHint(){
 }
 
 function setLanguage(lang){
-  currentLang=lang;
+    
+    currentLang=lang;
+
   document.body.classList.toggle("ar", lang==="ar");
 
   document.querySelectorAll("[data-i18n]").forEach(el=>{
@@ -1695,21 +1843,22 @@ function setLanguage(lang){
     }
   });
 
-  yesBtn.href="#";
+  const yesBtn=document.getElementById("yesBtn");
+  const noBtn=document.getElementById("noBtn");
 
-  if(lang==="ar"){
-    noBtn.href="https://wa.me/96178960826?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C";
-  }else{
-    noBtn.href="https://wa.me/96178960826?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C";
-  }
+yesBtn.href="#";
+
+if(lang==="ar"){
+  noBtn.href="https://wa.me/96178960826?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C";
+}else{
+  noBtn.href="https://wa.me/96178960826?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C";
+}
 
   document.getElementById("languageModal").style.display="none";
-
   const langToggle=document.getElementById("langToggle");
-  langToggle.style.display="block";
-  langToggle.textContent=lang==="en" ? "عربي" : "English";
-
-  setTimeout(showScrollHint, 350);
+langToggle.style.display="block";
+langToggle.textContent=lang==="en" ? "عربي" : "English";
+setTimeout(showScrollHint, 350);
 }
 
 document.getElementById("langToggle").onclick=()=>{
