@@ -1301,6 +1301,103 @@ left:12px;
 .final-section .lux-box p{
   margin-bottom:20px;
 }
+/* RSVP SIDE POPUP */
+.side-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(15,3,3,.72);
+  backdrop-filter:blur(10px);
+  z-index:9998;
+}
+
+.side-box{
+  width:86%;
+  max-width:380px;
+  padding:34px 24px 28px;
+  border-radius:28px;
+  text-align:center;
+  position:relative;
+  background:
+    linear-gradient(145deg, rgba(35,5,5,.88), rgba(95,20,15,.74));
+  border:1px solid rgba(255,215,150,.45);
+  box-shadow:
+    0 0 60px rgba(255,0,0,.35),
+    inset 0 0 35px rgba(255,215,150,.08);
+  animation:languagePop .55s ease forwards;
+}
+
+.side-box h2{
+  font-family:'Great Vibes', cursive;
+  font-size:46px;
+  color:#ffd98a;
+  text-shadow:0 0 18px rgba(255,0,0,.55);
+}
+
+.side-box p{
+  margin-top:8px;
+  color:#fff1d8;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.side-buttons{
+  display:flex;
+  gap:12px;
+  margin-top:24px;
+}
+
+.side-buttons button{
+  flex:1;
+  border:none;
+  padding:14px 10px;
+  border-radius:28px;
+  font-family:Montserrat, sans-serif;
+  font-weight:600;
+  cursor:pointer;
+  color:#1e0707;
+  background:linear-gradient(135deg,#ffd98a,#b8862b);
+  box-shadow:0 0 22px rgba(255,200,100,.35);
+  transition:.3s ease;
+}
+
+.side-buttons button:hover{
+  transform:scale(1.05);
+}
+
+.side-close{
+  position:absolute;
+  top:10px;
+  right:14px;
+  width:30px;
+  height:30px;
+  border:none;
+  border-radius:50%;
+  background:rgba(255,255,255,.12);
+  color:white;
+  font-size:22px;
+  cursor:pointer;
+}
+
+body.ar .side-box h2,
+body.ar .side-box p,
+body.ar .side-buttons button{
+  font-family:'Scheherazade New', serif;
+}
+
+@media(max-width:768px){
+  .side-box{
+    width:86%;
+    max-width:350px;
+    padding:32px 20px 26px;
+  }
+
+  .side-box h2{
+    font-size:40px;
+  }
+}
 </style>
 </head>
 
@@ -1343,6 +1440,19 @@ left:12px;
       <button onclick="setLanguage('en')">English</button>
       <button onclick="setLanguage('ar')">العربية</button>
     </div>
+  </div>
+</div>
+<div class="side-modal" id="sideModal">
+  <div class="side-box">
+    <h2 data-i18n="sideTitle">Which side are you from?</h2>
+    <p data-i18n="sideText">Please choose before confirming your RSVP.</p>
+
+    <div class="side-buttons">
+      <button type="button" id="brideSideBtn" data-i18n="brideSide">Bride’s Side</button>
+      <button type="button" id="groomSideBtn" data-i18n="groomSide">Groom’s Side</button>
+    </div>
+
+    <button type="button" class="side-close" id="sideCloseBtn">×</button>
   </div>
 </div>
   <div class="container">
@@ -1426,10 +1536,9 @@ left:12px;
 <p data-i18n="rsvpText">Please let us know if you’ll be celebrating this special night with us.</p>
 
         <div class="rsvp-buttons">
-     <a class="btn yes"
+  <a class="btn yes"
    id="yesBtn"
-   href="https://wa.me/96178960826?text=Yes%2C%20I%E2%80%99m%20Coming%20%E2%9C%85%0ANumber%20of%20People%3A"
-   target="_blank"
+   href="#"
    data-i18n="yesBtn">
   Yes, I’m Coming 🎉
 </a>
@@ -1655,6 +1764,11 @@ const translations={
     yesBtn:"Yes, I’m Coming 🎉",
     noBtn:"Can’t Make It",
 
+    sideTitle:"Which side are you from?",
+    sideText:"Please choose before confirming your RSVP.",
+    brideSide:"Bride’s Side",
+    groomSide:"Groom’s Side",
+
     finalTitle:"See You There",
     finalText:"We cannot wait to celebrate this unforgettable evening with you.",
     locationBtn:"Open Location 📍",
@@ -1688,6 +1802,11 @@ const translations={
 
   yesBtn:"نعم، رح أحضر 🎉",
   noBtn:"ما فيني إحضر",
+
+  sideTitle:"من أي طرف؟",
+  sideText:"اختاروا قبل تأكيد الحضور.",
+  brideSide:"طرف العروس",
+  groomSide:"طرف العريس",
 
   finalTitle:"منشوفكن هونيك",
   finalText:"ناطرينكن لنحتفل سوا بهالليلة الحلوة يلي ما بتنتسى.",
@@ -1731,13 +1850,13 @@ function setLanguage(lang){
   const yesBtn=document.getElementById("yesBtn");
   const noBtn=document.getElementById("noBtn");
 
-  if(lang==="ar"){
-    yesBtn.href="https://wa.me/96178960826?text=%D9%86%D8%B9%D9%85%D8%8C%20%D8%B3%D8%A3%D8%AD%D8%B6%D8%B1%20%E2%9C%85%0A%D8%B9%D8%AF%D8%AF%20%D8%A7%D9%84%D8%A3%D8%B4%D8%AE%D8%A7%D8%B5%3A";
-    noBtn.href="https://wa.me/96178960826?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C";
-  }else{
-    yesBtn.href="https://wa.me/96178960826?text=Yes%2C%20I%E2%80%99m%20Coming%20%E2%9C%85%0ANumber%20of%20People%3A";
-    noBtn.href="https://wa.me/96178960826?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C";
-  }
+yesBtn.href="#";
+
+if(lang==="ar"){
+  noBtn.href="https://wa.me/96178960826?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C";
+}else{
+  noBtn.href="https://wa.me/96178960826?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C";
+}
 
   document.getElementById("languageModal").style.display="none";
   const langToggle=document.getElementById("langToggle");
@@ -1749,6 +1868,44 @@ setTimeout(showScrollHint, 350);
 document.getElementById("langToggle").onclick=()=>{
   setLanguage(currentLang==="en" ? "ar" : "en");
 };
+
+const sideModal=document.getElementById("sideModal");
+const brideSideBtn=document.getElementById("brideSideBtn");
+const groomSideBtn=document.getElementById("groomSideBtn");
+const sideCloseBtn=document.getElementById("sideCloseBtn");
+
+function getComingMessage(){
+  if(currentLang==="ar"){
+    return "%D9%86%D8%B9%D9%85%D8%8C%20%D8%B1%D8%AD%20%D8%A3%D8%AD%D8%B6%D8%B1%20%E2%9C%85%0A%D8%B9%D8%AF%D8%AF%20%D8%A7%D9%84%D8%A3%D8%B4%D8%AE%D8%A7%D8%B5%3A";
+  }
+
+  return "Yes%2C%20I%E2%80%99m%20Coming%20%E2%9C%85%0ANumber%20of%20People%3A";
+}
+
+yesBtn.addEventListener("click", function(e){
+  e.preventDefault();
+  sideModal.style.display="flex";
+});
+
+brideSideBtn.addEventListener("click", function(){
+  window.open("https://wa.me/96178960826?text=" + getComingMessage(), "_blank");
+  sideModal.style.display="none";
+});
+
+groomSideBtn.addEventListener("click", function(){
+  window.open("https://wa.me/966543230820?text=" + getComingMessage(), "_blank");
+  sideModal.style.display="none";
+});
+
+sideCloseBtn.addEventListener("click", function(){
+  sideModal.style.display="none";
+});
+
+sideModal.addEventListener("click", function(e){
+  if(e.target===sideModal){
+    sideModal.style.display="none";
+  }
+});
 </script>
 </body>
 </html>
