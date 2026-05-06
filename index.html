@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maamoun & Aycha</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nadir & Celeste | Interactive Storybook Invitation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Parisienne&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Parisienne&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Parisienne&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 /* ==============================
-   BASE
+   RESET + BASE
 ============================== */
 *{
   margin:0;
@@ -19,346 +17,210 @@
   box-sizing:border-box;
 }
 
+:root{
+  --paper:#fff7e8;
+  --paper2:#f1dfc2;
+  --ink:#2d2119;
+  --muted:#795f4b;
+  --terracotta:#b65b38;
+  --rose:#d88d7b;
+  --olive:#596d48;
+  --sage:#b8c7a1;
+  --cream:#fffaf0;
+  --shadow:rgba(45,33,25,.25);
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-  font-family:Montserrat, sans-serif;
+  min-height:100vh;
   overflow-x:hidden;
-  color:white;
+  font-family:Inter, sans-serif;
+  color:var(--ink);
   background:
-    radial-gradient(circle at 20% 20%, rgba(255,215,150,.22), transparent 35%),
-    radial-gradient(circle at 80% 70%, rgba(180,0,0,.28), transparent 40%),
-    linear-gradient(145deg,#220707,#050000);
+    radial-gradient(circle at 12% 18%, rgba(216,141,123,.28), transparent 28%),
+    radial-gradient(circle at 88% 70%, rgba(184,199,161,.34), transparent 34%),
+    linear-gradient(145deg,#fff7e8,#e7d3b5);
 }
 
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  background:radial-gradient(circle at 50% 0%, rgba(255,215,150,.18), transparent 45%);
-  animation:moveGlow 10s infinite alternate;
-  pointer-events:none;
   z-index:0;
+  pointer-events:none;
+  opacity:.26;
+  background-image:
+    radial-gradient(circle, rgba(45,33,25,.14) 1px, transparent 1.5px),
+    linear-gradient(90deg, rgba(45,33,25,.04) 1px, transparent 1px);
+  background-size:28px 28px, 54px 54px;
 }
 
-@keyframes moveGlow{
-  from{transform:translateY(0)}
-  to{transform:translateY(80px)}
+button,a,input,select{
+  -webkit-tap-highlight-color:transparent;
+  font:inherit;
 }
 
 /* ==============================
-   INTRO / ENVELOPE
+   INTRO: BOOK COVER
 ============================== */
 .intro{
   position:fixed;
   inset:0;
-  width:100%;
   height:100dvh;
   min-height:100svh;
+  z-index:9999;
   display:grid;
   place-items:center;
-  z-index:9999;
   overflow:hidden;
   background:
-    radial-gradient(circle at 50% 35%, rgba(255,255,255,.95), rgba(245,232,210,.92) 45%, rgba(215,190,155,.95));
+    radial-gradient(circle at 50% 30%, rgba(255,250,240,.34), transparent 34%),
+    linear-gradient(145deg,#3f2b21,#15100d);
   transition:opacity 1s ease, transform 1s ease;
 }
 
-.intro::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,.9), transparent 22%),
-    radial-gradient(circle at 80% 70%, rgba(255,215,170,.25), transparent 35%),
-    linear-gradient(135deg, rgba(255,255,255,.45), rgba(180,140,95,.18));
-  z-index:1;
+.intro.hide{
+  opacity:0;
+  transform:scale(1.04);
+  pointer-events:none;
 }
 
-.envelope{
+.book-wrap{
+  width:min(88vw,390px);
+  height:min(78svh,620px);
+  perspective:1400px;
   position:relative;
+}
+
+.book-cover{
   width:100%;
-  height:100dvh;
-  min-height:100svh;
-  background:linear-gradient(145deg,#fffaf2,#ead8bd);
+  height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transform-origin:left center;
+  border-radius:14px 28px 28px 14px;
+  background:
+    linear-gradient(to bottom, rgba(45,33,25,.18), rgba(45,33,25,.74)),
+    url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80") center/cover;
+  border:1px solid rgba(255,247,232,.46);
+  box-shadow:
+    18px 22px 60px rgba(0,0,0,.46),
+    inset 12px 0 28px rgba(0,0,0,.24),
+    inset 0 0 0 12px rgba(255,247,232,.08);
   overflow:hidden;
-  z-index:3;
+  animation:bookFloat 3.6s ease-in-out infinite;
+  transition:
+    transform 1.15s cubic-bezier(.77,0,.18,1),
+    opacity .55s ease,
+    filter .55s ease;
+  backface-visibility:hidden;
+  will-change:transform, opacity;
 }
 
-.envelope::before{
+.intro.opening .book-cover{
+  transform:translateX(-16px) rotateY(-74deg);
+  opacity:.96;
+  filter:brightness(.9);
+}
+
+@keyframes bookFloat{
+  0%,100%{transform:translateY(0) rotate(-.4deg)}
+  50%{transform:translateY(-9px) rotate(.4deg)}
+}
+
+.intro.opening .book-cover{
+  animation:none;
+}
+
+.book-cover::before{
   content:"";
   position:absolute;
-  inset:0;
-  background:
-    linear-gradient(36deg, transparent 49.7%, rgba(165,125,85,.22) 50%, transparent 50.3%),
-    linear-gradient(-36deg, transparent 49.7%, rgba(165,125,85,.18) 50%, transparent 50.3%);
-  z-index:2;
+  inset:18px;
+  border:1px solid rgba(255,247,232,.52);
+  border-radius:10px 22px 22px 10px;
   pointer-events:none;
 }
 
-.envelope::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:50%;
-  background:linear-gradient(145deg,#f0dfc3,#d8bc92);
-  clip-path:polygon(0 100%, 50% 0, 100% 100%);
-  z-index:3;
-  box-shadow:0 -8px 28px rgba(120,75,35,.12);
-}
-
-.flap{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:50%;
-  background:linear-gradient(160deg,#fff7e8,#dcc19a);
-  clip-path:polygon(0 0,100% 0,50% 100%);
-  transform-origin:top center;
-  transition:1.35s cubic-bezier(.77,0,.18,1);
-  z-index:5;
-  box-shadow:0 10px 30px rgba(80,45,20,.14);
-}
-
-.envelope .emboss{
-  position:absolute;
-  inset:0;
-  z-index:4;
-  pointer-events:none;
-  opacity:.18;
-}
-
-.envelope .emboss::before,
-.envelope .emboss::after{
-  content:"✿";
-  position:absolute;
-  font-size:78px;
-  color:rgba(120,90,65,.25);
-}
-
-.envelope .emboss::before{
-  top:14%;
-  left:14%;
-  transform:rotate(-18deg);
-}
-
-.envelope .emboss::after{
-  top:14%;
-  right:14%;
-  transform:rotate(18deg);
-}
-/* BETTER LOOKING WAX STAMP ONLY */
-.seal{
-  position:absolute;
-  width:128px;
-  height:128px;
-  border-radius:50%;
-  background:
-    radial-gradient(circle at 30% 25%, rgba(255,255,255,.38), transparent 15%),
-    radial-gradient(circle at 70% 75%, rgba(80,0,0,.35), transparent 25%),
-    radial-gradient(circle at 50% 50%, #df241d 0%, #bf1012 45%, #870006 78%, #610000 100%);
-  color:#fff4ef;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  line-height:1;
-  padding-top:4px;
-  font-family:'Great Vibes', cursive;
-  font-size:42px;
-  z-index:10;
-  cursor:pointer;
-  box-shadow:
-    0 0 55px rgba(255,0,0,.50),
-    0 10px 24px rgba(70,0,0,.35),
-    inset 0 5px 12px rgba(255,255,255,.30),
-    inset 0 -9px 18px rgba(50,0,0,.45);
-  animation:sealPulse 1.8s infinite;
-  text-shadow:
-    0 1px 0 rgba(255,255,255,.20),
-    0 -1px 0 rgba(80,0,0,.45);
-}
-
-/* rough wax edge */
-.seal::before{
-  content:"";
-  position:absolute;
-  inset:-4px;
-  border-radius:50%;
-  background:
-    conic-gradient(
-      from 8deg,
-      rgba(95,0,0,.20) 0deg 16deg,
-      rgba(255,255,255,.04) 16deg 31deg,
-      rgba(95,0,0,.16) 31deg 58deg,
-      rgba(255,255,255,.05) 58deg 84deg,
-      rgba(95,0,0,.20) 84deg 116deg,
-      rgba(255,255,255,.04) 116deg 145deg,
-      rgba(95,0,0,.16) 145deg 184deg,
-      rgba(255,255,255,.05) 184deg 215deg,
-      rgba(95,0,0,.20) 215deg 252deg,
-      rgba(255,255,255,.04) 252deg 285deg,
-      rgba(95,0,0,.16) 285deg 320deg,
-      rgba(255,255,255,.04) 320deg 360deg
-    );
-  z-index:-1;
-  filter:blur(.35px);
-}
-
-/* inner stamped ring */
-.seal::after{
-  content:"";
-  position:absolute;
-  inset:12px;
-  border-radius:50%;
-  border:2px solid rgba(255,225,210,.34);
-  box-shadow:
-    inset 0 0 0 1px rgba(100,0,0,.16),
-    inset 0 0 14px rgba(255,255,255,.08);
-  pointer-events:none;
-}
-
-@keyframes sealPulse{
-  50%{transform:translate(-50%,-50%) scale(1.06)}
-}
-
-.tap{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  bottom:calc(34px + env(safe-area-inset-bottom));
-  text-align:center;
-  font-size:12px;
-  color:#9b6b33;
-  letter-spacing:4px;
-  font-weight:600;
-  z-index:12;
-}
-
-.open .flap{transform:rotateX(180deg)}
-.open .seal{
-  opacity:0;
-  transform:translate(-50%,-50%) scale(.35);
-  transition:.7s ease;
-}
-
-.intro.hideIntro{
-  opacity:0;
-  transform:scale(1.03);
-  pointer-events:none;
-}
-
-/* Decorative groom + bride used in the current build */
-.side-character{
-  position:absolute;
-  top:50%;
-  width:120px;
-  height:210px;
-  transform:translateY(-50%);
-  z-index:4;
-  pointer-events:none;
-  opacity:.22;
-  filter:drop-shadow(0 0 12px rgba(180,120,60,.14));
-}
-
-.groom-deco{left:8%}
-.bride-deco{right:8%}
-
-.side-character .head{
-  position:absolute;
-  top:0;
-  left:50%;
-  width:34px;
-  height:34px;
-  transform:translateX(-50%);
-  border-radius:50%;
-  background:linear-gradient(145deg,#d8b98b,#b78c56);
-  box-shadow:0 0 8px rgba(180,120,60,.18);
-}
-
-.groom-deco .body{
-  position:absolute;
-  top:30px;
-  left:50%;
-  transform:translateX(-50%);
-  width:88px;
-  height:150px;
-  background:linear-gradient(180deg, rgba(184,141,86,.9), rgba(138,96,48,.95));
-  clip-path:polygon(50% 0, 78% 16%, 92% 42%, 78% 100%, 22% 100%, 8% 42%, 22% 16%);
-  border-radius:8px;
-}
-
-.groom-deco .body::before{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:16px;
-  transform:translateX(-50%);
-  width:30px;
-  height:42px;
-  background:rgba(247,239,226,.8);
-  clip-path:polygon(50% 0, 100% 35%, 74% 100%, 26% 100%, 0 35%);
-  border-radius:2px;
-}
-
-.groom-deco .body::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:22px;
-  transform:translateX(-50%);
-  width:8px;
-  height:48px;
-  background:#9a6631;
-  clip-path:polygon(50% 0, 100% 22%, 70% 100%, 30% 100%, 0 22%);
-  border-radius:2px;
-}
-
-.bride-deco .body{
+.book-cover::after{
+  content:"THE WEDDING STORY";
   position:absolute;
   top:28px;
   left:50%;
   transform:translateX(-50%);
-  width:108px;
-  height:165px;
-  background:linear-gradient(180deg, rgba(203,169,118,.9), rgba(152,114,65,.95));
-  clip-path:polygon(50% 0, 72% 10%, 84% 28%, 100% 100%, 0 100%, 16% 28%, 28% 10%);
-  border-radius:10px;
+  white-space:nowrap;
+  color:#fff7e8;
+  letter-spacing:4px;
+  font-size:11px;
+  font-weight:800;
+  text-shadow:0 2px 14px rgba(0,0,0,.76);
 }
 
-.bride-deco .body::before{
-  content:"";
+.book-content{
   position:absolute;
-  top:-18px;
-  left:50%;
-  transform:translateX(-50%);
-  width:74px;
-  height:70px;
-  background:rgba(239,228,205,.65);
-  clip-path:polygon(50% 0, 100% 35%, 78% 100%, 22% 100%, 0 35%);
-  border-radius:50% 50% 40% 40%;
-  filter:blur(.2px);
+  inset:0;
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  text-align:center;
+  padding:40px 24px 44px;
+  color:#fff7e8;
 }
 
-.bride-deco .body::after{
-  content:"";
+.book-label{
+  font-size:12px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-weight:800;
+}
+
+.book-names{
+  margin-top:16px;
+  font-family:Fraunces, serif;
+  font-size:62px;
+  line-height:.92;
+  font-weight:800;
+  text-shadow:0 3px 22px rgba(0,0,0,.85);
+}
+
+.book-date{
+  margin-top:16px;
+  color:#ffe6ce;
+  font-family:Fraunces, serif;
+  font-size:20px;
+}
+
+.open-btn{
+  margin:26px auto 0;
+  border:none;
+  border-radius:999px;
+  padding:15px 24px;
+  background:var(--paper);
+  color:var(--ink);
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 12px 28px rgba(0,0,0,.35);
+  animation:btnPulse 1.7s ease-in-out infinite;
+}
+
+@keyframes btnPulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.045)}
+}
+
+.page-behind{
   position:absolute;
-  top:20px;
-  left:50%;
-  transform:translateX(-50%);
-  width:20px;
-  height:20px;
-  background:#f0e6d5;
-  clip-path:polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-  opacity:.75;
+  inset:14px -12px 14px 14px;
+  z-index:-1;
+  border-radius:12px 24px 24px 12px;
+  background:linear-gradient(145deg,#fffaf0,#e9d5b9);
+  box-shadow:12px 18px 45px rgba(0,0,0,.26);
 }
 
 /* ==============================
-   PAGE LAYOUT
+   WEBSITE FRAME
 ============================== */
 .website{
   display:none;
@@ -366,1262 +228,1019 @@ body::before{
   z-index:2;
 }
 
-.container{
-  max-width:760px;
+.app-shell{
+  max-width:520px;
   margin:auto;
-  padding:30px 20px 60px;
+  min-height:100vh;
+  padding:18px 12px 90px;
   position:relative;
 }
 
-.invite{
-  min-height:94vh;
-  padding:42px 0;
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  margin:0 -12px 14px;
+  padding:12px;
+  background:linear-gradient(to bottom, rgba(255,247,232,.94), rgba(255,247,232,.72));
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(45,33,25,.12);
+}
+
+.topbar-inner{
   display:flex;
   align-items:center;
-  justify-content:center;
-  position:relative;
-  background:none;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.brand{
+  line-height:1.05;
+}
+
+.brand strong{
+  display:block;
+  font-family:Fraunces, serif;
+  font-size:21px;
+}
+
+.brand span{
+  font-size:11px;
+  color:var(--muted);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.icon-actions{
+  display:flex;
+  gap:8px;
+}
+
+.icon-btn{
+  width:40px;
+  height:40px;
   border:none;
-  box-shadow:none;
-  border-radius:0;
-  overflow:visible;
+  border-radius:16px;
+  background:#fffaf0;
+  color:var(--ink);
+  font-weight:900;
+  box-shadow:0 8px 20px rgba(45,33,25,.12);
+  cursor:pointer;
 }
 
-.invite-box{
-  width:100%;
-  border-radius:32px;
-  padding:42px 25px;
-  text-align:center;
-  border:1px solid rgba(255,215,150,.45);
+.icon-btn.muted{
+  background:var(--ink);
+  color:var(--paper);
+}
+
+.progress-track{
+  margin-top:12px;
+  height:7px;
+  border-radius:999px;
   overflow:hidden;
-  background-image:
-    linear-gradient(to bottom, rgba(15,5,5,.22), rgba(15,5,5,.46)),
-    radial-gradient(circle at center, rgba(255,215,150,.14), transparent 58%),
-    url("images/1.jpeg");
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  background-color:transparent;
-  backdrop-filter:blur(3px);
-  box-shadow:
-    0 0 70px rgba(255,0,0,.35),
-    inset 0 0 55px rgba(255,215,150,.10);
+  background:rgba(45,33,25,.12);
 }
 
-.quote{
-  font-family:'Playfair Display', serif;
-  font-size:18px;
-  line-height:1.7;
-  color:#fff1d8;
-  margin-bottom:25px;
+.progress-fill{
+  height:100%;
+  width:0%;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--terracotta),var(--olive));
+  transition:width .15s linear;
+}
+
+/* ==============================
+   CARDS + PAGES
+============================== */
+.story-card{
+  min-height:calc(100svh - 130px);
+  margin-bottom:18px;
+  border-radius:34px;
+  overflow:hidden;
+  position:relative;
+  background:#fffaf0;
+  color:var(--ink);
+  box-shadow:0 22px 50px rgba(45,33,25,.17);
+  border:1px solid rgba(45,33,25,.12);
+  opacity:0;
+  transform:translateY(34px) scale(.985);
+  transition:.85s ease;
+}
+
+.story-card.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+.hero-card{
+  display:flex;
+  flex-direction:column;
+}
+
+.hero-image{
+  min-height:48svh;
+  background:
+    linear-gradient(to bottom, transparent, rgba(45,33,25,.38)),
+    url("https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1100&q=80") center/cover;
+  position:relative;
+}
+
+.hero-stamp{
+  position:absolute;
+  right:18px;
+  bottom:18px;
+  width:104px;
+  height:104px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:12px;
+  color:#fffaf0;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  background:rgba(182,91,56,.88);
+  border:2px dashed rgba(255,250,240,.66);
+  transform:rotate(-10deg);
+  box-shadow:0 10px 24px rgba(0,0,0,.24);
+}
+
+.hero-copy{
+  flex:1;
+  padding:28px 22px 30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
+}
+
+.kicker{
+  color:var(--terracotta);
+  font-size:12px;
+  letter-spacing:3px;
+  font-weight:900;
+  text-transform:uppercase;
 }
 
 .names{
-  font-family:'Parisienne', cursive;
-  font-size:88px;
-  line-height:.95;
-  letter-spacing:1px;
-  text-shadow:0 0 25px red,0 0 60px rgba(255,215,150,.35);
+  margin-top:14px;
+  font-family:Fraunces, serif;
+  font-size:58px;
+  line-height:.92;
+  font-weight:800;
 }
 
 .and{
-  color:#ffd98a;
-  font-size:32px;
-  margin:14px 0;
+  margin:8px 0;
+  color:var(--olive);
+  font-family:Fraunces, serif;
+  font-size:24px;
 }
 
 .date{
-  font-family:'Playfair Display', serif;
-  font-size:36px;
-  color:#ffd98a;
-  margin-top:22px;
+  margin-top:14px;
+  font-family:Fraunces, serif;
+  font-size:26px;
+  color:var(--terracotta);
 }
 
 .info{
   margin-top:12px;
-  line-height:1.9;
-  color:#fff3dc;
+  color:var(--muted);
+  line-height:1.75;
 }
 
-.invite-box .quote,
-.invite-box .info,
-.invite-box .date,
-.invite-box .and,
-.invite-box .names{
-  text-shadow:
-    0 0 18px rgba(255,0,0,.45),
-    0 2px 12px rgba(0,0,0,.9);
+.card-page{
+  padding:24px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
 }
 
+.page-number{
+  align-self:center;
+  padding:8px 13px;
+  border-radius:999px;
+  background:#f4e2c8;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.card-page h2{
+  margin-top:18px;
+  font-family:Fraunces, serif;
+  font-size:44px;
+  line-height:1;
+  color:var(--ink);
+}
+
+.card-page p{
+  margin-top:14px;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.full-image-card{
+  color:#fffaf0;
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:flex-end;
+  min-height:calc(100svh - 130px);
+}
+
+.full-image-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(45,33,25,.84), transparent 56%);
+}
+
+.full-image-card .card-page{
+  position:relative;
+  z-index:2;
+  width:100%;
+  min-height:42svh;
+  justify-content:flex-end;
+}
+
+.full-image-card h2,
+.full-image-card p{
+  color:#fffaf0;
+  text-shadow:0 2px 12px rgba(0,0,0,.55);
+}
+
+.full-image-card .page-number{
+  background:rgba(255,250,240,.18);
+  color:#fffaf0;
+  backdrop-filter:blur(8px);
+}
+
+.img-venue{background-image:url("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1100&q=80")}
+.img-dinner{background-image:url("https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1100&q=80")}
+.img-rsvp{background-image:url("https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1100&q=80")}
+
+/* ==============================
+   COUNTDOWN
+============================== */
 .countdown{
+  margin-top:22px;
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  margin-top:28px;
+  gap:8px;
 }
 
 .time-box{
-  background:rgba(255,255,255,.09);
-  padding:12px 5px;
-  border-radius:14px;
-  border:1px solid rgba(255,215,150,.25);
+  padding:12px 4px;
+  border-radius:18px;
+  background:#f4e2c8;
+  border:1px solid rgba(45,33,25,.08);
 }
 
 .time-box span{
   display:block;
+  font-weight:900;
   font-size:22px;
-  color:#ffd98a;
+  color:var(--terracotta);
+}
+
+.time-box small{
+  font-size:10px;
+  color:var(--muted);
 }
 
 /* ==============================
-   LUXURY SECTIONS
+   INTERACTIVE CHOICE CARDS
 ============================== */
-.lux-section{
-  min-height:82vh;
-  padding:34px 0;
-  margin:24px 0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-  isolation:isolate;
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  border-radius:32px;
-  border:1px solid rgba(255,215,150,.26);
-  box-shadow:
-    0 0 45px rgba(255,0,0,.22),
-    inset 0 0 60px rgba(255,215,150,.08);
+.choice-grid{
+  margin-top:22px;
+  display:grid;
+  gap:10px;
 }
 
-.lux-section::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(to bottom, rgba(10,3,3,.25), rgba(10,3,3,.48)),
-    radial-gradient(circle at center, rgba(255,215,150,.10), transparent 58%);
-  z-index:1;
-  pointer-events:none;
+.choice-btn{
+  border:none;
+  border-radius:22px;
+  padding:16px 14px;
+  background:#f4e2c8;
+  color:var(--ink);
+  font-weight:800;
+  cursor:pointer;
+  transition:.25s ease;
+  border:1px solid rgba(45,33,25,.08);
 }
 
-.section-night{
-  background-image:url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80");
+.choice-btn:hover,
+.choice-btn.active{
+  background:var(--terracotta);
+  color:#fffaf0;
+  transform:translateY(-2px);
 }
 
-.section-place{
-  background-image:url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80");
-}
-
-.section-adults{
-  background-image:url("https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1600&q=80");
-}
-
-.section-rsvp{
-  background-image:url("https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=80");
-}
-
-.section-final{
-  background-image:url("images/9.jpeg");
-}
-
-.lux-box{
-  width:100%;
-  min-height:initial;
-  padding:28px 22px;
-  border-radius:30px;
-  position:relative;
-  z-index:3;
-  background:rgba(20,5,5,.24);
-  backdrop-filter:blur(5px);
-  border:1px solid rgba(255,215,150,.38);
-  box-shadow:0 0 45px rgba(255,0,0,.25);
-}
-
-.lux-box h2{
-  font-family:'Great Vibes', cursive;
-  font-size:64px;
-  color:#ffd98a;
-  text-shadow:
-    0 0 18px rgba(255,0,0,.65),
-    0 2px 10px rgba(0,0,0,.75);
-}
-
-.lux-box p{
+.choice-result{
   margin-top:14px;
-  line-height:1.9;
-  color:#fff1d8;
-  text-shadow:0 2px 10px rgba(0,0,0,.85);
+  padding:14px;
+  border-radius:22px;
+  line-height:1.6;
+  color:#fffaf0;
+  background:linear-gradient(135deg,var(--terracotta),#7d3d28);
+  display:none;
 }
 
-.rsvp-buttons{
-  margin-top:24px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
+.choice-result.show{
+  display:block;
+  animation:pop .35s ease forwards;
+}
+
+@keyframes pop{
+  from{opacity:0; transform:scale(.95)}
+  to{opacity:1; transform:scale(1)}
+}
+
+/* ==============================
+   TIMELINE + DETAILS
+============================== */
+.timeline{
+  margin-top:22px;
+  display:grid;
+  gap:10px;
+}
+
+.timeline-item{
+  display:grid;
+  grid-template-columns:82px 1fr;
+  gap:10px;
+  align-items:center;
+  text-align:left;
+  padding:13px;
+  border-radius:22px;
+  background:#f4e2c8;
+}
+
+.timeline-time{
+  font-family:Fraunces, serif;
+  color:var(--terracotta);
+  font-weight:800;
+}
+
+.timeline-text{
+  color:var(--muted);
+  line-height:1.45;
+  font-size:14px;
+}
+
+.detail-grid{
+  margin-top:22px;
+  display:grid;
+  gap:10px;
+}
+
+.detail-pill{
+  padding:13px 14px;
+  border-radius:999px;
+  background:#f4e2c8;
+  color:var(--muted);
+  font-weight:700;
+}
+
+/* ==============================
+   MINI POLAROID STACK
+============================== */
+.memory-stack{
+  margin:26px auto 0;
+  width:250px;
+  height:280px;
+  position:relative;
+}
+
+.memory-photo{
+  position:absolute;
+  width:180px;
+  padding:8px;
+  border-radius:14px;
+  background:#fffaf0;
+  box-shadow:0 16px 36px rgba(45,33,25,.18);
+  transition:.35s ease;
+}
+
+.memory-photo:hover{
+  transform:translateY(-8px) rotate(0deg) scale(1.04) !important;
+  z-index:5;
+}
+
+.memory-photo img{
+  width:100%;
+  height:145px;
+  object-fit:cover;
+  border-radius:9px;
+  display:block;
+}
+
+.memory-photo span{
+  display:block;
+  margin-top:8px;
+  font-family:Fraunces, serif;
+  color:var(--ink);
+}
+
+.memory-photo.one{left:0; top:18px; transform:rotate(-9deg)}
+.memory-photo.two{right:0; top:48px; transform:rotate(8deg)}
+.memory-photo.three{left:35px; bottom:0; transform:rotate(-2deg)}
+
+/* ==============================
+   RSVP FORM-LIKE CARD
+============================== */
+.guest-box{
+  margin-top:22px;
+  display:grid;
+  gap:10px;
+}
+
+.guest-box input,
+.guest-box select{
+  width:100%;
+  border:none;
+  border-radius:20px;
+  padding:15px 14px;
+  background:#f4e2c8;
+  color:var(--ink);
+  outline:none;
+  border:1px solid rgba(45,33,25,.08);
+}
+
+.guest-box input::placeholder{
+  color:rgba(121,95,75,.76);
+}
+
+/* ==============================
+   BUTTONS
+============================== */
+.actions,.rsvp-buttons{
+  margin-top:22px;
+  display:grid;
+  gap:10px;
 }
 
 .btn{
-  display:block;
-  padding:15px;
-  border-radius:32px;
-  text-decoration:none;
-  font-weight:600;
-  transition:.3s;
-}
-
-.btn.yes{
-  background:linear-gradient(135deg,#ffd98a,#b8862b);
-  color:#1e0707;
-  box-shadow:0 0 25px rgba(255,200,100,.6);
-}
-
-.btn.no{
-  background:rgba(255,255,255,.1);
-  color:white;
-  border:1px solid rgba(255,215,150,.3);
-}
-
-.btn:hover{transform:scale(1.05)}
-
-/* ==============================
-   POLAROIDS
-============================== */
-.polaroid{
-  position:absolute;
-  width:135px;
-  background:white;
-  color:black;
-  padding:8px;
-  border-radius:10px;
-  box-shadow:0 25px 55px rgba(0,0,0,.85);
-  opacity:0;
-  transition:1s ease;
-  z-index:4;
-}
-
-.polaroid.left{
-  left:-45px;
-  top:12%;
-  transform:translateX(-120px) rotate(-12deg);
-}
-
-.polaroid.right{
-  right:-45px;
-  bottom:10%;
-  transform:translateX(120px) rotate(12deg);
-}
-
-.polaroid.show{
-  opacity:1;
-  transform:translateX(0) rotate(var(--r));
-}
-
-.polaroid img{
   width:100%;
-  height:135px;
-  object-fit:cover;
+  border:none;
   display:block;
-}
-
-.polaroid span{
-  display:block;
+  text-decoration:none;
   text-align:center;
-  margin-top:7px;
-  font-family:'Great Vibes', cursive;
-  font-size:23px;
+  padding:16px 16px;
+  border-radius:999px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.25s ease;
+}
+
+.btn:hover{transform:translateY(-3px)}
+
+.btn.primary{
+  background:var(--terracotta);
+  color:#fffaf0;
+  box-shadow:0 12px 24px rgba(182,91,56,.25);
+}
+
+.btn.secondary{
+  background:#f4e2c8;
+  color:var(--ink);
+}
+
+.btn.dark{
+  background:var(--ink);
+  color:#fffaf0;
 }
 
 /* ==============================
-   BUTTERFLIES + FLOWERS
+   BOTTOM NAV
 ============================== */
-.butterfly{
+.bottom-nav{
   position:fixed;
-  width:24px;
-  height:24px;
-  pointer-events:none;
-  z-index:999;
-  opacity:0;
-  animation:flutterUp linear forwards;
-}
-
-.butterfly::before,
-.butterfly::after{
-  content:"";
-  position:absolute;
-  top:4px;
-  width:13px;
-  height:18px;
-  background:linear-gradient(135deg,#fff2b8,#d6a83b);
-  border-radius:70% 70% 45% 45%;
-  box-shadow:0 0 10px rgba(255,217,138,.65);
-  animation:wingFlap .45s ease-in-out infinite alternate;
-}
-
-.butterfly::before{
-  left:1px;
-  transform-origin:right center;
-  transform:rotate(-28deg);
-}
-
-.butterfly::after{
-  right:1px;
-  transform-origin:left center;
-  transform:rotate(28deg);
-}
-
-.butterfly .body{
-  position:absolute;
   left:50%;
-  top:6px;
-  width:3px;
-  height:16px;
-  background:#9b6b22;
-  border-radius:10px;
+  bottom:calc(14px + env(safe-area-inset-bottom));
   transform:translateX(-50%);
-  box-shadow:0 0 6px rgba(255,217,138,.5);
+  z-index:1200;
+  width:min(94vw,500px);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  padding:8px;
+  border-radius:26px;
+  background:rgba(255,247,232,.82);
+  backdrop-filter:blur(16px);
+  box-shadow:0 16px 40px rgba(45,33,25,.2);
+  border:1px solid rgba(45,33,25,.1);
 }
 
-@keyframes wingFlap{
-  from{scale:1 1}
-  to{scale:.65 1}
+.bottom-nav a{
+  text-decoration:none;
+  text-align:center;
+  padding:10px 4px;
+  border-radius:18px;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:900;
 }
 
-@keyframes flutterUp{
-  0%{opacity:0;transform:translateY(0) translateX(0) scale(.7) rotate(0deg)}
-  10%{opacity:.9}
-  25%{transform:translateY(-40px) translateX(14px) scale(.95) rotate(8deg)}
-  50%{transform:translateY(-95px) translateX(-12px) scale(1) rotate(-8deg)}
-  75%{opacity:.85;transform:translateY(-155px) translateX(16px) scale(.9) rotate(10deg)}
-  100%{opacity:0;transform:translateY(-230px) translateX(-8px) scale(.75) rotate(-5deg)}
-}
-
-.flower{
-  position:fixed;
-  width:26px;
-  height:26px;
-  pointer-events:none;
-  z-index:998;
-  opacity:0;
-  animation:flowerFall linear forwards;
-}
-
-.flower .petal{
-  position:absolute;
-  width:11px;
-  height:16px;
-  left:50%;
-  top:50%;
-  background:linear-gradient(135deg,#fff1d6,#ffd98a,#d99a45);
-  border-radius:80% 80% 55% 55%;
-  transform-origin:center bottom;
-  box-shadow:0 0 10px rgba(255,217,138,.65);
-}
-
-.flower .p1{transform:translate(-50%,-100%) rotate(0deg)}
-.flower .p2{transform:translate(-50%,-100%) rotate(72deg)}
-.flower .p3{transform:translate(-50%,-100%) rotate(144deg)}
-.flower .p4{transform:translate(-50%,-100%) rotate(216deg)}
-.flower .p5{transform:translate(-50%,-100%) rotate(288deg)}
-
-.flower .center{
-  position:absolute;
-  width:8px;
-  height:8px;
-  background:#9b5a16;
-  border-radius:50%;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  box-shadow:0 0 8px rgba(255,217,138,.8);
-}
-
-@keyframes flowerFall{
-  0%{opacity:0;transform:translateY(-40px) translateX(0) rotate(0deg) scale(.75)}
-  10%{opacity:.9}
-  30%{transform:translateY(120px) translateX(20px) rotate(80deg) scale(.9)}
-  55%{transform:translateY(280px) translateX(-15px) rotate(180deg) scale(1)}
-  80%{opacity:.85;transform:translateY(460px) translateX(22px) rotate(280deg) scale(.9)}
-  100%{opacity:0;transform:translateY(650px) translateX(-10px) rotate(360deg) scale(.75)}
+.bottom-nav a.active,
+.bottom-nav a:hover{
+  background:var(--ink);
+  color:#fffaf0;
 }
 
 /* ==============================
-   MOBILE
+   MODAL
 ============================== */
-@media(max-width:768px){
-  .intro,
-  .envelope{
-    height:100dvh;
-    min-height:100svh;
-  }
-
-  .envelope{
-    width:100%;
-    background:#f7f1e6;
-    overflow:hidden;
-  }
-
-  .envelope::before{
-    display:none;
-  }
-
-  .flap{
-    top:0;
-    left:0;
-    width:100%;
-    height:50%;
-    background:linear-gradient(160deg,#f1dfc2,#dec39a);
-    clip-path:polygon(0 0, 100% 0, 50% 100%);
-    box-shadow:none;
-    z-index:5;
-  }
-
-  .envelope::after{
-    content:"";
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:0;
-    height:50%;
-    background:linear-gradient(145deg,#ead4ad,#d8bc92);
-    clip-path:polygon(0 100%, 50% 0, 100% 100%);
-    z-index:3;
-    box-shadow:none;
-  }
-
-  .seal{
-    width:116px;
-    height:116px;
-    font-size:38px;
-    top:50%;
-    left:50%;
-    z-index:10;
-    transform:translate(-50%,-50%);
-  }
-
-  .tap{
-    font-size:11px;
-    letter-spacing:4px;
-    bottom:calc(28px + env(safe-area-inset-bottom));
-  }
-
-  .envelope .emboss::before,
-  .envelope .emboss::after{
-    font-size:62px;
-  }
-
-  .side-character{
-    width:86px;
-    height:160px;
-    opacity:.20;
-    top:50%;
-  }
-
-  .groom-deco{left:5%}
-  .bride-deco{right:5%}
-
-  .side-character .head{
-    width:26px;
-    height:26px;
-  }
-
-  .groom-deco .body{
-    top:24px;
-    width:62px;
-    height:112px;
-  }
-
-  .groom-deco .body::before{
-    width:22px;
-    height:30px;
-    top:12px;
-  }
-
-  .groom-deco .body::after{
-    width:6px;
-    height:34px;
-    top:18px;
-  }
-
-  .bride-deco .body{
-    top:22px;
-    width:76px;
-    height:124px;
-  }
-
-  .bride-deco .body::before{
-    width:54px;
-    height:50px;
-    top:-14px;
-  }
-
-  .bride-deco .body::after{
-    width:15px;
-    height:15px;
-    top:16px;
-  }
-
-  .container{
-    padding:25px 12px 55px;
-  }
-
-  .invite{
-    min-height:96svh;
-    padding:34px 0;
-  }
-
-  .invite-box{
-    background-image:
-      linear-gradient(to bottom, rgba(15,5,5,.24), rgba(15,5,5,.50)),
-      radial-gradient(circle at center, rgba(255,215,150,.12), transparent 58%),
-      url("images/1.jpeg");
-  }
-
-  .names{
-    font-size:76px;
-  }
-
-  .lux-section{
-    min-height:96svh;
-    padding:30px 0;
-    border-radius:26px;
-    margin:18px 0;
-    background-position:center;
-  }
-
-  .lux-section::after{
-    background:
-      linear-gradient(to bottom, rgba(10,3,3,.22), rgba(10,3,3,.52)),
-      radial-gradient(circle at center, rgba(255,215,150,.12), transparent 58%);
-  }
-
-  .lux-box{
-    width:88%;
-    margin:auto;
-    padding:24px 16px;
-    min-height:58svh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    background:rgba(20,5,5,.28);
-    backdrop-filter:blur(4px);
-  }
-
-  .lux-box h2{
-    font-size:54px;
-    line-height:.95;
-  }
-
-  .lux-box p{
-    font-size:15px;
-    line-height:1.7;
-  }
-
-  .polaroid{
-    width:88px;
-    padding:6px;
-  }
-
-  .polaroid img{
-    height:88px;
-  }
-
-  .polaroid span{
-    font-size:18px;
-  }
-
-  .polaroid.left{
-    left:8px;
-    top:6%;
-    transform:translateY(40px) scale(.9);
-  }
-
-  .polaroid.right{
-    right:8px;
-    bottom:5%;
-    transform:translateY(40px) scale(.9);
-  }
-
-  .polaroid.show{
-    opacity:1;
-    transform:translateY(0) scale(1) rotate(var(--r));
-  }
-
-  .final-section{
-    min-height:100svh;
-  }
-
-  .final-section .polaroid{
-    display:none;
-  }
-
-  /* ANIMATED TAP TO OPEN */
-.tap{
-  animation:tapFloat 1.8s ease-in-out infinite;
-  text-shadow:
-    0 0 8px rgba(155,107,51,.45),
-    0 0 18px rgba(255,215,150,.55);
-}
-
-.tap::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  bottom:-10px;
-  width:42px;
-  height:1px;
-  background:linear-gradient(90deg, transparent, #9b6b33, transparent);
-  transform:translateX(-50%) scaleX(.4);
-  transform-origin:center;
-  animation:tapLine 1.8s ease-in-out infinite;
-}
-
-@keyframes tapFloat{
-  0%,100%{
-    transform:translateX(-50%) translateY(0);
-    opacity:.75;
-    letter-spacing:4px;
-  }
-
-  50%{
-    transform:translateX(-50%) translateY(-6px);
-    opacity:1;
-    letter-spacing:5px;
-  }
-}
-
-@keyframes tapLine{
-  0%,100%{
-    transform:translateX(-50%) scaleX(.4);
-    opacity:.35;
-  }
-
-  50%{
-    transform:translateX(-50%) scaleX(1.4);
-    opacity:1;
-  }
-}
-
-}
-
-/* LANGUAGE POPUP */
-.language-modal{
+.modal{
   position:fixed;
   inset:0;
+  z-index:9998;
   display:none;
   align-items:center;
   justify-content:center;
-  background:rgba(15,3,3,.72);
+  padding:20px;
+  background:rgba(45,33,25,.66);
   backdrop-filter:blur(10px);
-  z-index:9998;
 }
 
-.language-box{
-  width:86%;
-  max-width:360px;
-  padding:32px 22px;
-  border-radius:28px;
+.modal-box{
+  width:min(92%,400px);
+  padding:28px 20px 22px;
+  border-radius:32px;
+  position:relative;
   text-align:center;
-  background:
-    linear-gradient(145deg, rgba(35,5,5,.82), rgba(95,20,15,.70));
-  border:1px solid rgba(255,215,150,.45);
-  box-shadow:
-    0 0 60px rgba(255,0,0,.35),
-    inset 0 0 35px rgba(255,215,150,.08);
-  animation:languagePop .55s ease forwards;
+  background:#fffaf0;
+  color:var(--ink);
+  box-shadow:0 24px 60px rgba(0,0,0,.28);
+  animation:modalPop .35s ease forwards;
 }
 
-.language-box h2{
-  font-family:'Great Vibes', cursive;
-  font-size:54px;
-  color:#ffd98a;
-  text-shadow:0 0 18px rgba(255,0,0,.55);
+@keyframes modalPop{
+  from{opacity:0; transform:scale(.93) translateY(16px)}
+  to{opacity:1; transform:scale(1) translateY(0)}
 }
 
-.language-box p{
-  margin-top:6px;
-  color:#fff1d8;
+.modal-box h2{
+  font-family:Fraunces, serif;
+  font-size:38px;
+  line-height:1;
+}
+
+.modal-box p{
+  margin-top:10px;
+  line-height:1.65;
+  color:var(--muted);
+}
+
+.close-modal{
+  position:absolute;
+  top:10px;
+  right:12px;
+  width:32px;
+  height:32px;
+  border:none;
+  border-radius:50%;
+  color:#fffaf0;
+  background:var(--ink);
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* ==============================
+   PARTICLES
+============================== */
+.paper-piece{
+  position:fixed;
+  z-index:998;
+  pointer-events:none;
+  width:14px;
+  height:18px;
+  border-radius:4px;
+  background:linear-gradient(135deg,#fffaf0,#f1dfc2);
+  box-shadow:0 8px 18px rgba(45,33,25,.12);
+  animation:paperFall linear forwards;
+}
+
+@keyframes paperFall{
+  0%{opacity:0; transform:translateY(-40px) translateX(0) rotate(0deg)}
+  12%{opacity:.9}
+  50%{transform:translateY(300px) translateX(24px) rotate(180deg)}
+  100%{opacity:0; transform:translateY(720px) translateX(-20px) rotate(360deg)}
+}
+
+.float-heart{
+  position:fixed;
+  z-index:997;
+  pointer-events:none;
+  color:var(--terracotta);
   font-size:18px;
+  animation:heartUp linear forwards;
 }
 
-.language-buttons{
-  display:flex;
-  gap:12px;
-  margin-top:24px;
+@keyframes heartUp{
+  0%{opacity:0; transform:translateY(0) scale(.6)}
+  15%{opacity:.86}
+  100%{opacity:0; transform:translateY(-220px) scale(1.15)}
 }
 
-.language-buttons button{
-  flex:1;
-  border:none;
-  padding:14px 12px;
-  border-radius:28px;
-  font-family:Montserrat, sans-serif;
-  font-weight:600;
-  cursor:pointer;
-  color:#1e0707;
-  background:linear-gradient(135deg,#ffd98a,#b8862b);
-  box-shadow:0 0 22px rgba(255,200,100,.35);
-  transition:.3s ease;
-}
-
-.language-buttons button:hover{
-  transform:scale(1.05);
-}
-
-@keyframes languagePop{
-  from{
-    opacity:0;
-    transform:scale(.88) translateY(20px);
-  }
-  to{
-    opacity:1;
-    transform:scale(1) translateY(0);
-  }
-}
-
-/* ARABIC MODE */
-body.ar{
-  direction:rtl;
-}
-
-/* MUSIC TOGGLE BUTTON */
-.music-toggle{
-  position:fixed;
-bottom:calc(16px + env(safe-area-inset-bottom));
-left:16px;
-  z-index:9997;
-  border:none;
-  padding:10px 14px;
-  border-radius:999px;
-  font-family:Montserrat, sans-serif;
-  font-size:13px;
-  font-weight:600;
-  color:#1e0707;
-  background:linear-gradient(135deg,#ffd98a,#b8862b);
-  box-shadow:
-    0 0 22px rgba(255,200,100,.45),
-    0 8px 22px rgba(0,0,0,.35);
-  cursor:pointer;
-  transition:.3s ease;
-}
-
-.music-toggle:hover{
-  transform:scale(1.05);
-}
-
-.music-toggle.muted{
-  background:rgba(255,255,255,.12);
-  color:white;
-  border:1px solid rgba(255,215,150,.35);
-}
-
-@media(max-width:768px){
-  .music-toggle{
-bottom:calc(12px + env(safe-area-inset-bottom));
-left:12px;
-    font-size:12px;
-    padding:9px 12px;
-  }
-}
-/* SECTION TEXT CARD FADE-IN */
-.lux-box,
-.invite-box{
-  opacity:0;
-  transform:translateY(34px) scale(.98);
-  transition:
-    opacity .9s ease,
-    transform .9s ease,
-    box-shadow .9s ease;
-}
-
-.lux-box.card-show,
-.invite-box.card-show{
-  opacity:1;
-  transform:translateY(0) scale(1);
-}
-/* FLOATING LANGUAGE TOGGLE */
-.lang-toggle{
-  position:fixed;
-  top:calc(16px + env(safe-area-inset-top));
-  right:16px;
-  z-index:9997;
-  border:none;
-  padding:10px 14px;
-  border-radius:999px;
-  font-family:Montserrat, sans-serif;
-  font-size:13px;
-  font-weight:600;
-  color:#1e0707;
-  background:linear-gradient(135deg,#ffd98a,#b8862b);
-  box-shadow:
-    0 0 22px rgba(255,200,100,.45),
-    0 8px 22px rgba(0,0,0,.35);
-  cursor:pointer;
-  transition:.3s ease;
-  display:none;
-}
-
-.lang-toggle:hover{
-  transform:scale(1.05);
-}
-
-@media(max-width:768px){
-  .lang-toggle{
-    top:calc(12px + env(safe-area-inset-top));
-    right:12px;
-    font-size:12px;
-    padding:9px 12px;
-  }
-}
-/* FOOTER */
+/* ==============================
+   FOOTER
+============================== */
 .site-footer{
   text-align:center;
-  padding:28px 10px 18px;
-  color:#fff1d8;
-  font-family:Montserrat, sans-serif;
-  position:relative;
-  z-index:3;
+  padding:8px 10px 18px;
+  color:var(--muted);
 }
 
 .site-footer p{
-  font-family:'Playfair Display', serif;
-  font-size:15px;
-  letter-spacing:1px;
-  color:#ffd98a;
+  font-family:Fraunces, serif;
+  font-size:20px;
+  color:var(--ink);
 }
 
 .site-footer span{
   display:block;
-  margin-top:8px;
-  font-size:13px;
-  opacity:.85;
+  margin-top:7px;
+  font-size:12px;
 }
 
-@media(max-width:768px){
-  .site-footer{
-    padding:24px 10px 16px;
-  }
-}
-/* SUBTLE SCROLL INDICATOR */
-.scroll-hint{
-  position:fixed;
-  left:50%;
-  bottom:calc(22px + env(safe-area-inset-bottom));
-  transform:translateX(-50%);
-  z-index:9997;
-  display:none;
-  flex-direction:column;
-  align-items:center;
-  gap:2px;
-  color:#ffd98a;
-  font-family:Montserrat, sans-serif;
-  font-size:11px;
-  font-weight:600;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  text-shadow:
-    0 0 10px rgba(255,215,150,.85),
-    0 2px 10px rgba(0,0,0,.65);
-  pointer-events:none;
-}
-
-.scroll-hint.show-scroll{
-  display:flex;
-  animation:scrollHintAppear 4s ease forwards;
-}
-
-.scroll-arrow{
-  font-size:26px;
-  line-height:1;
-  animation:scrollArrowBounce 1.1s ease-in-out infinite;
-}
-
-@keyframes scrollArrowBounce{
-  0%,100%{
-    transform:translateY(0);
-    opacity:.65;
-  }
-
-  50%{
-    transform:translateY(8px);
-    opacity:1;
-  }
-}
-
-@keyframes scrollHintAppear{
-  0%{
-    opacity:0;
-    transform:translateX(-50%) translateY(8px);
-  }
-
-  15%{
-    opacity:1;
-    transform:translateX(-50%) translateY(0);
-  }
-
-  80%{
-    opacity:1;
-  }
-
-  100%{
-    opacity:0;
-    transform:translateX(-50%) translateY(8px);
-  }
-}
-
-@media(max-width:768px){
-  .scroll-hint{
-    bottom:calc(20px + env(safe-area-inset-bottom));
-    font-size:10px;
-  }
-
-  .scroll-arrow{
-    font-size:24px;
-  }
-}
-
-.final-section .lux-box p{
-  margin-bottom:20px;
-}
-/* RSVP SIDE POPUP */
-.side-modal{
-  position:fixed;
-  inset:0;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  background:rgba(15,3,3,.72);
-  backdrop-filter:blur(10px);
-  z-index:9998;
-}
-
-.side-box{
-  width:86%;
-  max-width:380px;
-  padding:34px 24px 28px;
-  border-radius:28px;
-  text-align:center;
-  position:relative;
-  background:
-    linear-gradient(145deg, rgba(35,5,5,.88), rgba(95,20,15,.74));
-  border:1px solid rgba(255,215,150,.45);
-  box-shadow:
-    0 0 60px rgba(255,0,0,.35),
-    inset 0 0 35px rgba(255,215,150,.08);
-  animation:languagePop .55s ease forwards;
-}
-
-.side-box h2{
-  font-family:'Great Vibes', cursive;
-  font-size:46px;
-  color:#ffd98a;
-  text-shadow:0 0 18px rgba(255,0,0,.55);
-}
-
-.side-box p{
-  margin-top:8px;
-  color:#fff1d8;
-  font-size:15px;
-  line-height:1.6;
-}
-
-.side-buttons{
-  display:flex;
-  gap:12px;
-  margin-top:24px;
-}
-
-.side-buttons button{
-  flex:1;
-  border:none;
-  padding:14px 10px;
-  border-radius:28px;
-  font-family:Montserrat, sans-serif;
-  font-weight:600;
-  cursor:pointer;
-  color:#1e0707;
-  background:linear-gradient(135deg,#ffd98a,#b8862b);
-  box-shadow:0 0 22px rgba(255,200,100,.35);
-  transition:.3s ease;
-}
-
-.side-buttons button:hover{
-  transform:scale(1.05);
-}
-
-.side-close{
-  position:absolute;
-  top:10px;
-  right:14px;
-  width:30px;
-  height:30px;
-  border:none;
-  border-radius:50%;
-  background:rgba(255,255,255,.12);
-  color:white;
-  font-size:22px;
-  cursor:pointer;
-}
-
-/* ARABIC MODE */
+/* ==============================
+   ARABIC
+============================== */
 body.ar{
   direction:rtl;
 }
 
-/* ARABIC FONT ONLY */
-body.ar .lux-box h2,
+body.ar .book-cover::after{
+  content:"قصة الزفاف";
+}
+
+body.ar,
+body.ar .book-label,
+body.ar .book-names,
+body.ar .book-date,
+body.ar .open-btn,
+body.ar .brand,
+body.ar .kicker,
 body.ar .names,
-body.ar .quote,
+body.ar .date,
 body.ar .info,
-body.ar .lux-box p,
-body.ar .btn,
+body.ar .card-page h2,
+body.ar .card-page p,
+body.ar .page-number,
 body.ar .time-box,
+body.ar .choice-btn,
+body.ar .choice-result,
+body.ar .timeline-item,
+body.ar .detail-pill,
+body.ar .btn,
+body.ar .modal-box,
 body.ar .site-footer,
-body.ar .language-box,
-body.ar .side-box{
+body.ar .bottom-nav a{
   font-family:'Amiri', serif;
 }
 
-body.ar .lux-box h2{
-  font-weight:700;
-  letter-spacing:0;
+body.ar .timeline-item{
+  text-align:right;
+  grid-template-columns:1fr 82px;
 }
 
-body.ar .names{
-  font-weight:700;
-  letter-spacing:0;
+body.ar .timeline-time{
+  grid-column:2;
+  grid-row:1;
+}
+
+body.ar .timeline-text{
+  grid-column:1;
+  grid-row:1;
+}
+
+/* ==============================
+   SMALL SCREENS
+============================== */
+@media(max-width:420px){
+  .book-wrap{
+    width:90vw;
+    height:76svh;
+  }
+
+  .book-names{
+    font-size:54px;
+  }
+
+  .app-shell{
+    padding-left:10px;
+    padding-right:10px;
+  }
+
+  .topbar{
+    margin-left:-10px;
+    margin-right:-10px;
+  }
+
+  .names{
+    font-size:52px;
+  }
+
+  .card-page h2{
+    font-size:39px;
+  }
+
+  .countdown{
+    gap:6px;
+  }
+
+  .time-box span{
+    font-size:20px;
+  }
+
+  .memory-stack{
+    transform:scale(.9);
+    transform-origin:center top;
+    margin-bottom:-20px;
+  }
 }
 </style>
 </head>
 
 <body>
-
 <audio id="weddingMusic" loop preload="auto"></audio>
 
+<!-- INTRO -->
 <div class="intro" id="intro">
-  <div class="envelope" id="envelope">
-    <div class="flap"></div>
-
-    <div class="side-character groom-deco">
-      <span class="head"></span>
-      <span class="body"></span>
+  <div class="book-wrap">
+    <div class="page-behind"></div>
+    <div class="book-cover">
+      <div class="book-content">
+        <div class="book-label" data-i18n="bookLabel">Chapter One</div>
+        <div class="book-names" data-i18n="bookNames">Nadir<br>& Celeste</div>
+        <div class="book-date" data-i18n="bookDate">19 April 2028</div>
+        <button class="open-btn" id="openBtn" type="button" data-i18n="openBtn">Open the Story 📖</button>
+      </div>
     </div>
-
-    <div class="side-character bride-deco">
-      <span class="head"></span>
-      <span class="body"></span>
-    </div>
-
-    <div class="seal" id="seal">Love</div>
-    <div class="tap">TAP THE WAX SEAL TO OPEN</div>
   </div>
 </div>
 
+<!-- WEBSITE -->
 <div class="website" id="website">
-    <button class="lang-toggle" id="langToggle" type="button">عربي</button>
-    <button class="music-toggle" id="musicToggle" type="button">🔊</button>
-    <div class="scroll-hint" id="scrollHint">
-  <span data-i18n="scrollHintText">Scroll</span>
-  <div class="scroll-arrow">⌄</div>
-</div>
-    <div class="language-modal" id="languageModal">
-  <div class="language-box">
-    <h2>Choose Language</h2>
-    <p>اختر اللغة</p>
-
-    <div class="language-buttons">
-      <button onclick="setLanguage('en')">English</button>
-      <button onclick="setLanguage('ar')">العربية</button>
-    </div>
-  </div>
-</div>
-<div class="side-modal" id="sideModal">
-  <div class="side-box">
-    <h2 data-i18n="sideTitle">Which side are you from?</h2>
-    <p data-i18n="sideText">Please choose before confirming your RSVP.</p>
-
-    <div class="side-buttons">
-      <button type="button" id="brideSideBtn" data-i18n="brideSide">Bride’s Side</button>
-      <button type="button" id="groomSideBtn" data-i18n="groomSide">Groom’s Side</button>
-    </div>
-
-    <button type="button" class="side-close" id="sideCloseBtn">×</button>
-  </div>
-</div>
-  <div class="container">
-    <section class="invite">
-      <div class="invite-box">
-        <div class="quote" data-i18n="quote">
-  With the ocean as our witness,<br>
-  we invite you to celebrate their love<br>
-  under the sun and stars.
-</div>
-
-        <div class="names" data-i18n="groom">Maamoun</div>
-<div class="and">&</div>
-<div class="names" data-i18n="bride">Aycha</div>
-
-        <div class="date">26 / 6 / 2026</div>
-
-     <div class="info" data-i18n="mainInfo">
-  Rmeileh Resort & Hotel<br>
-  Wedding starts at 8:00 PM<br>
-  Adults Only · No Kids
-</div>
-
-     <div class="countdown">
-  <div class="time-box"><span id="days">00</span><small data-i18n="days">Days</small></div>
-  <div class="time-box"><span id="hours">00</span><small data-i18n="hours">Hours</small></div>
-  <div class="time-box"><span id="minutes">00</span><small data-i18n="minutes">Minutes</small></div>
-  <div class="time-box"><span id="seconds">00</span><small data-i18n="seconds">Seconds</small></div>
-</div>
-      </div>
-    </section>
-
-    <section class="lux-section section-night">
-      <div class="lux-box">
-        <h2 data-i18n="ourNightTitle">Our Night</h2>
-<p data-i18n="ourNightText">
-  A celebration by the sea, surrounded by love, music, lights,
-  and the people who mean the most to us.
-</p>
-      </div>
-
-      <div class="polaroid right" style="--r:7deg">
-        <img src="images/2.jpeg" alt="Wedding moment">
-        <span>Moments</span>
-      </div>
-    </section>
-
-    <section class="lux-section section-place">
-      <div class="lux-box">
-        <h2 data-i18n="placeTitle">The Place</h2>
-<p data-i18n="placeText">
-  Join us at Rmeileh Resort & Hotel for an elegant evening
-  under the stars, beginning at 8:00 PM.
-</p>
-      </div>
-
-      <div class="polaroid left" style="--r:-6deg">
-        <img src="images/3.jpeg" alt="Love">
-        <span>Love</span>
-      </div>
-    </section>
-
-    <section class="lux-section section-adults">
-      <div class="lux-box">
-        <h2 data-i18n="adultsTitle">Adults Only</h2>
-<p data-i18n="adultsText">
-  With love, we kindly request an adults-only celebration.
-  No kids, please.
-</p>
-      </div>
-
-      <div class="polaroid right" style="--r:8deg">
-        <img src="images/7.jpeg" alt="Promise">
-        <span>Promise</span>
-      </div>
-    </section>
-
-    <section class="lux-section section-rsvp">
-      <div class="lux-box">
-        <h2 data-i18n="rsvpTitle">Will You Join Us?</h2>
-<p data-i18n="rsvpText">Please let us know if you’ll be celebrating this special night with us.</p>
-
-        <div class="rsvp-buttons">
-  <a class="btn yes"
-   id="yesBtn"
-   href="#"
-   data-i18n="yesBtn">
-  Yes, I’m Coming 🎉
-</a>
-
-<a class="btn no"
-   id="noBtn"
-   href="https://wa.me/96178960826?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C"
-   target="_blank"
-   data-i18n="noBtn">
-  Can’t Make It
-</a>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <strong data-i18n="brandNames">Nadir & Celeste</strong>
+          <span data-i18n="brandSub">Interactive Storybook</span>
+        </div>
+        <div class="icon-actions">
+          <button class="icon-btn" id="langToggle" type="button">عربي</button>
+          <button class="icon-btn" id="musicToggle" type="button">🔊</button>
         </div>
       </div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </header>
 
-      <div class="polaroid left" style="--r:-7deg">
-        <img src="images/5.jpeg" alt="Forever">
-        <span>Forever</span>
+    <!-- HOME -->
+    <section class="story-card hero-card" id="home">
+      <div class="hero-image">
+        <div class="hero-stamp" data-i18n="heroStamp">Save<br>The<br>Date</div>
+      </div>
+      <div class="hero-copy">
+        <div class="kicker" data-i18n="kicker">You are invited into the story of</div>
+        <div class="names" data-i18n="groom">Nadir</div>
+        <div class="and">&</div>
+        <div class="names" data-i18n="bride">Celeste</div>
+        <div class="date" data-i18n="date">19 / 4 / 2028</div>
+        <div class="info" data-i18n="mainInfo">
+          The Orchard House, Tuscany<br>
+          Ceremony begins at 4:30 PM<br>
+          Garden dinner to follow
+        </div>
+        <div class="countdown">
+          <div class="time-box"><span id="days">00</span><small data-i18n="days">Days</small></div>
+          <div class="time-box"><span id="hours">00</span><small data-i18n="hours">Hours</small></div>
+          <div class="time-box"><span id="minutes">00</span><small data-i18n="minutes">Minutes</small></div>
+          <div class="time-box"><span id="seconds">00</span><small data-i18n="seconds">Seconds</small></div>
+        </div>
       </div>
     </section>
 
-    <section class="lux-section final-section section-final">
-      <div class="lux-box">
-      <h2 data-i18n="finalTitle">See You There</h2>
-<p data-i18n="finalText">
-  We cannot wait to celebrate this unforgettable evening with you.
-</p>
-
-       <a class="btn yes"
-   href="https://www.google.com/maps/search/Rmeileh+Resort+%26+Hotel"
-   target="_blank"
-   data-i18n="locationBtn">
-  Open Location 📍
-</a>
+    <!-- CHOICE / PERSONALIZED MOOD -->
+    <section class="story-card card-page" id="mood">
+      <div class="page-number" data-i18n="page1">Interactive Page</div>
+      <h2 data-i18n="moodTitle">Choose Your Wedding Mood</h2>
+      <p data-i18n="moodText">Tap one card and the invitation will answer you like a little story moment.</p>
+      <div class="choice-grid">
+        <button class="choice-btn" type="button" data-choice="romantic" data-i18n="choice1">Romantic Guest</button>
+        <button class="choice-btn" type="button" data-choice="party" data-i18n="choice2">Ready to Dance</button>
+        <button class="choice-btn" type="button" data-choice="family" data-i18n="choice3">Family Guest</button>
       </div>
+      <div class="choice-result" id="choiceResult"></div>
+    </section>
 
-      <div class="polaroid right" style="--r:6deg">
-        <img src="images/6.jpeg" alt="Celebrate">
-        <span>Celebrate</span>
+    <!-- STORY -->
+    <section class="story-card full-image-card img-venue" id="story">
+      <div class="card-page">
+        <div class="page-number" data-i18n="page2">Chapter Two</div>
+        <h2 data-i18n="storyTitle">The Garden Chapter</h2>
+        <p data-i18n="storyText">Some love stories feel like sunlight through leaves — quiet, warm, and impossible to forget.</p>
       </div>
     </section>
-   <footer class="site-footer">
-  <p data-i18n="footerNames">Maamoun &amp; Aycha · 26 June 2026</p>
-  <span data-i18n="footerLove">Made with love 🤍</span>
-</footer>
+
+    <!-- VENUE DETAILS -->
+    <section class="story-card card-page" id="details">
+      <div class="page-number" data-i18n="page3">Details</div>
+      <h2 data-i18n="detailsTitle">The Orchard House</h2>
+      <p data-i18n="detailsText">A soft Tuscan garden evening with vows beneath olive trees, dinner under string lights, and music after sunset.</p>
+      <div class="detail-grid">
+        <div class="detail-pill" data-i18n="detail1">The Orchard House, Tuscany</div>
+        <div class="detail-pill" data-i18n="detail2">4:30 PM Ceremony</div>
+        <div class="detail-pill" data-i18n="detail3">Garden formal attire</div>
+      </div>
+      <div class="actions">
+        <a class="btn secondary" href="https://www.google.com/maps/search/The+Orchard+House+Tuscany" target="_blank" data-i18n="mapBtn">Open Location 📍</a>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="story-card card-page" id="timeline">
+      <div class="page-number" data-i18n="page4">Schedule</div>
+      <h2 data-i18n="timelineTitle">The Day’s Pages</h2>
+      <p data-i18n="timelineText">A gentle timeline from vows to dinner, music, and memories.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time" data-i18n="time1">4:30 PM</div>
+          <div class="timeline-text" data-i18n="event1">Garden ceremony</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time" data-i18n="time2">5:30 PM</div>
+          <div class="timeline-text" data-i18n="event2">Aperitivo and photos</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time" data-i18n="time3">7:00 PM</div>
+          <div class="timeline-text" data-i18n="event3">Dinner under the lights</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time" data-i18n="time4">9:00 PM</div>
+          <div class="timeline-text" data-i18n="event4">Music and dancing</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMORIES -->
+    <section class="story-card card-page" id="gallery">
+      <div class="page-number" data-i18n="page5">Memories</div>
+      <h2 data-i18n="galleryTitle">Little Polaroids</h2>
+      <p data-i18n="galleryText">A playful stack of moments, made to feel personal and touchable.</p>
+      <div class="memory-stack">
+        <div class="memory-photo one">
+          <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=600&q=80" alt="Rings">
+          <span data-i18n="mem1">The Promise</span>
+        </div>
+        <div class="memory-photo two">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Couple">
+          <span data-i18n="mem2">The Walk</span>
+        </div>
+        <div class="memory-photo three">
+          <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=600&q=80" alt="Details">
+          <span data-i18n="mem3">The Details</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- DINNER -->
+    <section class="story-card full-image-card img-dinner" id="dinner">
+      <div class="card-page">
+        <div class="page-number" data-i18n="page6">Dinner</div>
+        <h2 data-i18n="dinnerTitle">Under String Lights</h2>
+        <p data-i18n="dinnerText">Dinner will be served in the garden after sunset, surrounded by candlelight, olive branches, and music.</p>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="story-card card-page" id="rsvp">
+      <div class="page-number" data-i18n="page7">RSVP</div>
+      <h2 data-i18n="rsvpTitle">Write Yourself Into the Story</h2>
+      <p data-i18n="rsvpText">Add your name and choose your side before sending your RSVP through WhatsApp.</p>
+
+      <div class="guest-box">
+        <input id="guestName" type="text" placeholder="Your name" data-placeholder-en="Your name" data-placeholder-ar="اسمك" />
+        <select id="guestCount">
+          <option value="1">1 Guest</option>
+          <option value="2">2 Guests</option>
+          <option value="3">3 Guests</option>
+          <option value="4">4 Guests</option>
+        </select>
+      </div>
+
+      <div class="rsvp-buttons">
+        <button class="btn primary" id="yesBtn" type="button" data-i18n="yesBtn">Yes, I’m Coming ✨</button>
+        <a class="btn secondary" id="noBtn" href="https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C" target="_blank" data-i18n="noBtn">Can’t Make It</a>
+      </div>
+    </section>
+
+    <!-- FINAL -->
+    <section class="story-card full-image-card img-rsvp" id="final">
+      <div class="card-page">
+        <div class="page-number" data-i18n="page8">Final Page</div>
+        <h2 data-i18n="finalTitle">Until the Garden</h2>
+        <p data-i18n="finalText">We cannot wait to celebrate this beautiful chapter with you.</p>
+        <div class="actions">
+          <a class="btn primary" id="calendarBtn" href="#" target="_blank" data-i18n="calendarBtn">Save to Calendar 🗓️</a>
+          <a class="btn dark" href="https://www.google.com/maps/search/The+Orchard+House+Tuscany" target="_blank" data-i18n="locationBtn">Open Location 📍</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p data-i18n="footerNames">Nadir & Celeste · 19 April 2028</p>
+      <span data-i18n="footerLove">A portfolio demo by Amour De Minuit ✨</span>
+    </footer>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="#home" class="active" data-nav="home" data-i18n="navHome">Home</a>
+    <a href="#details" data-nav="details" data-i18n="navDetails">Details</a>
+    <a href="#gallery" data-nav="gallery" data-i18n="navGallery">Gallery</a>
+    <a href="#rsvp" data-nav="rsvp" data-i18n="navRsvp">RSVP</a>
+  </nav>
+</div>
+
+<!-- RSVP SIDE MODAL -->
+<div class="modal" id="sideModal">
+  <div class="modal-box">
+    <button class="close-modal" id="sideClose" type="button">×</button>
+    <h2 data-i18n="sideTitle">Which side are you from?</h2>
+    <p data-i18n="sideText">Please choose before confirming your RSVP.</p>
+    <div class="actions">
+      <button class="btn primary" id="brideSideBtn" type="button" data-i18n="brideSide">Bride’s Side</button>
+      <button class="btn primary" id="groomSideBtn" type="button" data-i18n="groomSide">Groom’s Side</button>
+    </div>
   </div>
 </div>
 
 <script>
-const seal=document.getElementById("seal");
-const envelope=document.getElementById("envelope");
+/* ==============================
+   ELEMENTS
+============================== */
 const intro=document.getElementById("intro");
 const website=document.getElementById("website");
+const openBtn=document.getElementById("openBtn");
 const music=document.getElementById("weddingMusic");
 const musicToggle=document.getElementById("musicToggle");
+const langToggle=document.getElementById("langToggle");
+const progressFill=document.getElementById("progressFill");
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+const sideModal=document.getElementById("sideModal");
+const sideClose=document.getElementById("sideClose");
+const brideSideBtn=document.getElementById("brideSideBtn");
+const groomSideBtn=document.getElementById("groomSideBtn");
+const calendarBtn=document.getElementById("calendarBtn");
+const guestName=document.getElementById("guestName");
+const guestCount=document.getElementById("guestCount");
+const choiceResult=document.getElementById("choiceResult");
+
+let currentLang="en";
+
+/* ==============================
+   MUSIC
+============================== */
 const weddingSongs=[
-  "music/1.mp3",
-  "music/2.mp3",
-  "music/3.mp3",
-  "music/4.mp3"
+  "https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c6f7b6f64.mp3?filename=piano-moment-9835.mp3",
+  "https://cdn.pixabay.com/download/audio/2021/11/25/audio_cb407cc8e9.mp3?filename=romantic-piano-11000.mp3"
 ];
 
-const randomSong=weddingSongs[Math.floor(Math.random()*weddingSongs.length)];
-music.src=randomSong;
+music.src=weddingSongs[Math.floor(Math.random()*weddingSongs.length)];
+music.volume=0.14;
 
-seal.onclick=()=>{
-  envelope.classList.add("open");
+openBtn.addEventListener("click",()=>{
+  intro.classList.add("opening");
 
-  music.volume=0.15;
-  music.play().catch(()=>{
+  music.play().then(()=>{
+    musicToggle.textContent="🔊";
+    musicToggle.classList.remove("muted");
+  }).catch(()=>{
     musicToggle.textContent="🔇";
     musicToggle.classList.add("muted");
   });
 
+  setTimeout(()=>intro.classList.add("hide"),900);
+
   setTimeout(()=>{
     intro.style.display="none";
     website.style.display="block";
-
-    const modal=document.getElementById("languageModal");
-    if(modal){
-      modal.style.display="flex";
-    }
-
     window.scrollTo(0,0);
-  },1200);
-};
+    revealFirstCard();
+  },1500);
+});
 
-musicToggle.onclick=()=>{
+musicToggle.addEventListener("click",()=>{
   if(music.paused){
     music.play();
     musicToggle.textContent="🔊";
@@ -1631,210 +1250,297 @@ musicToggle.onclick=()=>{
     musicToggle.textContent="🔇";
     musicToggle.classList.add("muted");
   }
-};
+});
 
-const weddingDate=new Date("2026-06-26T20:00:00").getTime();
+/* ==============================
+   COUNTDOWN
+============================== */
+const weddingDate=new Date("2028-04-19T16:30:00").getTime();
 
 function updateCountdown(){
   const now=new Date().getTime();
-  const d=weddingDate-now;
+  const diff=weddingDate-now;
 
-  if(d<=0)return;
+  if(diff<=0){
+    ["days","hours","minutes","seconds"].forEach(id=>document.getElementById(id).innerText="00");
+    return;
+  }
 
-  document.getElementById("days").innerText=Math.floor(d/(1000*60*60*24));
-  document.getElementById("hours").innerText=Math.floor((d/(1000*60*60))%24);
-  document.getElementById("minutes").innerText=Math.floor((d/(1000*60))%60);
-  document.getElementById("seconds").innerText=Math.floor((d/1000)%60);
+  document.getElementById("days").innerText=Math.floor(diff/(1000*60*60*24));
+  document.getElementById("hours").innerText=Math.floor((diff/(1000*60*60))%24);
+  document.getElementById("minutes").innerText=Math.floor((diff/(1000*60))%60);
+  document.getElementById("seconds").innerText=Math.floor((diff/1000)%60);
 }
 
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-const polaroids=document.querySelectorAll(".polaroid");
+/* ==============================
+   CALENDAR
+============================== */
+function setupCalendar(){
+  const title=encodeURIComponent("Nadir & Celeste Wedding");
+  const details=encodeURIComponent("Join Nadir & Celeste for their garden wedding at The Orchard House, Tuscany.");
+  const location=encodeURIComponent("The Orchard House, Tuscany");
+  const dates="20280419T163000/20280419T233000";
+  calendarBtn.href=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+}
+setupCalendar();
 
+/* ==============================
+   SCROLL PROGRESS + NAV
+============================== */
+window.addEventListener("scroll",()=>{
+  const scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
+  const height=document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progress=height ? (scrollTop/height)*100 : 0;
+  progressFill.style.width=progress+"%";
+
+  const sections=["home","details","gallery","rsvp"];
+  let active="home";
+  sections.forEach(id=>{
+    const sec=document.getElementById(id);
+    if(sec && sec.getBoundingClientRect().top < window.innerHeight*.45){
+      active=id;
+    }
+  });
+
+  document.querySelectorAll(".bottom-nav a").forEach(a=>{
+    a.classList.toggle("active", a.dataset.nav===active);
+  });
+});
+
+/* ==============================
+   REVEALS
+============================== */
+const cards=document.querySelectorAll(".story-card");
 const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add("show");
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
     }
   });
-},{
-  threshold:0.05,
-  rootMargin:"150px"
-});
+},{threshold:.12, rootMargin:"80px"});
 
-polaroids.forEach(p=>obs.observe(p));
+cards.forEach(card=>obs.observe(card));
 
-const cards=document.querySelectorAll(".lux-box, .invite-box");
-
-const cardObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add("card-show");
-    }
-  });
-},{
-  threshold:0.15,
-  rootMargin:"80px"
-});
-
-cards.forEach(card=>cardObs.observe(card));
-
-function butterfly(){
-  if(website.style.display!=="block")return;
-
-  const b=document.createElement("div");
-  b.className="butterfly";
-
-  const body=document.createElement("div");
-  body.className="body";
-  b.appendChild(body);
-
-  const size=16 + Math.random()*18;
-  b.style.width=size+"px";
-  b.style.height=size+"px";
-  b.style.left=Math.random()*window.innerWidth+"px";
-  b.style.top=(window.innerHeight - 40 + Math.random()*90)+"px";
-  b.style.animationDuration=(5 + Math.random()*4)+"s";
-
-  document.body.appendChild(b);
-  setTimeout(()=>b.remove(),9000);
+function revealFirstCard(){
+  document.querySelector(".story-card").classList.add("show");
 }
 
-setInterval(butterfly,700);
-
-function flower(){
-  if(website.style.display!=="block")return;
-
-  const f=document.createElement("div");
-  f.className="flower";
-
-  for(let i=1;i<=5;i++){
-    const petal=document.createElement("div");
-    petal.className="petal p"+i;
-    f.appendChild(petal);
+/* ==============================
+   INTERACTIVE MOOD CHOICE
+============================== */
+const moodMessages={
+  en:{
+    romantic:"Your chapter is candlelight, soft music, and a seat close to the love story.",
+    party:"Your chapter begins when the music starts. We expect you on the dance floor.",
+    family:"Your chapter is warmth, hugs, photos, and the people who make the day complete."
+  },
+  ar:{
+    romantic:"فصلك هو ضوء الشموع، موسيقى ناعمة، ومكان قريب من قصة الحب.",
+    party:"فصلك يبدأ عندما تبدأ الموسيقى. ننتظرك على ساحة الرقص.",
+    family:"فصلك هو الدفء، الأحضان، الصور، والناس الذين يكملون اليوم."
   }
+};
 
-  const center=document.createElement("div");
-  center.className="center";
-  f.appendChild(center);
-
-  const size=18 + Math.random()*16;
-  f.style.width=size+"px";
-  f.style.height=size+"px";
-  f.style.left=Math.random()*window.innerWidth+"px";
-  f.style.top="-40px";
-  f.style.animationDuration=(7 + Math.random()*4)+"s";
-
-  document.body.appendChild(f);
-  setTimeout(()=>f.remove(),11000);
+function setChoice(choice, btn){
+  document.querySelectorAll(".choice-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  choiceResult.textContent=moodMessages[currentLang][choice];
+  choiceResult.classList.add("show");
 }
 
-setInterval(flower,1100);
+document.querySelectorAll(".choice-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>setChoice(btn.dataset.choice,btn));
+});
 
+/* ==============================
+   FLOATING EFFECTS
+============================== */
+function paperPiece(){
+  if(website.style.display!=="block") return;
+  const p=document.createElement("div");
+  p.className="paper-piece";
+  p.style.left=Math.random()*window.innerWidth+"px";
+  p.style.top="-40px";
+  p.style.animationDuration=(7+Math.random()*5)+"s";
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),12000);
+}
+
+function heart(){
+  if(website.style.display!=="block") return;
+  const h=document.createElement("div");
+  h.className="float-heart";
+  h.textContent="♥";
+  h.style.left=Math.random()*window.innerWidth+"px";
+  h.style.top=(window.innerHeight-20+Math.random()*70)+"px";
+  h.style.animationDuration=(4+Math.random()*4)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8500);
+}
+
+setInterval(paperPiece,1500);
+setInterval(heart,700);
+
+/* ==============================
+   LANGUAGE
+============================== */
 const translations={
   en:{
-    scrollHintText:"Scroll",
-    quote:"With the ocean as our witness,<br>we invite you to celebrate their love<br>under the sun and stars.",
-    groom:"Maamoun",
-    bride:"Aycha",
-    mainInfo:"Rmeileh Resort & Hotel<br>Wedding starts at 8:00 PM<br>Adults Only · No Kids",
-
+    bookLabel:"Chapter One",
+    bookNames:"Nadir<br>& Celeste",
+    bookDate:"19 April 2028",
+    openBtn:"Open the Story 📖",
+    brandNames:"Nadir & Celeste",
+    brandSub:"Interactive Storybook",
+    heroStamp:"Save<br>The<br>Date",
+    kicker:"You are invited into the story of",
+    groom:"Nadir",
+    bride:"Celeste",
+    date:"19 / 4 / 2028",
+    mainInfo:"The Orchard House, Tuscany<br>Ceremony begins at 4:30 PM<br>Garden dinner to follow",
     days:"Days",
     hours:"Hours",
     minutes:"Minutes",
     seconds:"Seconds",
-
-    ourNightTitle:"Our Night",
-    ourNightText:"A celebration by the sea, surrounded by love, music, lights, and the people who mean the most to us.",
-
-    placeTitle:"The Place",
-    placeText:"Join us at Rmeileh Resort & Hotel for an elegant evening under the stars, beginning at 8:00 PM.",
-
-    adultsTitle:"Adults Only",
-    adultsText:"We’re so excited to celebrate with you, this will be an adults only evening. Thank you for your understanding 🤍",
-
-    rsvpTitle:"Will You Join Us?",
-    rsvpText:"Please let us know if you’ll be celebrating this special night with us.",
-
-    yesBtn:"Yes, I’m Coming 🎉",
+    page1:"Interactive Page",
+    moodTitle:"Choose Your Wedding Mood",
+    moodText:"Tap one card and the invitation will answer you like a little story moment.",
+    choice1:"Romantic Guest",
+    choice2:"Ready to Dance",
+    choice3:"Family Guest",
+    page2:"Chapter Two",
+    storyTitle:"The Garden Chapter",
+    storyText:"Some love stories feel like sunlight through leaves — quiet, warm, and impossible to forget.",
+    page3:"Details",
+    detailsTitle:"The Orchard House",
+    detailsText:"A soft Tuscan garden evening with vows beneath olive trees, dinner under string lights, and music after sunset.",
+    detail1:"The Orchard House, Tuscany",
+    detail2:"4:30 PM Ceremony",
+    detail3:"Garden formal attire",
+    mapBtn:"Open Location 📍",
+    page4:"Schedule",
+    timelineTitle:"The Day’s Pages",
+    timelineText:"A gentle timeline from vows to dinner, music, and memories.",
+    time1:"4:30 PM",
+    event1:"Garden ceremony",
+    time2:"5:30 PM",
+    event2:"Aperitivo and photos",
+    time3:"7:00 PM",
+    event3:"Dinner under the lights",
+    time4:"9:00 PM",
+    event4:"Music and dancing",
+    page5:"Memories",
+    galleryTitle:"Little Polaroids",
+    galleryText:"A playful stack of moments, made to feel personal and touchable.",
+    mem1:"The Promise",
+    mem2:"The Walk",
+    mem3:"The Details",
+    page6:"Dinner",
+    dinnerTitle:"Under String Lights",
+    dinnerText:"Dinner will be served in the garden after sunset, surrounded by candlelight, olive branches, and music.",
+    page7:"RSVP",
+    rsvpTitle:"Write Yourself Into the Story",
+    rsvpText:"Add your name and choose your side before sending your RSVP through WhatsApp.",
+    yesBtn:"Yes, I’m Coming ✨",
     noBtn:"Can’t Make It",
-
+    page8:"Final Page",
+    finalTitle:"Until the Garden",
+    finalText:"We cannot wait to celebrate this beautiful chapter with you.",
+    calendarBtn:"Save to Calendar 🗓️",
+    locationBtn:"Open Location 📍",
+    navHome:"Home",
+    navDetails:"Details",
+    navGallery:"Gallery",
+    navRsvp:"RSVP",
     sideTitle:"Which side are you from?",
     sideText:"Please choose before confirming your RSVP.",
     brideSide:"Bride’s Side",
     groomSide:"Groom’s Side",
-
-    finalTitle:"See You There",
-    finalText:"We cannot wait to celebrate this unforgettable evening with you.",
-    locationBtn:"Open Location 📍",
-    footerNames:"Maamoun & Aycha · 26 June 2026",
-    footerLove:"Made with love 💛"
+    footerNames:"Nadir & Celeste · 19 April 2028",
+    footerLove:"A portfolio demo by Amour De Minuit ✨"
   },
-
   ar:{
-  scrollHintText:"انزل",
-  quote:"والبحر شاهد على حبّنا،<br>منحب ندعيكن تشاركونا فرحة العمر<br>تحت الشمس والنجوم.",
-  groom:"مأمون",
-  bride:"عائشة",
-  mainInfo:"منتجع وفندق الرميلة<br>بيبلّش الحفل الساعة 8:00 مساءً<br>للكبار فقط · بدون أطفال",
-
-  days:"أيام",
-  hours:"ساعات",
-  minutes:"دقايق",
-  seconds:"ثواني",
-
-  ourNightTitle:"ليلتنا",
-  ourNightText:"سهرة على البحر، مليانة حب، موسيقى، أضواء، ومع أغلى الناس على قلوبنا.",
-
-  placeTitle:"المكان",
-  placeText:"ناطرينكن بمنتجع وفندق الرميلة بسهرة حلوة تحت النجوم، بتبلّش الساعة 8:00 مساءً.",
-
-  adultsTitle:"ليلة هادئة",
-  adultsText:"يسعدنا حضوركم ومشاركتكم فرحتنا، وسيكون الحفل مخصصًا للكبار فقط. شكرًا لتفهمكم ❤️",
-
-  rsvpTitle:"رح تكونوا معنا؟",
-  rsvpText:"خبرونا إذا رح تشاركونا هالليلة المميزة.",
-
-  yesBtn:"نعم، رح أحضر 🎉",
-  noBtn:"ما فيني إحضر",
-
-  sideTitle:"من أي طرف؟",
-  sideText:"اختاروا قبل تأكيد الحضور.",
-  brideSide:"طرف العروس",
-  groomSide:"طرف العريس",
-
-  finalTitle:"منشوفكن هونيك",
-  finalText:"ناطرينكن لنحتفل سوا بهالليلة الحلوة يلي ما بتنتسى.",
-  locationBtn:"افتح الموقع 📍",
-
-  footerNames:"مأمون وعائشة · ٢٦ حزيران ٢٠٢٦",
-  footerLove:"مع كل الحب 💛"
-}
+    bookLabel:"الفصل الأول",
+    bookNames:"نادر<br>وسيليست",
+    bookDate:"١٩ نيسان ٢٠٢٨",
+    openBtn:"افتحوا القصة 📖",
+    brandNames:"نادر وسيليست",
+    brandSub:"دعوة قصة تفاعلية",
+    heroStamp:"احفظوا<br>هذا<br>التاريخ",
+    kicker:"ندعوكم للدخول إلى قصة",
+    groom:"نادر",
+    bride:"سيليست",
+    date:"١٩ / ٤ / ٢٠٢٨",
+    mainInfo:"ذا أورشارد هاوس، توسكانا<br>تبدأ المراسم الساعة ٤:٣٠ مساءً<br>عشاء في الحديقة بعدها",
+    days:"أيام",
+    hours:"ساعات",
+    minutes:"دقايق",
+    seconds:"ثواني",
+    page1:"صفحة تفاعلية",
+    moodTitle:"اختاروا أجواءكم في الزفاف",
+    moodText:"اضغطوا على بطاقة واحدة وسترد الدعوة كأنها لحظة صغيرة من القصة.",
+    choice1:"ضيف رومانسي",
+    choice2:"جاهز للرقص",
+    choice3:"ضيف من العائلة",
+    page2:"الفصل الثاني",
+    storyTitle:"فصل الحديقة",
+    storyText:"بعض قصص الحب تشبه ضوء الشمس بين الأوراق — هادئة، دافئة، ولا تُنسى.",
+    page3:"التفاصيل",
+    detailsTitle:"ذا أورشارد هاوس",
+    detailsText:"أمسية حديقة ناعمة في توسكانا، عهود تحت أشجار الزيتون، عشاء تحت الأضواء، وموسيقى بعد الغروب.",
+    detail1:"ذا أورشارد هاوس، توسكانا",
+    detail2:"المراسم الساعة ٤:٣٠ مساءً",
+    detail3:"لباس رسمي للحديقة",
+    mapBtn:"افتح الموقع 📍",
+    page4:"البرنامج",
+    timelineTitle:"صفحات اليوم",
+    timelineText:"برنامج هادئ من العهود إلى العشاء، الموسيقى، والذكريات.",
+    time1:"٤:٣٠ مساءً",
+    event1:"مراسم الحديقة",
+    time2:"٥:٣٠ مساءً",
+    event2:"أبيريتيفو وصور",
+    time3:"٧:٠٠ مساءً",
+    event3:"عشاء تحت الأضواء",
+    time4:"٩:٠٠ مساءً",
+    event4:"موسيقى ورقص",
+    page5:"ذكريات",
+    galleryTitle:"صور بولارويد صغيرة",
+    galleryText:"مجموعة لحظات مرحة تجعل الدعوة شخصية وقريبة.",
+    mem1:"الوعد",
+    mem2:"المشوار",
+    mem3:"التفاصيل",
+    page6:"العشاء",
+    dinnerTitle:"تحت الأضواء",
+    dinnerText:"سيتم تقديم العشاء في الحديقة بعد الغروب، بين الشموع وأغصان الزيتون والموسيقى.",
+    page7:"تأكيد الحضور",
+    rsvpTitle:"اكتبوا أنفسكم داخل القصة",
+    rsvpText:"أضيفوا اسمكم واختاروا الطرف قبل إرسال تأكيد الحضور عبر واتساب.",
+    yesBtn:"نعم، سأحضر ✨",
+    noBtn:"ما فيني إحضر",
+    page8:"الصفحة الأخيرة",
+    finalTitle:"إلى اللقاء في الحديقة",
+    finalText:"لا نستطيع الانتظار لنحتفل معكم بهذا الفصل الجميل.",
+    calendarBtn:"احفظ في التقويم 🗓️",
+    locationBtn:"افتح الموقع 📍",
+    navHome:"الرئيسية",
+    navDetails:"التفاصيل",
+    navGallery:"الصور",
+    navRsvp:"تأكيد",
+    sideTitle:"من أي طرف؟",
+    sideText:"اختاروا قبل تأكيد الحضور.",
+    brideSide:"طرف العروس",
+    groomSide:"طرف العريس",
+    footerNames:"نادر وسيليست · ١٩ نيسان ٢٠٢٨",
+    footerLove:"نموذج من Amour De Minuit ✨"
+  }
 };
 
-let currentLang="en";
-
-function showScrollHint(){
-  const scrollHint=document.getElementById("scrollHint");
-  if(!scrollHint) return;
-
-  scrollHint.classList.remove("show-scroll");
-
-  void scrollHint.offsetWidth;
-
-  scrollHint.classList.add("show-scroll");
-
-  setTimeout(()=>{
-    scrollHint.classList.remove("show-scroll");
-  },4200);
-}
-
 function setLanguage(lang){
-    
-    currentLang=lang;
-
-  document.body.classList.toggle("ar", lang==="ar");
+  currentLang=lang;
+  document.body.classList.toggle("ar",lang==="ar");
 
   document.querySelectorAll("[data-i18n]").forEach(el=>{
     const key=el.getAttribute("data-i18n");
@@ -1843,64 +1549,61 @@ function setLanguage(lang){
     }
   });
 
-  const yesBtn=document.getElementById("yesBtn");
-  const noBtn=document.getElementById("noBtn");
+  guestName.placeholder=lang==="ar" ? guestName.dataset.placeholderAr : guestName.dataset.placeholderEn;
+  langToggle.textContent=lang==="en" ? "عربي" : "EN";
 
-yesBtn.href="#";
-
-if(lang==="ar"){
-  noBtn.href="https://wa.me/96178960826?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C";
-}else{
-  noBtn.href="https://wa.me/96178960826?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C";
-}
-
-  document.getElementById("languageModal").style.display="none";
-  const langToggle=document.getElementById("langToggle");
-langToggle.style.display="block";
-langToggle.textContent=lang==="en" ? "عربي" : "English";
-setTimeout(showScrollHint, 350);
-}
-
-document.getElementById("langToggle").onclick=()=>{
-  setLanguage(currentLang==="en" ? "ar" : "en");
-};
-
-const sideModal=document.getElementById("sideModal");
-const brideSideBtn=document.getElementById("brideSideBtn");
-const groomSideBtn=document.getElementById("groomSideBtn");
-const sideCloseBtn=document.getElementById("sideCloseBtn");
-
-function getComingMessage(){
-  if(currentLang==="ar"){
-    return "%D9%86%D8%B9%D9%85%D8%8C%20%D8%B1%D8%AD%20%D8%A3%D8%AD%D8%B6%D8%B1%20%E2%9C%85%0A%D8%B9%D8%AF%D8%AF%20%D8%A7%D9%84%D8%A3%D8%B4%D8%AE%D8%A7%D8%B5%3A";
+  if(choiceResult.classList.contains("show")){
+    const active=document.querySelector(".choice-btn.active");
+    if(active){
+      choiceResult.textContent=moodMessages[currentLang][active.dataset.choice];
+    }
   }
 
-  return "Yes%2C%20I%E2%80%99m%20Coming%20%E2%9C%85%0ANumber%20of%20People%3A";
+  if(lang==="ar"){
+    noBtn.href="https://wa.me/96100000000?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C";
+  }else{
+    noBtn.href="https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C";
+  }
 }
 
-yesBtn.addEventListener("click", function(e){
-  e.preventDefault();
+langToggle.addEventListener("click",()=>setLanguage(currentLang==="en" ? "ar" : "en"));
+
+/* ==============================
+   RSVP
+============================== */
+yesBtn.addEventListener("click",()=>{
   sideModal.style.display="flex";
 });
 
-brideSideBtn.addEventListener("click", function(){
-  window.open("https://wa.me/96178960826?text=" + getComingMessage(), "_blank");
+sideClose.addEventListener("click",()=>{
   sideModal.style.display="none";
 });
 
-groomSideBtn.addEventListener("click", function(){
-  window.open("https://wa.me/966543230820?text=" + getComingMessage(), "_blank");
-  sideModal.style.display="none";
-});
-
-sideCloseBtn.addEventListener("click", function(){
-  sideModal.style.display="none";
-});
-
-sideModal.addEventListener("click", function(e){
+sideModal.addEventListener("click",e=>{
   if(e.target===sideModal){
     sideModal.style.display="none";
   }
+});
+
+function comingMessage(){
+  const name=guestName.value.trim() || (currentLang==="ar" ? "ضيف" : "Guest");
+  const count=guestCount.value;
+
+  if(currentLang==="ar"){
+    return encodeURIComponent(`نعم، سأحضر زفاف نادر وسيليست ✅\nالاسم: ${name}\nعدد الأشخاص: ${count}`);
+  }
+
+  return encodeURIComponent(`Yes, I will attend Nadir & Celeste's wedding ✅\nName: ${name}\nNumber of Guests: ${count}`);
+}
+
+brideSideBtn.addEventListener("click",()=>{
+  window.open("https://wa.me/96100000000?text="+comingMessage(),"_blank");
+  sideModal.style.display="none";
+});
+
+groomSideBtn.addEventListener("click",()=>{
+  window.open("https://wa.me/96111111111?text="+comingMessage(),"_blank");
+  sideModal.style.display="none";
 });
 </script>
 </body>
