@@ -332,6 +332,60 @@ body.ar,body.ar .title,body.ar .text,body.ar .brand-text,body.ar .quote,body.ar 
   #home .time-box small{font-size:7px;}
 }
 
+/* Intro card spacing fix */
+@media(max-width:720px){
+  .shell-card{
+    padding:26px 28px 22px;
+  }
+
+  .shell-card::before{
+    inset:18px;
+  }
+
+  .shell-top{
+    padding:0 4px;
+    align-items:flex-start;
+  }
+
+  .shell-mark{
+    width:54px;
+    height:54px;
+    border-radius:20px;
+    margin-left:4px;
+  }
+
+  .shell-label{
+    max-width:230px;
+    padding-right:4px;
+    font-size:9.5px;
+    letter-spacing:3.5px;
+    line-height:1.75;
+  }
+}
+
+@media(max-width:420px){
+  .shell-card{
+    padding:28px 26px 22px;
+  }
+
+  .shell-card::before{
+    inset:17px;
+  }
+
+  .shell-mark{
+    width:52px;
+    height:52px;
+    font-size:31px;
+    margin-left:2px;
+  }
+
+  .shell-label{
+    max-width:215px;
+    padding-right:2px;
+    font-size:9px;
+    letter-spacing:3.2px;
+  }
+}
 </style>
 </head>
 <body>
