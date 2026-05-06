@@ -335,7 +335,7 @@ body.ar,body.ar .title,body.ar .text,body.ar .brand-text,body.ar .quote,body.ar 
 /* Intro card spacing fix */
 @media(max-width:720px){
   .shell-card{
-    padding:26px 28px 22px;
+    padding:26px 28px 28px;
   }
 
   .shell-card::before{
@@ -361,11 +361,16 @@ body.ar,body.ar .title,body.ar .text,body.ar .brand-text,body.ar .quote,body.ar 
     letter-spacing:3.5px;
     line-height:1.75;
   }
+
+  .unlock-btn{
+    width:calc(100% - 18px);
+    margin:0 auto 4px;
+  }
 }
 
 @media(max-width:420px){
   .shell-card{
-    padding:28px 26px 22px;
+    padding:28px 26px 30px;
   }
 
   .shell-card::before{
@@ -384,6 +389,11 @@ body.ar,body.ar .title,body.ar .text,body.ar .brand-text,body.ar .quote,body.ar 
     padding-right:2px;
     font-size:9px;
     letter-spacing:3.2px;
+  }
+
+  .unlock-btn{
+    width:calc(100% - 20px);
+    margin:0 auto 2px;
   }
 }
 </style>
